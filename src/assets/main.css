@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #264710;
+  --color-primary-light: #3A602F;
+  --color-primary-dark: #1b381b;
+  --color-secondary: #de9e36;
+  --color-accent: #FEC81A;
+  --color-contrast: #800000;
+  --color-bg-light: #F7F7F7;
+  --color-bg-dark: #CED4DA;
+  --color-dark: #474747;
+
+  --font-family-sans: 'Arial', 'Noto Sans TC', Helvetica, Arial, sans-serif;
+  --font-family-display: 'Yellowtail', cursive;
+  --font-family-sheppards: 'Mrs Sheppards', cursive;
+}
+
+@layer base {
+  html, body {
+    height: 100%;
+    margin: 0;
+    background-color: white;
+  }
+
+  #app {
+    height: 100%;
+    font-family: var(--font-family-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: black;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mrs+Sheppards&family=Yellowtail&display=swap');
