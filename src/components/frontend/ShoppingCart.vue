@@ -13,15 +13,15 @@ const emit = defineEmits<{
 const cartStore = useCartStore()
 const loadingStore = useLoadingStore()
 
-function changeQuantity(cartItemId: string, productId: string, qty: number) {
+const changeQuantity = (cartItemId: string, productId: string, qty: number) => {
   cartStore.changeQuantity(cartItemId, productId, qty)
 }
 
-function delItem(id: string) {
+const delItem = (id: string) => {
   cartStore.deleteItem(id)
 }
 
-function closeCart() {
+const closeCart = () => {
   emit('close')
 }
 </script>

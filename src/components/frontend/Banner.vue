@@ -4,7 +4,7 @@ defineProps<{
   content: string
 }>()
 
-function scrollDown() {
+const scrollDown = () => {
   const x = 625
   const offset = window.innerHeight >= 625
     ? 583 + (window.innerHeight - x)

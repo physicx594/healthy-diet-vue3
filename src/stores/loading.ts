@@ -5,11 +5,11 @@ export const useLoadingStore = defineStore('loading', () => {
   const isLoading = ref(false)
   const formLoading = ref(false)
 
-  function setLoading(value: boolean) {
+  const setLoading = (value: boolean) => {
     isLoading.value = value
   }
 
-  function setFormLoading(value: boolean) {
+  const setFormLoading = (value: boolean) => {
     formLoading.value = value
   }
 

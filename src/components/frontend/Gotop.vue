@@ -3,11 +3,11 @@ import { ref, onMounted, onUnmounted } from 'vue'
 
 const show = ref(false)
 
-function onScroll() {
+const onScroll = () => {
   show.value = window.pageYOffset >= 560
 }
 
-function goTop() {
+const goTop = () => {
   window.scrollTo({ top: 0, behavior: 'smooth' })
 }
 

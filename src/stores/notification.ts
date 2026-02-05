@@ -10,7 +10,7 @@ export const useNotificationStore = defineStore('notification', () => {
   const current = ref<Notification | null>(null)
   let timer: ReturnType<typeof setTimeout> | null = null
 
-  function show(message: string, type: 'success' | 'error' = 'success') {
+  const show = (message: string, type: 'success' | 'error' = 'success') => {
     if (timer) clearTimeout(timer)
     current.value = { message, type }
     timer = setTimeout(() => {
@@ -19,7 +19,7 @@ export const useNotificationStore = defineStore('notification', () => {
     }, 4000)
   }
 
-  function clear() {
+  const clear = () => {
     if (timer) clearTimeout(timer)
     current.value = null
     timer = null

@@ -9,7 +9,7 @@ const emit = defineEmits<{
   update: [page: number]
 }>()
 
-function pageNum(page: number) {
+const pageNum = (page: number) => {
   emit('update', page)
 }
 </script>

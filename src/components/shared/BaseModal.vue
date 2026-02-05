@@ -9,7 +9,7 @@ const emit = defineEmits<{
   'update:modelValue': [value: boolean]
 }>()
 
-function close() {
+const close = () => {
   emit('update:modelValue', false)
 }
 

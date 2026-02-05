@@ -8,7 +8,7 @@ const cartStore = useCartStore()
 const show = ref(false)
 const openCart = ref(false)
 
-function mask() {
+const mask = () => {
   if (!show.value) {
     openCart.value = !openCart.value
   } else if (!openCart.value) {
@@ -19,7 +19,7 @@ function mask() {
   }
 }
 
-function closeCart() {
+const closeCart = () => {
   openCart.value = false
 }
 

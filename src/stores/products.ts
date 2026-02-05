@@ -14,7 +14,7 @@ export const useProductsStore = defineStore('products', () => {
     category: ''
   })
 
-  async function getProducts(page = 1) {
+  const getProducts = async (page = 1) => {
     const loading = useLoadingStore()
     loading.setLoading(true)
     try {

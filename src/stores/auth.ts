@@ -7,7 +7,7 @@ import router from '@/router'
 export const useAuthStore = defineStore('auth', () => {
   const isAuthenticated = ref(false)
 
-  async function signin(username: string, password: string) {
+  const signin = async (username: string, password: string) => {
     const res = await authApi.signin(username, password)
     const { token, expired } = res.data
     setCookie('token', token, new Date(expired * 1000))
@@ -15,7 +15,7 @@ export const useAuthStore = defineStore('auth', () => {
     router.push('/admin/products')
   }
 
-  async function checkAuth(): Promise<boolean> {
+  const checkAuth = async (): Promise<boolean> => {
     const token = getCookie('token')
     if (!token) return false
     try {
@@ -28,7 +28,7 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
-  function signout() {
+  const signout = () => {
     removeCookie('token')
     isAuthenticated.value = false
     router.push('/')
