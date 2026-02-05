@@ -71,9 +71,9 @@ onMounted(() => {
             :key="item.id"
             class="my-12 text-center"
           >
-            <figure class="relative w-full max-w-[250px] max-h-[250px] max-md:w-[200px] max-md:h-[200px] rounded-full overflow-hidden mx-auto mb-3 shadow-[1px_1px_10px_-1px_rgba(0,0,0,0.5)] group aspect-square">
+            <figure class="relative w-full max-w-62.5 max-h-62.5 max-md:w-50 max-md:h-50 rounded-full overflow-hidden mx-auto mb-3 shadow-product group aspect-square">
               <RouterLink :to="`/product/${item.id}`">
-                <img :src="item.imageUrl[0]" class="w-full h-full object-cover transition-all duration-300 group-hover:brightness-[0.2]" />
+                <img :src="item.imageUrl[0]" class="w-full h-full object-cover transition-all duration-300 group-hover:brightness-20" />
                 <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity text-white text-center">
                   <div v-if="!item.price">
                     <div class="text-xl font-bold text-red-500">{{ formatMoney(item.origin_price) }}</div>
@@ -104,9 +104,9 @@ onMounted(() => {
 
     <!-- Add to cart message -->
     <div
-      class="fixed top-[71px] px-5 py-1.5 text-white text-sm shadow transition-all duration-500 ease-out z-[2000]"
+      class="fixed top-17.75 px-5 py-1.5 text-white text-sm shadow transition-all duration-500 ease-out z-cart"
       :class="[
-        cartStore.openMsg ? 'right-2.5' : '-right-[350px]',
+        cartStore.openMsg ? 'right-2.5' : '-right-87.5',
         cartStore.joinMsg ? 'bg-primary-light' : 'bg-red-600'
       ]"
     >

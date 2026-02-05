@@ -41,7 +41,7 @@ onMounted(async () => {
     }"
   >
     <SwiperSlide v-for="(item, index) in randomItems" :key="index">
-      <figure class="w-full max-w-[200px] max-h-[200px] rounded-full overflow-hidden mx-auto cursor-pointer aspect-square">
+      <figure class="w-full max-w-50 max-h-50 rounded-full overflow-hidden mx-auto cursor-pointer aspect-square">
         <img :src="item.imageUrl[0]" class="w-full h-full object-cover" :alt="item.title" />
       </figure>
     </SwiperSlide>

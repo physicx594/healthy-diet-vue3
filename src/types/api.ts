@@ -4,7 +4,7 @@ import type { Order } from './order'
 import type { Coupon } from './coupon'
 import type { Pagination } from './pagination'
 
-export interface ApiResponse<T = unknown> {
+export interface ApiResponse {
   success: boolean
   message?: string
   [key: string]: unknown

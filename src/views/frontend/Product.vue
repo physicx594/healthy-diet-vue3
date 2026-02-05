@@ -38,7 +38,7 @@ onMounted(async () => {
   const { id } = route.params
   const res = await productsApi.getOne(id as string)
   tempProduct.value = { ...res.data.product, quantity: 1 }
-  selectPic.value = tempProduct.value.imageUrl[0]
+  selectPic.value = tempProduct.value.imageUrl[0] ?? ''
   loadingStore.setLoading(false)
 })
 </script>
@@ -53,13 +53,13 @@ onMounted(async () => {
         <div class="flex max-lg:flex-col gap-4">
           <!-- Images -->
           <div class="lg:w-7/12">
-            <div class="flex max-lg:flex-col justify-between w-full h-[350px] max-lg:h-auto overflow-hidden">
-              <img :src="selectPic" class="w-4/5 max-lg:w-full max-lg:h-[280px] h-full object-cover object-center" alt="" />
-              <div class="w-[18%] max-lg:w-full max-lg:flex max-lg:justify-between max-lg:mt-2">
+            <div class="flex max-lg:flex-col justify-between w-full h-87.5 max-lg:h-auto overflow-hidden">
+              <img :src="selectPic" class="w-4/5 max-lg:w-full max-lg:h-70 h-full object-cover object-center" alt="" />
+              <div class="max-lg:w-full max-lg:flex max-lg:justify-between max-lg:mt-2" style="width: 18%">
                 <figure
                   v-for="(img, key) in tempProduct.imageUrl"
                   :key="tempProduct.id + key"
-                  class="w-full lg:h-20 max-lg:w-[70px] max-sm:w-[48px] mb-2.5 cursor-pointer overflow-hidden"
+                  class="w-full lg:h-20 max-lg:w-17.5 max-sm:w-12 mb-2.5 cursor-pointer overflow-hidden"
                 >
                   <img :src="img" class="w-full h-full object-cover object-center" @click="selectPic = img" />
                 </figure>
@@ -84,14 +84,14 @@ onMounted(async () => {
               </div>
               <div class="text-sm max-md:bg-bg-light max-md:p-2.5 max-md:my-1">{{ tempProduct.content }}</div>
               <div class="max-md:bg-bg-light max-md:p-2.5 max-md:my-1">
-                <p class="mb-1 border-l-[3px] border-bg-dark pl-1.5">雙十節9 折優惠碼 : <span class="text-contrast font-bold text-lg ml-1">taiwan1010</span></p>
-                <p class="m-0 border-l-[3px] border-bg-dark pl-1.5">周年慶，全館滿<span class="text-contrast font-bold text-lg ml-1">3000免運費</span></p>
+                <p class="mb-1 border-l-3 border-bg-dark pl-1.5">雙十節9 折優惠碼 : <span class="text-contrast font-bold text-lg ml-1">taiwan1010</span></p>
+                <p class="m-0 border-l-3 border-bg-dark pl-1.5">周年慶，全館滿<span class="text-contrast font-bold text-lg ml-1">3000免運費</span></p>
               </div>
               <div class="flex justify-between items-center max-md:mt-1">
-                <div class="flex items-center w-[45%] rounded-full shadow-sm">
+                <div class="flex items-center rounded-full shadow-sm" style="width: 45%">
                   <button
                     type="button"
-                    class="w-[30px] p-0 text-primary"
+                    class="w-7.5 p-0 text-primary"
                     :disabled="tempProduct.quantity === 1"
                     @click="tempProduct.quantity--"
                   >
@@ -99,13 +99,13 @@ onMounted(async () => {
                   </button>
                   <input
                     type="text"
-                    class="flex-1 bg-bg-light border-none text-center text-primary font-bold text-[28px] p-0"
+                    class="flex-1 bg-bg-light border-none text-center text-primary font-bold text-2_5xl p-0"
                     :value="tempProduct.quantity"
                     disabled
                   />
                   <button
                     type="button"
-                    class="w-[30px] p-0 text-primary"
+                    class="w-7.5 p-0 text-primary"
                     @click="tempProduct.quantity++"
                   >
                     <i class="fas fa-plus text-base"></i>
@@ -113,7 +113,7 @@ onMounted(async () => {
                 </div>
                 <button
                   type="button"
-                  class="w-[45%] rounded-full shadow-sm text-white bg-primary hover:bg-primary-dark transition-colors py-2"
+                  class="rounded-full shadow-sm text-white bg-primary hover:bg-primary-dark transition-colors py-2" style="width: 45%"
                   @click="addToCart"
                 >
                   加入購物車
@@ -126,7 +126,7 @@ onMounted(async () => {
         <!-- Product Description -->
         <div class="mt-8">
           <div class="font-bold text-xl text-primary my-5 section-title"><span>商品描述</span></div>
-          <div class="whitespace-pre-wrap text-left leading-[30px] bg-bg-light p-5 max-sm:p-2.5">
+          <div class="whitespace-pre-wrap text-left leading-7.5 bg-bg-light p-5 max-sm:p-2.5">
             {{ tempProduct.description }}
           </div>
         </div>
@@ -141,9 +141,9 @@ onMounted(async () => {
 
     <!-- Add to cart message -->
     <div
-      class="fixed top-[103px] px-5 py-1.5 text-white text-sm shadow transition-all duration-500 ease-out z-[2000]"
+      class="fixed top-25.75 px-5 py-1.5 text-white text-sm shadow transition-all duration-500 ease-out z-cart"
       :class="[
-        cartStore.openMsg ? 'right-2.5' : '-right-[350px]',
+        cartStore.openMsg ? 'right-2.5' : '-right-87.5',
         cartStore.joinMsg ? 'bg-primary' : 'bg-red-600'
       ]"
     >

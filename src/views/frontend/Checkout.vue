@@ -142,7 +142,7 @@ onMounted(async () => {
                 <label class="block text-sm font-medium mb-1">備註</label>
                 <textarea
                   v-model="form.message"
-                  class="w-full px-3 py-2 border border-gray-300 rounded text-sm h-[120px] focus:ring-2 focus:ring-primary focus:border-transparent"
+                  class="w-full px-3 py-2 border border-gray-300 rounded text-sm h-30 focus:ring-2 focus:ring-primary focus:border-transparent"
                 />
               </div>
 

@@ -9,14 +9,14 @@ const isError = computed(() => notification.current?.type === 'error')
 
 <template>
   <Teleport to="body">
-    <div class="fixed left-1/2 -translate-x-1/2 top-0 min-w-[300px] z-[11000]">
+    <div class="fixed left-1/2 -translate-x-1/2 top-0 min-w-75 z-toast">
       <Transition
         enter-active-class="animate__animated animate__fadeInDownBig"
         leave-active-class="animate__animated animate__fadeOutUp"
       >
         <div
           v-if="notification.current"
-          class="mt-3 rounded-md flex justify-center items-center w-[350px] h-11 mx-auto"
+          class="mt-3 rounded-md flex justify-center items-center w-87.5 h-11 mx-auto"
           :class="isError ? 'bg-red-600' : 'bg-green-600'"
         >
           <div class="mr-2">

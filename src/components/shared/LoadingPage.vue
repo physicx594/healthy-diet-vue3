@@ -6,7 +6,7 @@ defineProps<{
 
 <template>
   <div
-    class="fixed inset-0 z-[2000] bg-primary flex items-center justify-center transition-opacity"
+    class="fixed inset-0 z-loading bg-primary flex items-center justify-center transition-opacity"
     :class="isLoading ? 'opacity-100 visible' : 'opacity-0 invisible'"
   >
     <div class="text-center text-accent">

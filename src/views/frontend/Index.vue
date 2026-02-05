@@ -39,7 +39,7 @@ onMounted(() => {
             <div class="inline-block text-primary font-bold text-2xl p-2.5 section-title"><span>關於我們</span></div>
           </div>
           <div class="flex max-lg:flex-col max-lg:text-center justify-between text-left">
-            <figure class="lg:w-7/12 p-0 m-0 max-h-[390px] overflow-hidden relative about-figure" data-aos="fade-right" data-aos-easing="ease-in-out">
+            <figure class="lg:w-7/12 p-0 m-0 max-h-97.5 overflow-hidden relative about-figure" data-aos="fade-right" data-aos-easing="ease-in-out">
               <img src="https://images.unsplash.com/photo-1595786802424-d6efbc413db5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80" class="w-full h-full object-cover p-2.5 max-lg:p-0 ml-5 max-lg:ml-0 max-lg:mb-4" />
             </figure>
             <div class="lg:w-5/12 flex flex-col justify-between" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-delay="250">
@@ -58,30 +58,30 @@ onMounted(() => {
 
       <!-- Selected Section -->
       <div class="w-full mt-12 bg-cover bg-center bg-fixed" style="background-image: url('https://images.unsplash.com/photo-1516594798947-e65505dbb29d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80');">
-        <div class="bg-primary/35 w-full max-h-[190px] py-10 overflow-hidden text-center">
-          <div class="text-white text-[40px] font-bold mb-2 selected-text-shadow">嚴選</div>
+        <div class="bg-primary/35 w-full max-h-47.5 py-10 overflow-hidden text-center">
+          <div class="text-white text-3_5xl font-bold mb-2 selected-text-shadow">嚴選</div>
           <RouterLink to="/products">
             <p class="inline-block px-8 py-1.5 text-white bg-contrast/80 rounded-full font-bold">用心對待每份產品</p>
           </RouterLink>
         </div>
-        <div class="w-full h-[350px] max-md:h-auto bg-white/90 flex max-md:flex-col items-center justify-around">
-          <div class="max-w-[350px] w-full mx-2.5 text-center max-md:flex max-md:items-center">
-            <figure class="max-w-[150px] w-full h-[150px] max-md:w-[100px] max-md:h-[100px] rounded-full bg-primary flex justify-center items-center pb-2.5 mx-auto max-md:mx-2.5 max-md:shrink-0">
-              <img src="https://hexschool-api.s3.us-west-2.amazonaws.com/custom/9B85DD8HXDV6UAPLC0VUg3abgxHc98RZsdnmQemeDzsRzlToIoY2LRjN0ff6uR9M6Zw0sbIuPb0bQY2cLAWXzaKAJF4RsO0Pg9ChafZqIWxR8zSfMaNb6RgjSNjOUMGu.svg" class="max-w-[75px] max-md:max-w-[50px]" />
+        <div class="w-full h-87.5 max-md:h-auto bg-white/90 flex max-md:flex-col items-center justify-around">
+          <div class="max-w-87.5 w-full mx-2.5 text-center max-md:flex max-md:items-center">
+            <figure class="max-w-37.5 w-full h-37.5 max-md:w-25 max-md:h-25 rounded-full bg-primary flex justify-center items-center pb-2.5 mx-auto max-md:mx-2.5 max-md:shrink-0">
+              <img src="https://hexschool-api.s3.us-west-2.amazonaws.com/custom/9B85DD8HXDV6UAPLC0VUg3abgxHc98RZsdnmQemeDzsRzlToIoY2LRjN0ff6uR9M6Zw0sbIuPb0bQY2cLAWXzaKAJF4RsO0Pg9ChafZqIWxR8zSfMaNb6RgjSNjOUMGu.svg" class="max-w-18.75 max-md:max-w-12.5" />
             </figure>
             <div class="font-bold text-xl text-green-600 mt-2">在地食材</div>
             <p class="font-bold max-md:hidden">和小農們合作，使用當地、當季的蔬菜、讓消費者吃進肚的，更加天然、健康、有機，<br />實踐「吃當季、買在地」</p>
           </div>
-          <div class="max-w-[350px] w-full mx-2.5 text-center max-md:flex max-md:items-center">
-            <figure class="max-w-[150px] w-full h-[150px] max-md:w-[100px] max-md:h-[100px] rounded-full bg-primary flex justify-center items-center pb-2.5 mx-auto max-md:mx-2.5 max-md:shrink-0">
-              <img src="https://hexschool-api.s3.us-west-2.amazonaws.com/custom/vxHS0YRn67GsjSNqYvuRxGVZp9xmYfslZ0QqLkdfRA4sZxar8gX0ffwLlTziIPtoIxncfd3JtdreStGt9yIasWXP5obIDmF80tLoeYW2ZqblYfFUbsdPbD8g01exj9C5.svg" class="max-w-[75px] max-md:max-w-[50px]" />
+          <div class="max-w-87.5 w-full mx-2.5 text-center max-md:flex max-md:items-center">
+            <figure class="max-w-37.5 w-full h-37.5 max-md:w-25 max-md:h-25 rounded-full bg-primary flex justify-center items-center pb-2.5 mx-auto max-md:mx-2.5 max-md:shrink-0">
+              <img src="https://hexschool-api.s3.us-west-2.amazonaws.com/custom/vxHS0YRn67GsjSNqYvuRxGVZp9xmYfslZ0QqLkdfRA4sZxar8gX0ffwLlTziIPtoIxncfd3JtdreStGt9yIasWXP5obIDmF80tLoeYW2ZqblYfFUbsdPbD8g01exj9C5.svg" class="max-w-18.75 max-md:max-w-12.5" />
             </figure>
             <div class="font-bold text-xl text-green-600 mt-2">沒有食物添加劑</div>
             <p class="font-bold max-md:hidden">希望消費者吃得健康、吃得安心，我們對食材不做多餘的調味，保留食材本身的鮮與甜，<br />讓您一口就能吃出食物的「美」</p>
           </div>
-          <div class="max-w-[350px] w-full mx-2.5 text-center max-md:flex max-md:items-center">
-            <figure class="max-w-[150px] w-full h-[150px] max-md:w-[100px] max-md:h-[100px] rounded-full bg-primary flex justify-center items-center pb-2.5 mx-auto max-md:mx-2.5 max-md:shrink-0">
-              <img src="https://hexschool-api.s3.us-west-2.amazonaws.com/custom/NwYRD1IFuKVZPMLmExI0Kg0qeo8GIkpftkjeGICbfeN60gdqsya1GCxHh9Bnm3F48rJwYHH1Ya052qalxKQCmv6eGI7JUqV1yWfUCxYHPAauA8NgxyAR4Y2vGoiwqsIQ.svg" class="max-w-[75px] max-md:max-w-[50px]" />
+          <div class="max-w-87.5 w-full mx-2.5 text-center max-md:flex max-md:items-center">
+            <figure class="max-w-37.5 w-full h-37.5 max-md:w-25 max-md:h-25 rounded-full bg-primary flex justify-center items-center pb-2.5 mx-auto max-md:mx-2.5 max-md:shrink-0">
+              <img src="https://hexschool-api.s3.us-west-2.amazonaws.com/custom/NwYRD1IFuKVZPMLmExI0Kg0qeo8GIkpftkjeGICbfeN60gdqsya1GCxHh9Bnm3F48rJwYHH1Ya052qalxKQCmv6eGI7JUqV1yWfUCxYHPAauA8NgxyAR4Y2vGoiwqsIQ.svg" class="max-w-18.75 max-md:max-w-12.5" />
             </figure>
             <div class="font-bold text-xl text-green-600 mt-2">接單製作、新鮮運送</div>
             <p class="font-bold max-md:hidden">每份餐點都是當日限量，配上專業的冷凍物流，讓您吃到當日最新鮮的食物，消費者吃得安心是對我們最大的鼓勵</p>
@@ -96,22 +96,22 @@ onMounted(() => {
         </div>
         <div class="flex max-md:flex-col justify-between mt-4 mb-5 gap-4">
           <div class="category-card lunchbox" data-aos="flip-up" data-aos-duration="1000" @click="toCategory('健康餐盒')">
-            <span class="font-display text-[100px] max-lg:text-[60px] max-md:text-[80px] font-bold text-secondary block leading-tight category-text-shadow transition-opacity duration-500">Bento</span>
+            <span class="font-display text-10xl max-lg:text-6xl max-md:text-7_5xl font-bold text-secondary block leading-tight category-text-shadow transition-opacity duration-500">Bento</span>
             <div class="category-overlay">
               <div class="category-hover-pic"><img src="@/assets/logo1.png" alt="" /></div>
               <p class="font-bold text-white">健康餐盒<br />每天都拿不定主意吃什麼嗎？<br />不知道吃的健不健康嗎?<br />這些心聲，我們都聯到了<br />請交給 HEALTHY DIET 幫您備餐</p>
             </div>
           </div>
           <div class="category-card sousvide" data-aos="flip-up" data-aos-duration="1000" data-aos-delay="150" @click="toCategory('舒肥系列')">
-            <span class="font-display text-[100px] max-lg:text-[60px] max-md:text-[80px] font-bold text-secondary block leading-[80px] max-lg:leading-[150px] category-text-shadow transition-opacity duration-500">Sous</span>
-            <span class="font-display text-[100px] max-lg:text-[60px] max-md:text-[80px] font-bold text-secondary block leading-tight max-lg:hidden category-text-shadow transition-opacity duration-500">vide</span>
+            <span class="font-display text-10xl max-lg:text-6xl max-md:text-7_5xl font-bold text-secondary block leading-20 max-lg:leading-37_5 category-text-shadow transition-opacity duration-500">Sous</span>
+            <span class="font-display text-10xl max-lg:text-6xl max-md:text-7_5xl font-bold text-secondary block leading-tight max-lg:hidden category-text-shadow transition-opacity duration-500">vide</span>
             <div class="category-overlay">
               <div class="category-hover-pic"><img src="@/assets/logo1.png" alt="" /></div>
               <p class="font-bold text-white">舒肥雞胸肉<br />多種口味任你挑，滿足挑剔的味蕾<br />輕鬆補足蛋白質，低熱量無負擔<br />多汁不乾柴，顛覆雞胸肉的印象</p>
             </div>
           </div>
           <div class="category-card salad" data-aos="flip-up" data-aos-duration="1000" data-aos-delay="300" @click="toCategory('新鮮沙拉')">
-            <span class="font-display text-[100px] max-lg:text-[60px] max-md:text-[80px] font-bold text-secondary block leading-tight category-text-shadow transition-opacity duration-500">Salad</span>
+            <span class="font-display text-10xl max-lg:text-6xl max-md:text-7_5xl font-bold text-secondary block leading-tight category-text-shadow transition-opacity duration-500">Salad</span>
             <div class="category-overlay">
               <div class="category-hover-pic"><img src="@/assets/logo1.png" alt="" /></div>
               <p class="font-bold text-white">新鮮沙拉<br />採用豐富的萵苣、蘿蔓、生菜葉與蔬果<br />自製的美味醬料，品嚐生菜的鮮甜爽脆<br />並以最嚴謹的態度為您把關<br />與您一同發掘，蔬食最純淨樸實的美味</p>
@@ -121,8 +121,8 @@ onMounted(() => {
       </div>
 
       <!-- Subscription -->
-      <div class="w-full max-h-[300px] bg-cover bg-center bg-fixed py-[51px] saturate-[80%] mt-5" style="background-image: url('https://images.unsplash.com/photo-1519897831810-a9a01aceccd1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80');">
-        <div class="w-full max-w-[500px] mx-auto bg-white/80 text-primary p-8 text-[28px] max-md:text-base font-bold" data-aos="zoom-in" data-aos-duration="500">
+      <div class="w-full max-h-75 bg-cover bg-center bg-fixed py-12.75 saturate-80 mt-5" style="background-image: url('https://images.unsplash.com/photo-1519897831810-a9a01aceccd1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80');">
+        <div class="w-full max-w-125 mx-auto bg-white/80 text-primary p-8 text-2_5xl max-md:text-base font-bold" data-aos="zoom-in" data-aos-duration="500">
           <p class="text-left">訂閱我們<br />獲得最新消息及優惠</p>
           <div class="flex">
             <input v-model="email" type="email" class="flex-1 px-3 py-2 border border-gray-300 rounded-l focus:outline-none text-sm" placeholder="請輸入信箱" />

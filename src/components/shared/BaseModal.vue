@@ -26,7 +26,7 @@ const sizeClass: Record<string, string> = {
     <Transition name="modal">
       <div
         v-if="modelValue"
-        class="fixed inset-0 z-[3000] flex items-center justify-center p-4"
+        class="fixed inset-0 z-modal flex items-center justify-center p-4"
       >
         <div class="fixed inset-0 bg-black/50" @click="close" />
         <div
@@ -43,7 +43,7 @@ const sizeClass: Record<string, string> = {
               &times;
             </button>
           </div>
-          <div class="p-4 max-h-[70vh] overflow-y-auto">
+          <div class="p-4 max-h-70vh overflow-y-auto">
             <slot />
           </div>
           <div v-if="$slots.footer" class="flex justify-end gap-2 p-4 border-t">

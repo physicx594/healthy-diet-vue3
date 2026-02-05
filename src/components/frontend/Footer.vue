@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <footer class="bg-[#f7f7f7]">
+  <footer class="bg-bg-light">
     <div class="container mx-auto flex max-lg:justify-center justify-between items-center px-5 py-5 max-h-16 max-lg:max-h-20 text-base max-lg:text-sm">
       <div>
         <span class="font-bold text-primary">&copy; 2020 Healthy Diet All Rights Reserved.</span>

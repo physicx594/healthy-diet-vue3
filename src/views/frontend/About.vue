@@ -24,7 +24,7 @@ onMounted(() => {
       <div class="container mx-auto px-4">
         <div class="flex max-md:flex-col mb-12 text-left">
           <div class="md:w-7/12">
-            <div class="relative inline-block text-primary font-bold font-display text-4xl max-md:text-[28px] py-2.5 mb-4 section-title">
+            <div class="relative inline-block text-primary font-bold font-display text-4xl max-md:text-2_5xl py-2.5 mb-4 section-title">
               Our Story
             </div>
             <div>

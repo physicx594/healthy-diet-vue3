@@ -17,7 +17,7 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
 
 <template>
   <div
-    class="fixed right-6 bottom-6 w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center cursor-pointer z-[1100] transition-opacity duration-500 animate-bounce-slow"
+    class="fixed right-6 bottom-6 w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center cursor-pointer z-gotop transition-opacity duration-500 animate-bounce-slow"
     :class="show ? 'opacity-100' : 'opacity-0 pointer-events-none'"
     @click="goTop"
   >

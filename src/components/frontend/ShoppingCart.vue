@@ -28,25 +28,25 @@ const closeCart = () => {
 
 <template>
   <div
-    class="fixed top-[106px] w-full max-w-[500px] max-h-[480px] bg-white shadow-[0_2px_6px_rgba(0,0,0,0.06)] overflow-x-hidden overflow-y-auto transition-all duration-500 ease-out z-[2000] p-2 max-md:max-w-[300px] max-md:text-sm"
-    :class="openCart ? 'right-2.5' : '-right-[500px]'"
+    class="fixed top-26.5 w-full max-w-125 max-h-120 bg-white shadow-navbar overflow-x-hidden overflow-y-auto transition-all duration-500 ease-out z-cart p-2 max-md:max-w-75 max-md:text-sm"
+    :class="openCart ? 'right-2.5' : '-right-125'"
   >
     <!-- Has items -->
     <div v-if="cartStore.totalPrice !== 0">
       <table class="w-full">
         <thead>
           <tr>
-            <th class="w-[10%] p-2 border-none max-md:hidden"></th>
-            <th class="w-[20%] p-2 border-none">品名</th>
-            <th class="w-[20%] p-2 border-none">單價</th>
-            <th class="w-[20%] p-2 border-none">數量</th>
-            <th class="w-[10%] p-2 border-none"></th>
+            <th class="p-2 border-none max-md:hidden" style="width: 10%"></th>
+            <th class="w-1/5 p-2 border-none">品名</th>
+            <th class="w-1/5 p-2 border-none">單價</th>
+            <th class="w-1/5 p-2 border-none">數量</th>
+            <th class="p-2 border-none" style="width: 10%"></th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="item in cartStore.items" :key="item.id">
             <td class="p-2 max-md:hidden">
-              <img :src="item.product.imageUrl[0]" class="w-[50px] h-[50px] object-cover" />
+              <img :src="item.product.imageUrl[0]" class="w-12.5 h-12.5 object-cover" />
             </td>
             <td class="p-2">{{ item.product.title }}</td>
             <td class="p-2">
@@ -89,7 +89,7 @@ const closeCart = () => {
       </table>
 
       <div class="mt-4">
-        <div v-if="!loadingStore.formLoading" class="w-full flex justify-center bg-[#f7f7f7] py-1">
+        <div v-if="!loadingStore.formLoading" class="w-full flex justify-center bg-bg-light py-1">
           <span class="mr-1">小計:</span>
           <span class="text-red-600 font-bold">{{ formatMoney(cartStore.totalPrice) }}</span>
         </div>

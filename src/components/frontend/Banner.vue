@@ -16,16 +16,16 @@ const scrollDown = () => {
 <template>
   <div class="relative w-full h-screen mb-5">
     <div class="absolute top-1/2 left-1/2 w-full text-center banner-title">
-      <div class="font-display text-[80px] max-md:text-[60px] font-bold text-primary pr-5">
+      <div class="font-display text-7_5xl max-md:text-6xl font-bold text-primary pr-5">
         {{ pageName }}
       </div>
       <span class="inline-block px-5 py-0 border border-primary shadow-sm text-2xl max-md:text-base max-md:px-2.5 max-md:py-1 font-bold text-primary">
         {{ content }}
       </span>
     </div>
-    <div class="absolute bottom-[5%] max-md:bottom-[25%] left-1/2 -translate-x-1/2">
+    <div class="absolute bottom-[5%] max-md:bottom-1/4 left-1/2 -translate-x-1/2">
       <a href="#" class="text-contrast font-bold p-12 relative" @click.prevent="scrollDown">
-        <span class="absolute left-1/2 -top-12 w-6 h-6 border-l-[5px] border-b-[5px] border-primary -translate-x-1/2 -rotate-45 box-border scroll-arrow" />
+        <span class="absolute left-1/2 -top-12 w-6 h-6 border-l-1.25 border-b-1.25 border-primary -translate-x-1/2 -rotate-45 box-border scroll-arrow" />
         Scroll
       </a>
     </div>

@@ -60,14 +60,14 @@ onMounted(async () => {
         <div class="text-center">
           <div v-if="order?.total">合計{{ formatMoney(order.total) }}</div>
           <span class="text-sm" v-if="productsList.length">購物車({{ productsList.length }}件)</span>
-          <span class="absolute top-1/2 left-[56%] -translate-y-1/2 p-5 cursor-pointer" @click="open = !open">
+          <span class="absolute top-1/2 -translate-y-1/2 p-5 cursor-pointer" style="left: 56%" @click="open = !open">
             <i class="fa fa-angle-down text-red-600 transition-transform duration-500" :class="{ 'rotate-180': open }"></i>
           </span>
         </div>
       </div>
 
       <!-- Expandable Product List -->
-      <div class="overflow-hidden transition-all duration-500 ease-out" :class="open ? 'max-h-[529px]' : 'max-h-0'">
+      <div class="overflow-hidden transition-all duration-500 ease-out" :class="open ? 'max-h-132.25' : 'max-h-0'">
         <table class="w-full border border-t-0 border-gray-200 text-base">
           <thead>
             <tr>

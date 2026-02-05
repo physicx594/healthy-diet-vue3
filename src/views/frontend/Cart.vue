@@ -55,18 +55,18 @@ onMounted(() => {
         <table class="w-full text-center text-sm">
           <thead>
             <tr>
-              <th class="w-[10%] p-2 border-none max-md:hidden"></th>
-              <th class="w-[20%] p-2 border-none">品名</th>
-              <th class="w-[20%] p-2 border-none">單價</th>
-              <th class="w-[20%] p-2 border-none">數量</th>
-              <th class="w-[20%] p-2 border-none max-md:hidden">小計</th>
-              <th class="w-[10%] p-2 border-none"></th>
+              <th class="p-2 border-none max-md:hidden" style="width: 10%"></th>
+              <th class="w-1/5 p-2 border-none">品名</th>
+              <th class="w-1/5 p-2 border-none">單價</th>
+              <th class="w-1/5 p-2 border-none">數量</th>
+              <th class="w-1/5 p-2 border-none max-md:hidden">小計</th>
+              <th class="p-2 border-none" style="width: 10%"></th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="item in cartStore.items" :key="item.id" class="border-t border-gray-200">
               <td class="p-2 max-md:hidden">
-                <img :src="item.product.imageUrl[0]" class="w-[50px] h-[50px] object-cover" />
+                <img :src="item.product.imageUrl[0]" class="w-12.5 h-12.5 object-cover" />
               </td>
               <td class="p-2">{{ item.product.title }}</td>
               <td class="p-2">
@@ -113,7 +113,7 @@ onMounted(() => {
       <!-- Order Form + Summary -->
       <div class="w-full flex max-lg:flex-col justify-between gap-4 mb-5 text-sm">
         <!-- Delivery Info -->
-        <div class="lg:w-[60%] max-lg:w-full border border-gray-200">
+        <div class="lg:w-3/5 max-lg:w-full border border-gray-200">
           <div class="bg-primary text-white px-3 py-2 text-left font-bold">選擇送貨及付款方式</div>
           <form class="p-3 text-left">
             <div class="mb-3">
@@ -129,14 +129,14 @@ onMounted(() => {
               </select>
             </div>
             <div>
-              <p class="border-l-[3px] border-bg-dark pl-1.5">全省可宅配，最低訂單量<span class="text-red-600">需滿600元</span>才配送(不含運費)，冷凍運費200元，滿3000元即享免運費。</p>
-              <p class="m-0 border-l-[3px] border-bg-dark pl-1.5">「冷凍」和「常溫」為不同溫層的商品，無法一起出貨，請分開下單結帳，謝謝！</p>
+              <p class="border-l-3 border-bg-dark pl-1.5">全省可宅配，最低訂單量<span class="text-red-600">需滿600元</span>才配送(不含運費)，冷凍運費200元，滿3000元即享免運費。</p>
+              <p class="m-0 border-l-3 border-bg-dark pl-1.5">「冷凍」和「常溫」為不同溫層的商品，無法一起出貨，請分開下單結帳，謝謝！</p>
             </div>
           </form>
         </div>
 
         <!-- Order Summary -->
-        <div class="lg:w-[35%] max-lg:w-full border border-gray-200 h-[300px] relative">
+        <div class="lg:w-1/3 max-lg:w-full border border-gray-200 h-75 relative">
           <div v-if="!loadingStore.formLoading" class="bg-primary text-white px-3 py-2 text-left font-bold">訂單資訊</div>
           <div v-else class="loading-bar h-10" />
           <div class="p-2.5 border-b border-gray-200">
@@ -152,7 +152,7 @@ onMounted(() => {
               <input
                 v-model="couponCode"
                 type="text"
-                class="w-[70%] px-3 py-1 border border-gray-300 rounded text-sm"
+                class="px-3 py-1 border border-gray-300 rounded text-sm" style="width: 70%"
                 placeholder="請輸入折扣碼"
               />
               <button type="button" class="bg-green-600 text-white px-3 py-1 rounded text-sm" @click="useCoupon">使用</button>

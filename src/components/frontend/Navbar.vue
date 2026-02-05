@@ -31,7 +31,7 @@ onMounted(() => {
 <template>
   <div class="relative w-full">
     <!-- Top bar -->
-    <div class="fixed top-0 left-0 w-full z-[1030] bg-white shadow-[0_2px_6px_rgba(0,0,0,0.06)]">
+    <div class="fixed top-0 left-0 w-full z-navbar bg-white shadow-navbar">
       <div class="container mx-auto relative flex justify-between items-center px-4 py-2 max-h-20">
         <RouterLink to="/" class="p-0">
           <img src="@/assets/logo.png" class="w-15 max-md:w-20" alt="logo" />
@@ -43,9 +43,9 @@ onMounted(() => {
           :class="{ 'hamburger-open': show }"
           @click="show = !show"
         >
-          <span class="block my-[5px] mx-auto w-[30px] h-[3px] bg-primary transition-transform duration-300 origin-center" :class="show ? 'rotate-45 translate-y-[9px]' : ''" />
-          <span class="block my-[5px] mx-auto w-[30px] h-[3px] bg-primary transition-transform duration-300 origin-center" :class="show ? '-rotate-45' : ''" />
-          <span class="block my-[5px] mx-auto w-[30px] h-[3px] bg-primary transition-transform duration-300 origin-center" :class="show ? '-rotate-45 -translate-y-[5.5px] translate-x-[2.5px]' : ''" />
+          <span class="block my-1.25 mx-auto w-7.5 h-0.75 bg-primary transition-transform duration-300 origin-center" :class="show ? 'rotate-45 translate-y-2.25' : ''" />
+          <span class="block my-1.25 mx-auto w-7.5 h-0.75 bg-primary transition-transform duration-300 origin-center" :class="show ? '-rotate-45' : ''" />
+          <span class="block my-1.25 mx-auto w-7.5 h-0.75 bg-primary transition-transform duration-300 origin-center" :class="show ? '-rotate-45 -translate-y-1.5 translate-x-0.5' : ''" />
         </div>
 
         <!-- Desktop nav -->
@@ -82,8 +82,8 @@ onMounted(() => {
 
     <!-- Mobile nav dropdown -->
     <div
-      class="fixed top-20 w-full bg-white/95 shadow-[0_2px_6px_rgba(0,0,0,0.1)] z-[2001] overflow-hidden transition-all duration-300 md:hidden"
-      :class="show ? 'max-h-[330px]' : 'max-h-0'"
+      class="fixed top-20 w-full bg-white/95 shadow-cart z-cart-btn overflow-hidden transition-all duration-300 md:hidden"
+      :class="show ? 'max-h-82.5' : 'max-h-0'"
     >
       <ul class="list-none p-5 m-0">
         <li>
@@ -111,7 +111,7 @@ onMounted(() => {
 
     <!-- Overlay mask -->
     <div
-      class="fixed inset-0 z-[1999]"
+      class="fixed inset-0 z-overlay"
       :class="openCart || show ? 'block' : 'hidden'"
       @click.prevent="mask"
     />

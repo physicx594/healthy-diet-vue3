@@ -8,13 +8,13 @@ defineProps<{
 
 <template>
   <div class="w-full mt-24 mb-8 flex justify-center checkout-steps">
-    <div class="step w-full max-w-[240px] h-[70px] text-center relative" :class="{ active: step1 }">
+    <div class="step w-full max-w-60 h-17.5 text-center relative" :class="{ active: step1 }">
       <div>購物車</div>
     </div>
-    <div class="step w-full max-w-[240px] h-[70px] text-center relative" :class="{ active: step2 }">
+    <div class="step w-full max-w-60 h-17.5 text-center relative" :class="{ active: step2 }">
       <div>填寫資料</div>
     </div>
-    <div class="step w-full max-w-[240px] h-[70px] text-center relative" :class="{ active: step3 }">
+    <div class="step w-full max-w-60 h-17.5 text-center relative" :class="{ active: step3 }">
       <div>訂單確認</div>
     </div>
   </div>
