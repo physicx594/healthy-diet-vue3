@@ -13,10 +13,10 @@
   --color-bg-dark: #CED4DA;
   --color-dark: #474747;
 
-  --font-family-sans: 'Arial', 'Noto Sans TC', Helvetica, Arial, sans-serif;
-  --font-family-noto: 'Noto Sans TC', sans-serif;
-  --font-family-display: 'Yellowtail', cursive;
-  --font-family-sheppards: 'Mrs Sheppards', cursive;
+  --font-sans: 'Arial', 'Noto Sans TC', Helvetica, Arial, sans-serif;
+  --font-noto: 'Noto Sans TC', sans-serif;
+  --font-yellowtail: 'Yellowtail', cursive;
+  --font-sheppards: 'Mrs Sheppards', cursive;
 
   /* z-index */
   --z-index-gotop: 1100;
@@ -35,10 +35,10 @@
   --shadow-product: 1px 1px 10px -1px rgba(0, 0, 0, 0.5);
 
   /* font-size */
-  --font-size-2_5xl: 1.75rem;  /* 28px */
-  --font-size-3_5xl: 2.5rem;   /* 40px */
-  --font-size-7_5xl: 5rem;     /* 80px */
-  --font-size-10xl: 6.25rem;   /* 100px */
+  --text-2_5xl: 1.75rem;  /* 28px */
+  --text-3_5xl: 2.5rem;   /* 40px */
+  --text-7_5xl: 5rem;     /* 80px */
+  --text-10xl: 6.25rem;   /* 100px */
 
   /* width percentages */
   --width-6p: 6%;
@@ -81,6 +81,12 @@
 @utility bottom-5p {
   bottom: 5%;
 }
+@utility border-l-5 {
+  border-left-width: 5px;
+}
+@utility border-b-5 {
+  border-bottom-width: 5px;
+}
 
 @layer base {
   html, body {
@@ -91,7 +97,7 @@
 
   #app {
     height: 100%;
-    font-family: var(--font-family-sans);
+    font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: black;

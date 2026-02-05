@@ -10,7 +10,7 @@ defineProps<{
     :class="isLoading ? 'opacity-100 visible' : 'opacity-0 invisible'"
   >
     <div class="text-center text-accent">
-      <span class="block font-display text-4xl font-bold relative">
+      <span class="block font-yellowtail text-4xl font-bold relative">
         Healthy Diet<sup class="text-xs absolute -top-1 -right-5 font-noto">&trade;</sup>
       </span>
       <p class="m-0 font-bold">Welcome!</p>

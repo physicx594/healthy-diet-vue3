@@ -32,7 +32,7 @@ onMounted(() => {
   <div class="relative w-full">
     <!-- Top bar -->
     <div class="fixed top-0 left-0 w-full z-navbar bg-white shadow-navbar">
-      <div class="container mx-auto relative flex justify-between items-center px-4 py-2 max-h-20">
+      <div class="container mx-auto relative flex justify-between items-center px-4 h-20">
         <RouterLink to="/" class="p-0">
           <img src="@/assets/logo.png" class="w-15 max-md:w-20" alt="logo" />
         </RouterLink>
@@ -60,12 +60,12 @@ onMounted(() => {
             <RouterLink to="/about" class="nav-link-item">關於我們</RouterLink>
           </li>
           <li>
-            <span class="px-2.5 text-primary font-bold cursor-pointer hover:text-contrast transition-colors">
+            <span class="px-2.5 text-primary font-bold cursor-pointer hover:text-contrast transition-colors leading-none">
               <i class="fas fa-user text-lg"></i>
             </span>
           </li>
           <li class="relative cursor-pointer" @click.prevent="openCart = true">
-            <span class="px-2.5 text-primary font-bold cursor-pointer hover:text-contrast transition-colors" :class="{ 'text-contrast': openCart }">
+            <span class="px-2.5 text-primary font-bold cursor-pointer hover:text-contrast transition-colors leading-none" :class="{ 'text-contrast': openCart }">
               <i class="fas fa-shopping-cart text-lg"></i>
             </span>
             <div
@@ -136,8 +136,10 @@ onMounted(() => {
 
 .nav-link-item::after {
   content: '';
-  display: block;
-  margin: 0 auto;
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
   width: 0;
   height: 1px;
   background: #800000;

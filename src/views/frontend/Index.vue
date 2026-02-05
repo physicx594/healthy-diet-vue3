@@ -26,11 +26,7 @@ onMounted(() => {
     <Navbar />
     <Gotop />
     <div v-if="!loadingStore.isLoading">
-      <!-- Banner with background -->
-      <div class="relative">
-        <div class="absolute inset-0 -z-10 bg-cover bg-center bg-fixed" style="background-image: url('https://images.unsplash.com/photo-1543353071-873f17a7a088?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80');" />
-        <Banner page-name="Healthy Diet" content="發現蔬食最新鮮純淨的美味" />
-      </div>
+      <Banner page-name="Healthy Diet" content="發現蔬食最新鮮純淨的美味" bg-image="https://images.unsplash.com/photo-1543353071-873f17a7a088?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80" />
 
       <!-- About Us Section -->
       <div class="container mx-auto px-4">
@@ -38,9 +34,9 @@ onMounted(() => {
           <div class="hidden max-lg:block text-center mb-4">
             <div class="inline-block text-primary font-bold text-2xl p-2.5 section-title"><span>關於我們</span></div>
           </div>
-          <div class="flex max-lg:flex-col max-lg:text-center justify-between text-left">
+          <div class="flex max-lg:flex-col max-lg:text-center justify-between text-left gap-8 max-lg:gap-0">
             <figure class="lg:w-7/12 p-0 m-0 max-h-97.5 overflow-hidden relative about-figure" data-aos="fade-right" data-aos-easing="ease-in-out">
-              <img src="https://images.unsplash.com/photo-1595786802424-d6efbc413db5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80" class="w-full h-full object-cover p-2.5 max-lg:p-0 ml-5 max-lg:ml-0 max-lg:mb-4" />
+              <img src="https://images.unsplash.com/photo-1595786802424-d6efbc413db5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80" class="w-full h-full object-cover p-2.5 max-lg:p-0 m-5 max-lg:m-0 max-lg:mb-4" />
             </figure>
             <div class="lg:w-5/12 flex flex-col justify-between" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-delay="250">
               <div class="max-lg:hidden inline-block text-primary font-bold text-2xl p-2.5 section-title"><span>關於我們</span></div>
@@ -96,22 +92,22 @@ onMounted(() => {
         </div>
         <div class="flex max-md:flex-col justify-between mt-4 mb-5 gap-4">
           <div class="category-card lunchbox" data-aos="flip-up" data-aos-duration="1000" @click="toCategory('健康餐盒')">
-            <span class="font-display text-10xl max-lg:text-6xl max-md:text-7_5xl font-bold text-secondary block leading-tight category-text-shadow transition-opacity duration-500">Bento</span>
+            <span class="font-yellowtail text-10xl max-lg:text-6xl max-md:text-7_5xl font-bold text-secondary block leading-tight category-text-shadow transition-opacity duration-500">Bento</span>
             <div class="category-overlay">
               <div class="category-hover-pic"><img src="@/assets/logo1.png" alt="" /></div>
               <p class="font-bold text-white">健康餐盒<br />每天都拿不定主意吃什麼嗎？<br />不知道吃的健不健康嗎?<br />這些心聲，我們都聯到了<br />請交給 HEALTHY DIET 幫您備餐</p>
             </div>
           </div>
           <div class="category-card sousvide" data-aos="flip-up" data-aos-duration="1000" data-aos-delay="150" @click="toCategory('舒肥系列')">
-            <span class="font-display text-10xl max-lg:text-6xl max-md:text-7_5xl font-bold text-secondary block leading-20 max-lg:leading-37_5 category-text-shadow transition-opacity duration-500">Sous</span>
-            <span class="font-display text-10xl max-lg:text-6xl max-md:text-7_5xl font-bold text-secondary block leading-tight max-lg:hidden category-text-shadow transition-opacity duration-500">vide</span>
+            <span class="font-yellowtail text-10xl max-lg:text-6xl max-md:text-7_5xl font-bold text-secondary block leading-20 max-lg:leading-37_5 category-text-shadow transition-opacity duration-500">Sous</span>
+            <span class="font-yellowtail text-10xl max-lg:text-6xl max-md:text-7_5xl font-bold text-secondary block leading-tight max-lg:hidden category-text-shadow transition-opacity duration-500">vide</span>
             <div class="category-overlay">
               <div class="category-hover-pic"><img src="@/assets/logo1.png" alt="" /></div>
               <p class="font-bold text-white">舒肥雞胸肉<br />多種口味任你挑，滿足挑剔的味蕾<br />輕鬆補足蛋白質，低熱量無負擔<br />多汁不乾柴，顛覆雞胸肉的印象</p>
             </div>
           </div>
           <div class="category-card salad" data-aos="flip-up" data-aos-duration="1000" data-aos-delay="300" @click="toCategory('新鮮沙拉')">
-            <span class="font-display text-10xl max-lg:text-6xl max-md:text-7_5xl font-bold text-secondary block leading-tight category-text-shadow transition-opacity duration-500">Salad</span>
+            <span class="font-yellowtail text-10xl max-lg:text-6xl max-md:text-7_5xl font-bold text-secondary block leading-tight category-text-shadow transition-opacity duration-500">Salad</span>
             <div class="category-overlay">
               <div class="category-hover-pic"><img src="@/assets/logo1.png" alt="" /></div>
               <p class="font-bold text-white">新鮮沙拉<br />採用豐富的萵苣、蘿蔓、生菜葉與蔬果<br />自製的美味醬料，品嚐生菜的鮮甜爽脆<br />並以最嚴謹的態度為您把關<br />與您一同發掘，蔬食最純淨樸實的美味</p>

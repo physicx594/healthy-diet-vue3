@@ -44,10 +44,7 @@ onMounted(() => {
     <Navbar />
     <Gotop />
     <div v-if="!loadingStore.isLoading">
-      <div class="relative">
-        <div class="absolute inset-0 -z-10 bg-cover bg-center bg-fixed" style="background-image: url('https://images.unsplash.com/photo-1543353071-10c8ba85a904?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjI0MX0&auto=format&fit=crop&w=1500&q=80');" />
-        <Banner page-name="Products List" content="享受疏食的喜悅與美好" />
-      </div>
+      <Banner page-name="Products List" content="享受疏食的喜悅與美好" bg-image="https://images.unsplash.com/photo-1543353071-10c8ba85a904?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjI0MX0&auto=format&fit=crop&w=1500&q=80" />
 
       <div class="container mx-auto px-4 mt-5">
         <!-- Category Filter -->

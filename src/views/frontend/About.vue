@@ -17,14 +17,12 @@ onMounted(() => {
   <div class="font-bold">
     <Navbar />
     <div v-if="!loadingStore.isLoading">
-      <Banner page-name="About Us" content="發掘蔬食的喜悅與美好" />
-      <!-- Banner background -->
-      <div class="absolute inset-0 -z-10 h-screen bg-cover bg-center bg-fixed" style="background-image: url('https://images.unsplash.com/photo-1543352634-99a5d50ae78e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80');" />
+      <Banner page-name="About Us" content="發掘蔬食的喜悅與美好" bg-image="https://images.unsplash.com/photo-1543352634-99a5d50ae78e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" />
 
       <div class="container mx-auto px-4">
         <div class="flex max-md:flex-col mb-12 text-left">
           <div class="md:w-7/12">
-            <div class="relative inline-block text-primary font-bold font-display text-4xl max-md:text-2_5xl py-2.5 mb-4 section-title">
+            <div class="relative inline-block text-primary font-bold font-yellowtail text-4xl max-md:text-2_5xl py-2.5 mb-4 section-title">
               Our Story
             </div>
             <div>
