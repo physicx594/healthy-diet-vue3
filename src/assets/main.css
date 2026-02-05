@@ -78,6 +78,9 @@
 @utility w-30p {
   width: var(--width-30p);
 }
+@utility bottom-5p {
+  bottom: 5%;
+}
 
 @layer base {
   html, body {

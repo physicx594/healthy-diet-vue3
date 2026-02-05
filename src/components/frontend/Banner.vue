@@ -23,7 +23,7 @@ const scrollDown = () => {
         {{ content }}
       </span>
     </div>
-    <div class="absolute bottom-[5%] max-md:bottom-1/4 left-1/2 -translate-x-1/2">
+    <div class="absolute bottom-5p max-md:bottom-1/4 left-1/2 -translate-x-1/2">
       <a href="#" class="text-contrast font-bold p-12 relative" @click.prevent="scrollDown">
         <span class="absolute left-1/2 -top-12 w-6 h-6 border-l-1.25 border-b-1.25 border-primary -translate-x-1/2 -rotate-45 box-border scroll-arrow" />
         Scroll
