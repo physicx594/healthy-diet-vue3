@@ -1,0 +1,38 @@
+<script setup lang="ts">
+import { ref, onMounted, onUnmounted } from 'vue'
+
+const show = ref(false)
+
+function onScroll() {
+  show.value = window.pageYOffset >= 560
+}
+
+function goTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
+
+onMounted(() => window.addEventListener('scroll', onScroll))
+onUnmounted(() => window.removeEventListener('scroll', onScroll))
+</script>
+
+<template>
+  <div
+    class="fixed right-6 bottom-6 w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center cursor-pointer z-[1100] transition-opacity duration-500 animate-bounce-slow"
+    :class="show ? 'opacity-100' : 'opacity-0 pointer-events-none'"
+    @click="goTop"
+  >
+    <i class="fas fa-chevron-up text-primary text-sm"></i>
+  </div>
+</template>
+
+<style scoped>
+@keyframes bounce-slow {
+  25% { transform: translateY(6px); }
+  50% { transform: translateY(0); }
+  75% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+.animate-bounce-slow {
+  animation: bounce-slow 1s linear infinite;
+}
+</style>
