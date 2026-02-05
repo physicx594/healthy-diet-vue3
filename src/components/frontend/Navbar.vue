@@ -9,14 +9,8 @@ const show = ref(false)
 const openCart = ref(false)
 
 const mask = () => {
-  if (!show.value) {
-    openCart.value = !openCart.value
-  } else if (!openCart.value) {
-    show.value = !show.value
-  } else {
-    show.value = false
-    openCart.value = false
-  }
+  show.value = false
+  openCart.value = false
 }
 
 const closeCart = () => {
@@ -126,12 +120,12 @@ onMounted(() => {
   padding: 0 10px;
   margin-right: 10px;
   transition: 0.5s;
-  color: #264710;
+  color: var(--color-primary);
 }
 
 .nav-link-item:hover,
 .nav-link-item.active {
-  color: #800000;
+  color: var(--color-contrast);
 }
 
 .nav-link-item::after {
@@ -142,7 +136,7 @@ onMounted(() => {
   transform: translateX(-50%);
   width: 0;
   height: 1px;
-  background: #800000;
+  background: var(--color-contrast);
   transition: 0.5s;
 }
 

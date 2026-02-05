@@ -11,7 +11,7 @@ const router = useRouter()
 const loadingStore = useLoadingStore()
 const email = ref('')
 
-function toCategory(category: string) {
+const toCategory = (category: string) => {
   router.push({ name: 'products', query: { category } })
 }
 
@@ -143,15 +143,11 @@ onMounted(() => {
   content: "";
   width: 50%;
   height: 2px;
-  background: #264710;
+  background: var(--color-primary);
   margin-bottom: -10px;
 }
 
-.selected-text-shadow {
-  text-shadow: 1px 1px rgba(0,0,0,0.3), 2px 2px rgba(0,0,0,0.3), 3px 3px rgba(0,0,0,0.3),
-    4px 4px rgba(0,0,0,0.3), 5px 5px rgba(0,0,0,0.3), 6px 6px rgba(0,0,0,0.3);
-}
-
+.selected-text-shadow,
 .category-text-shadow {
   text-shadow: 1px 1px rgba(0,0,0,0.3), 2px 2px rgba(0,0,0,0.3), 3px 3px rgba(0,0,0,0.3),
     4px 4px rgba(0,0,0,0.3), 5px 5px rgba(0,0,0,0.3), 6px 6px rgba(0,0,0,0.3);
@@ -232,7 +228,7 @@ onMounted(() => {
   width: 30%;
   height: 20px;
   position: absolute;
-  background: #264710;
+  background: var(--color-primary);
 }
 
 .about-figure::after {
@@ -242,7 +238,7 @@ onMounted(() => {
   position: absolute;
   left: 0;
   top: 0;
-  background: #264710;
+  background: var(--color-primary);
 }
 
 @media (max-width: 996px) {

@@ -6,10 +6,8 @@ defineProps<{
 }>()
 
 const scrollDown = () => {
-  const x = 625
-  const offset = window.innerHeight >= 625
-    ? 583 + (window.innerHeight - x)
-    : 583 - (window.innerHeight - x)
+  const h = window.innerHeight
+  const offset = h >= 625 ? h - 42 : 1208 - h
   window.scrollTo({ top: offset, behavior: 'smooth' })
 }
 </script>

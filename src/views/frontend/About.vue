@@ -67,6 +67,6 @@ onMounted(() => {
   transform: translateX(-50%);
   width: 50%;
   height: 3px;
-  background: #264710;
+  background: var(--color-primary);
 }
 </style>

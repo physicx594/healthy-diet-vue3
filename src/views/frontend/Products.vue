@@ -23,11 +23,11 @@ const filteredProducts = computed(() => {
   return productsStore.products.filter(item => item.category === category.value)
 })
 
-function getProducts(page = 1) {
+const getProducts = (page = 1) => {
   productsStore.getProducts(page)
 }
 
-function addToCart(item: { id: string }) {
+const addToCart = (item: { id: string }) => {
   cartStore.addToCart(item.id)
 }
 
@@ -107,13 +107,8 @@ onMounted(() => {
         cartStore.joinMsg ? 'bg-primary-light' : 'bg-red-600'
       ]"
     >
-      <template v-if="cartStore.joinMsg">
-        <span>成功加入購物車</span>
-      </template>
-      <template v-else>
-        <span>該商品已放入購物車當中，</span><br />
-        <span>請至購物車修改數量即可。</span>
-      </template>
+      <span v-if="cartStore.joinMsg">成功加入購物車</span>
+      <span v-else>該商品已放入購物車當中，<br />請至購物車修改數量即可。</span>
     </div>
 
     <Footer />
