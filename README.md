@@ -2,7 +2,7 @@
 
 健康食品線上訂購系統，提供完整的前台購物流程與後台管理介面。
 
-> **Demo**：<!-- 部署後填入網址，例如 https://your-name.github.io/healthy-diet-vue3/ -->
+> **Demo**：https://physicx594.github.io/healthy-diet-vue3/
 
 ## 功能特色
 
