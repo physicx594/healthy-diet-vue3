@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+import { useAuthStore } from '@/stores'
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -28,8 +29,8 @@ const router = createRouter({
     },
     {
       path: '/admin',
-      name: 'dashboard',
       component: () => import('@/views/backend/Dashboard.vue'),
+      meta: { requiresAuth: true },
       children: [
         { path: 'products', name: 'admin-products', component: () => import('@/views/backend/Products.vue') },
         { path: 'orders', name: 'admin-orders', component: () => import('@/views/backend/Orders.vue') },
@@ -42,6 +43,16 @@ const router = createRouter({
       redirect: '/'
     }
   ]
+})
+
+router.beforeEach(async (to) => {
+  if (to.meta.requiresAuth) {
+    const auth = useAuthStore()
+    const isValid = await auth.checkAuth()
+    if (!isValid) {
+      return { name: 'login' }
+    }
+  }
 })
 
 export default router
