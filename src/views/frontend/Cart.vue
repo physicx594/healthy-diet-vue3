@@ -181,16 +181,3 @@ onMounted(() => {
     <Footer />
   </div>
 </template>
-
-<style scoped>
-.loading-bar {
-  background: linear-gradient(45deg, #FEC81A 0%, #FEC81A 20%, #2a5529 20%, #2a5529 45%, #FEC81A 45%, #FEC81A 70%, #2a5529 70%, #2a5529 95%, #FEC81A 95%, #FEC81A 100%);
-  background-size: 30px 30px;
-  animation: loading 0.5s infinite linear;
-}
-
-@keyframes loading {
-  0% { background-position: 0 0; }
-  100% { background-position: 30px 0; }
-}
-</style>

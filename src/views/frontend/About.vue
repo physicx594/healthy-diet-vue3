@@ -22,7 +22,7 @@ onMounted(() => {
       <div class="container mx-auto px-4">
         <div class="flex max-md:flex-col mb-12 text-left">
           <div class="md:w-7/12">
-            <div class="relative inline-block text-primary font-bold font-yellowtail text-4xl max-md:text-2_5xl py-2.5 mb-4 section-title">
+            <div class="relative inline-block text-primary font-bold font-yellowtail text-4xl max-md:text-2.5xl py-2.5 mb-4 before:content-[''] before:absolute before:bottom-0 before:left-1/2 before:-translate-x-1/2 before:w-1/2 before:h-[3px] before:bg-primary">
               Our Story
             </div>
             <div>
@@ -57,16 +57,3 @@ onMounted(() => {
     <Footer />
   </div>
 </template>
-
-<style scoped>
-.section-title::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 50%;
-  height: 3px;
-  background: var(--color-primary);
-}
-</style>

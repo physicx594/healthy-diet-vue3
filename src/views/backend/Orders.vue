@@ -49,12 +49,12 @@ onMounted(() => {
       <table class="w-full mt-3 text-left">
         <thead class="border-b-2 border-gray-300">
           <tr>
-            <th class="p-2 text-center w-6p">編號</th>
+            <th class="p-2 text-center w-3/50">編號</th>
             <th class="p-2">下單時間</th>
             <th class="p-2">購買款項</th>
             <th class="p-2">付款方式</th>
             <th class="p-2">應付金額</th>
-            <th class="p-2 w-12p">是否付款</th>
+            <th class="p-2 w-3/25">是否付款</th>
           </tr>
         </thead>
         <tbody>

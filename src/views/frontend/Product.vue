@@ -99,7 +99,7 @@ onMounted(async () => {
                   </button>
                   <input
                     type="text"
-                    class="flex-1 bg-bg-light border-none text-center text-primary font-bold text-2_5xl p-0"
+                    class="flex-1 bg-bg-light border-none text-center text-primary font-bold text-2.5xl p-0"
                     :value="tempProduct.quantity"
                     disabled
                   />
@@ -125,7 +125,7 @@ onMounted(async () => {
 
         <!-- Product Description -->
         <div class="mt-8">
-          <div class="font-bold text-xl text-primary my-5 section-title"><span>商品描述</span></div>
+          <div class="font-bold text-xl text-primary my-5"><span class="relative before:content-[''] before:absolute before:bottom-0 before:translate-x-1/2 before:w-1/2 before:h-0.5 before:bg-primary before:-mb-2.5">商品描述</span></div>
           <div class="whitespace-pre-wrap text-left leading-7.5 bg-bg-light p-5 max-sm:p-2.5">
             {{ tempProduct.description }}
           </div>
@@ -133,7 +133,7 @@ onMounted(async () => {
 
         <!-- Related Products -->
         <div class="w-full">
-          <div class="font-bold text-xl text-primary my-5 section-title"><span>你可能會喜歡</span></div>
+          <div class="font-bold text-xl text-primary my-5"><span class="relative before:content-[''] before:absolute before:bottom-0 before:translate-x-1/2 before:w-1/2 before:h-0.5 before:bg-primary before:-mb-2.5">你可能會喜歡</span></div>
           <SwiperCarousel />
         </div>
       </div>
@@ -159,20 +159,3 @@ onMounted(async () => {
     <Footer />
   </div>
 </template>
-
-<style scoped>
-.section-title span {
-  position: relative;
-}
-
-.section-title span::before {
-  position: absolute;
-  bottom: 0;
-  transform: translateX(50%);
-  content: "";
-  width: 50%;
-  height: 2px;
-  background: #264710;
-  margin-bottom: -10px;
-}
-</style>

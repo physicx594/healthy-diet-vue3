@@ -56,7 +56,7 @@ const closeCart = () => {
               <div class="flex items-center justify-center max-md:justify-center">
                 <button
                   type="button"
-                  class="cart-btn max-md:w-5 max-md:p-0"
+                  class="rounded-full border border-primary text-primary font-bold transition-all duration-300 hover:bg-primary hover:text-accent disabled:opacity-50 disabled:cursor-not-allowed max-md:w-5 max-md:p-0"
                   :disabled="item.qty === 1 || loadingStore.formLoading"
                   @click="changeQuantity(item.id, item.product.id, item.qty - 1)"
                 >-</button>
@@ -68,7 +68,7 @@ const closeCart = () => {
                 />
                 <button
                   type="button"
-                  class="cart-btn max-md:w-5 max-md:p-0"
+                  class="rounded-full border border-primary text-primary font-bold transition-all duration-300 hover:bg-primary hover:text-accent disabled:opacity-50 disabled:cursor-not-allowed max-md:w-5 max-md:p-0"
                   :disabled="loadingStore.formLoading"
                   @click="changeQuantity(item.id, item.product.id, item.qty + 1)"
                 >+</button>
@@ -93,11 +93,11 @@ const closeCart = () => {
           <span class="mr-1">小計:</span>
           <span class="text-red-600 font-bold">{{ formatMoney(cartStore.totalPrice) }}</span>
         </div>
-        <div v-else class="loading-bar" />
+        <div v-else class="loading-bar h-6" />
         <RouterLink to="/cart">
           <button
             v-if="!loadingStore.formLoading"
-            class="cart-btn block mx-auto mt-3 px-8 py-1.5"
+            class="rounded-full border border-primary text-primary font-bold transition-all duration-300 hover:bg-primary hover:text-accent disabled:opacity-50 disabled:cursor-not-allowed block mx-auto mt-3 px-8 py-1.5"
             @click="closeCart"
           >
             前往購物車
@@ -110,41 +110,8 @@ const closeCart = () => {
     <div v-else class="py-3 text-center">
       <h3 class="text-primary font-bold mb-5 text-xl">購物車是空的</h3>
       <RouterLink to="/products">
-        <button class="cart-btn px-8 py-1.5" @click="closeCart">來去購物</button>
+        <button class="rounded-full border border-primary text-primary font-bold transition-all duration-300 hover:bg-primary hover:text-accent disabled:opacity-50 disabled:cursor-not-allowed px-8 py-1.5" @click="closeCart">來去購物</button>
       </RouterLink>
     </div>
   </div>
 </template>
-
-<style scoped>
-.cart-btn {
-  border-radius: 50px;
-  border: 1px solid #264710;
-  color: #264710;
-  font-weight: bold;
-  transition: all 0.3s;
-}
-
-.cart-btn:hover {
-  background: #264710;
-  color: #FEC81A;
-}
-
-.cart-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.loading-bar {
-  width: 100%;
-  height: 24px;
-  background: linear-gradient(45deg, #FEC81A 0%, #FEC81A 20%, #2a5529 20%, #2a5529 45%, #FEC81A 45%, #FEC81A 70%, #2a5529 70%, #2a5529 95%, #FEC81A 95%, #FEC81A 100%);
-  background-size: 30px 30px;
-  animation: loading 0.5s infinite linear;
-}
-
-@keyframes loading {
-  0% { background-position: 0 0; }
-  100% { background-position: 30px 0; }
-}
-</style>

@@ -154,13 +154,13 @@ onUnmounted(() => {
       <table class="w-full mt-3 text-left">
         <thead class="border-b-2 border-gray-300">
           <tr>
-            <th class="p-2 text-center w-6p">編號</th>
+            <th class="p-2 text-center w-3/50">編號</th>
             <th class="p-2">名稱</th>
             <th class="p-2">折扣百分比</th>
             <th class="p-2">到期日</th>
             <th class="p-2">倒數</th>
             <th class="p-2">上架</th>
-            <th class="p-2 w-15p">編輯</th>
+            <th class="p-2 w-3/20">編輯</th>
           </tr>
         </thead>
         <tbody>

@@ -24,15 +24,3 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
     <i class="fas fa-chevron-up text-primary text-sm"></i>
   </div>
 </template>
-
-<style scoped>
-@keyframes bounce-slow {
-  25% { transform: translateY(6px); }
-  50% { transform: translateY(0); }
-  75% { transform: translateY(-6px); }
-  100% { transform: translateY(0); }
-}
-.animate-bounce-slow {
-  animation: bounce-slow 1s linear infinite;
-}
-</style>

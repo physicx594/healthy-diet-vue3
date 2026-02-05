@@ -1,0 +1,121 @@
+@theme {
+  --color-primary: #264710;
+  --color-primary-light: #3A602F;
+  --color-primary-dark: #1b381b;
+  --color-secondary: #de9e36;
+  --color-accent: #FEC81A;
+  --color-contrast: #800000;
+  --color-bg-light: #F7F7F7;
+  --color-bg-dark: #CED4DA;
+  --color-dark: #474747;
+
+  --font-sans: 'Arial', 'Noto Sans TC', Helvetica, Arial, sans-serif;
+  --font-noto: 'Noto Sans TC', sans-serif;
+  --font-yellowtail: 'Yellowtail', cursive;
+  --font-sheppards: 'Mrs Sheppards', cursive;
+
+  /* z-index */
+  --z-index-gotop: 1100;
+  --z-index-navbar: 1030;
+  --z-index-overlay: 1999;
+  --z-index-cart: 2000;
+  --z-index-cart-btn: 2001;
+  --z-index-loading: 2000;
+  --z-index-modal: 3000;
+  --z-index-toast: 11000;
+
+  /* shadows */
+  --shadow-navbar: 0 2px 6px rgba(0, 0, 0, 0.06);
+  --shadow-cart: 0 2px 6px rgba(0, 0, 0, 0.1);
+  --shadow-login: 0 0 10px 1px rgba(0, 0, 0, 0.5);
+  --shadow-product: 1px 1px 10px -1px rgba(0, 0, 0, 0.5);
+
+  /* font-size */
+  --text-2_5xl: 1.75rem;  /* 28px */
+  --text-3_5xl: 2.5rem;   /* 40px */
+  --text-7_5xl: 5rem;     /* 80px */
+  --text-10xl: 6.25rem;   /* 100px */
+
+  /* width */
+  --width-3\/50: 6%;
+  --width-3\/25: 12%;
+  --width-3\/20: 15%;
+  --width-3\/10: 30%;
+
+  /* height */
+  --height-7\/10: 70%;
+
+  /* line-height */
+  --line-height-20: 5rem;      /* 80px */
+  --line-height-37_5: 9.375rem; /* 150px */
+
+  /* brightness */
+  --brightness-20: 0.2;
+
+  /* saturate */
+  --saturate-80: 0.8;
+
+  /* max-height */
+  --max-height-70vh: 70vh;
+
+  /* animations */
+  --animate-banner-title: banner-title 1.5s ease-out forwards;
+  --animate-scroll-arrow: scroll-arrow 1s linear infinite;
+  --animate-bounce-slow: bounce-slow 1s linear infinite;
+  --animate-loading-stripe: loading-stripe 0.5s infinite linear;
+}
+
+@keyframes banner-title {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -80%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes scroll-arrow {
+  0% { transform: translate(-50%, 0) rotate(-45deg); }
+  25% { transform: translate(-50%, 5px) rotate(-45deg); }
+  50% { transform: translate(-50%, 0) rotate(-45deg); }
+  75% { transform: translate(-50%, -5px) rotate(-45deg); }
+  100% { transform: translate(-50%, 0) rotate(-45deg); }
+}
+
+@keyframes bounce-slow {
+  25% { transform: translateY(6px); }
+  50% { transform: translateY(0); }
+  75% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes loading-stripe {
+  0% { background-position: 0 0; }
+  100% { background-position: 30px 0; }
+}
+
+@utility bottom-5p {
+  bottom: 5%;
+}
+@utility border-l-5 {
+  border-left-width: 5px;
+}
+@utility border-b-5 {
+  border-bottom-width: 5px;
+}
+
+/* Loading bar stripe pattern (height not included for flexibility) */
+@utility loading-bar {
+  width: 100%;
+  background: linear-gradient(45deg, #FEC81A 0%, #FEC81A 20%, #2a5529 20%, #2a5529 45%, #FEC81A 45%, #FEC81A 70%, #2a5529 70%, #2a5529 95%, #FEC81A 95%, #FEC81A 100%);
+  background-size: 30px 30px;
+  animation: var(--animate-loading-stripe);
+}
+
+/* Text shadow depth effect */
+@utility text-shadow-depth {
+  text-shadow: 1px 1px rgba(0,0,0,0.3), 2px 2px rgba(0,0,0,0.3), 3px 3px rgba(0,0,0,0.3),
+    4px 4px rgba(0,0,0,0.3), 5px 5px rgba(0,0,0,0.3), 6px 6px rgba(0,0,0,0.3);
+}

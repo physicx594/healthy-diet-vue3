@@ -32,14 +32,14 @@ onMounted(() => {
       <div class="container mx-auto px-4">
         <div class="w-full my-15">
           <div class="hidden max-lg:block text-center mb-4">
-            <div class="inline-block text-primary font-bold text-2xl p-2.5 section-title"><span>關於我們</span></div>
+            <div class="inline-block text-primary font-bold text-2xl p-2.5"><span class="relative before:content-[''] before:absolute before:bottom-0 before:translate-x-1/2 before:w-1/2 before:h-0.5 before:bg-primary before:-mb-2.5">關於我們</span></div>
           </div>
           <div class="flex max-lg:flex-col max-lg:text-center justify-between text-left gap-8 max-lg:gap-0">
-            <figure class="lg:w-7/12 p-0 m-0 max-h-97.5 overflow-hidden relative about-figure" data-aos="fade-right" data-aos-easing="ease-in-out">
+            <figure class="lg:w-7/12 p-0 m-0 max-h-97.5 overflow-hidden relative before:content-[''] before:absolute before:w-3/10 before:h-5 before:bg-primary after:content-[''] after:absolute after:w-5 after:h-7/10 after:left-0 after:top-0 after:bg-primary max-lg:before:hidden max-lg:after:hidden" data-aos="fade-right" data-aos-easing="ease-in-out">
               <img src="https://images.unsplash.com/photo-1595786802424-d6efbc413db5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80" class="w-full h-full object-cover p-2.5 max-lg:p-0 m-5 max-lg:m-0 max-lg:mb-4" />
             </figure>
             <div class="lg:w-5/12 flex flex-col justify-between" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-delay="250">
-              <div class="max-lg:hidden inline-block text-primary font-bold text-2xl p-2.5 section-title"><span>關於我們</span></div>
+              <div class="max-lg:hidden inline-block text-primary font-bold text-2xl p-2.5"><span class="relative before:content-[''] before:absolute before:bottom-0 before:translate-x-1/2 before:w-1/2 before:h-0.5 before:bg-primary before:-mb-2.5">關於我們</span></div>
               <div class="font-bold">
                 <p>在生活步調快速的現代，忙於課業、工作及娛樂上，<br />飲食也是一種健康的代表，許多人經常用速食來解決三餐，忽略了營養均衡的重要。</p>
                 <p>Healthy Diet 屬於輕食文化，採用低鹽低鈉少油，主餐以少量的肉類搭配大量的新鮮蔬果，降低消費者對身體的負擔，注重消費者能夠吃得健康又安心。</p>
@@ -55,7 +55,7 @@ onMounted(() => {
       <!-- Selected Section -->
       <div class="w-full mt-12 bg-cover bg-center bg-fixed" style="background-image: url('https://images.unsplash.com/photo-1516594798947-e65505dbb29d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80');">
         <div class="bg-primary/35 w-full max-h-47.5 py-10 overflow-hidden text-center">
-          <div class="text-white text-3_5xl font-bold mb-2 selected-text-shadow">嚴選</div>
+          <div class="text-white text-3.5xl font-bold mb-2 text-shadow-depth">嚴選</div>
           <RouterLink to="/products">
             <p class="inline-block px-8 py-1.5 text-white bg-contrast/80 rounded-full font-bold">用心對待每份產品</p>
           </RouterLink>
@@ -88,28 +88,28 @@ onMounted(() => {
       <!-- Products Category -->
       <div class="container mx-auto px-4 mt-5">
         <div class="w-full text-center">
-          <div class="inline-block text-primary font-bold text-2xl p-2.5 my-3 section-title"><span>產品分類</span></div>
+          <div class="inline-block text-primary font-bold text-2xl p-2.5 my-3"><span class="relative before:content-[''] before:absolute before:bottom-0 before:translate-x-1/2 before:w-1/2 before:h-0.5 before:bg-primary before:-mb-2.5">產品分類</span></div>
         </div>
         <div class="flex max-md:flex-col justify-between mt-4 mb-5 gap-4">
-          <div class="category-card lunchbox" data-aos="flip-up" data-aos-duration="1000" @click="toCategory('健康餐盒')">
-            <span class="font-yellowtail text-10xl max-lg:text-6xl max-md:text-7_5xl font-bold text-secondary block leading-tight category-text-shadow transition-opacity duration-500">Bento</span>
-            <div class="category-overlay">
-              <div class="category-hover-pic"><img src="@/assets/logo1.png" alt="" /></div>
+          <div class="group relative w-3/10 max-md:w-full max-md:my-2.5 h-[300px] max-lg:h-[150px] py-15 max-lg:py-0 cursor-pointer max-lg:pointer-events-none overflow-hidden bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1570078420152-d016091ec97a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80');" data-aos="flip-up" data-aos-duration="1000" @click="toCategory('健康餐盒')">
+            <span class="font-yellowtail text-10xl max-lg:text-6xl max-md:text-7.5xl font-bold text-secondary block leading-tight max-lg:leading-[150px] text-shadow-depth transition-opacity duration-500 group-hover:opacity-0">Bento</span>
+            <div class="absolute inset-0 opacity-0 transition-all duration-500 ease-out bg-primary/90 flex flex-col items-center justify-center group-hover:opacity-100">
+              <div><img src="@/assets/logo1.png" class="w-3/5 transition-all duration-500 ease-out group-hover:scale-[0.6]" alt="" /></div>
               <p class="font-bold text-white">健康餐盒<br />每天都拿不定主意吃什麼嗎？<br />不知道吃的健不健康嗎?<br />這些心聲，我們都聯到了<br />請交給 HEALTHY DIET 幫您備餐</p>
             </div>
           </div>
-          <div class="category-card sousvide" data-aos="flip-up" data-aos-duration="1000" data-aos-delay="150" @click="toCategory('舒肥系列')">
-            <span class="font-yellowtail text-10xl max-lg:text-6xl max-md:text-7_5xl font-bold text-secondary block leading-20 max-lg:leading-37_5 category-text-shadow transition-opacity duration-500">Sous</span>
-            <span class="font-yellowtail text-10xl max-lg:text-6xl max-md:text-7_5xl font-bold text-secondary block leading-tight max-lg:hidden category-text-shadow transition-opacity duration-500">vide</span>
-            <div class="category-overlay">
-              <div class="category-hover-pic"><img src="@/assets/logo1.png" alt="" /></div>
+          <div class="group relative w-3/10 max-md:w-full max-md:my-2.5 h-[300px] max-lg:h-[150px] py-15 max-lg:py-0 cursor-pointer max-lg:pointer-events-none overflow-hidden bg-cover bg-center" style="background-image: url('https://hexschool-api.s3.us-west-2.amazonaws.com/custom/H5qxPcglJ1S9RagBQnAT7pKkMgbFlgu7BRyydNvHaPhVkTnuXG6NLduRdk3zsHrfOKTpUzN2rCye7HTKc3JOkCBTe4XiX3fasKdKaM00jWOjiPcvPbxA8IXlPm1RleCK.jpg');" data-aos="flip-up" data-aos-duration="1000" data-aos-delay="150" @click="toCategory('舒肥系列')">
+            <span class="font-yellowtail text-10xl max-lg:text-6xl max-md:text-7.5xl font-bold text-secondary block leading-20 max-lg:leading-[150px] text-shadow-depth transition-opacity duration-500 group-hover:opacity-0">Sous</span>
+            <span class="font-yellowtail text-10xl max-lg:text-6xl max-md:text-7.5xl font-bold text-secondary block leading-tight max-lg:hidden text-shadow-depth transition-opacity duration-500 group-hover:opacity-0">vide</span>
+            <div class="absolute inset-0 opacity-0 transition-all duration-500 ease-out bg-primary/90 flex flex-col items-center justify-center group-hover:opacity-100">
+              <div><img src="@/assets/logo1.png" class="w-3/5 transition-all duration-500 ease-out group-hover:scale-[0.6]" alt="" /></div>
               <p class="font-bold text-white">舒肥雞胸肉<br />多種口味任你挑，滿足挑剔的味蕾<br />輕鬆補足蛋白質，低熱量無負擔<br />多汁不乾柴，顛覆雞胸肉的印象</p>
             </div>
           </div>
-          <div class="category-card salad" data-aos="flip-up" data-aos-duration="1000" data-aos-delay="300" @click="toCategory('新鮮沙拉')">
-            <span class="font-yellowtail text-10xl max-lg:text-6xl max-md:text-7_5xl font-bold text-secondary block leading-tight category-text-shadow transition-opacity duration-500">Salad</span>
-            <div class="category-overlay">
-              <div class="category-hover-pic"><img src="@/assets/logo1.png" alt="" /></div>
+          <div class="group relative w-3/10 max-md:w-full max-md:my-2.5 h-[300px] max-lg:h-[150px] py-15 max-lg:py-0 cursor-pointer max-lg:pointer-events-none overflow-hidden bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1551248429-40975aa4de74?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80');" data-aos="flip-up" data-aos-duration="1000" data-aos-delay="300" @click="toCategory('新鮮沙拉')">
+            <span class="font-yellowtail text-10xl max-lg:text-6xl max-md:text-7.5xl font-bold text-secondary block leading-tight max-lg:leading-[150px] text-shadow-depth transition-opacity duration-500 group-hover:opacity-0">Salad</span>
+            <div class="absolute inset-0 opacity-0 transition-all duration-500 ease-out bg-primary/90 flex flex-col items-center justify-center group-hover:opacity-100">
+              <div><img src="@/assets/logo1.png" class="w-3/5 transition-all duration-500 ease-out group-hover:scale-[0.6]" alt="" /></div>
               <p class="font-bold text-white">新鮮沙拉<br />採用豐富的萵苣、蘿蔓、生菜葉與蔬果<br />自製的美味醬料，品嚐生菜的鮮甜爽脆<br />並以最嚴謹的態度為您把關<br />與您一同發掘，蔬食最純淨樸實的美味</p>
             </div>
           </div>
@@ -118,7 +118,7 @@ onMounted(() => {
 
       <!-- Subscription -->
       <div class="w-full max-h-75 bg-cover bg-center bg-fixed py-12.75 saturate-80 mt-5" style="background-image: url('https://images.unsplash.com/photo-1519897831810-a9a01aceccd1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80');">
-        <div class="w-full max-w-125 mx-auto bg-white/80 text-primary p-8 text-2_5xl max-md:text-base font-bold" data-aos="zoom-in" data-aos-duration="500">
+        <div class="w-full max-w-125 mx-auto bg-white/80 text-primary p-8 text-2.5xl max-md:text-base font-bold" data-aos="zoom-in" data-aos-duration="500">
           <p class="text-left">訂閱我們<br />獲得最新消息及優惠</p>
           <div class="flex">
             <input v-model="email" type="email" class="flex-1 px-3 py-2 border border-gray-300 rounded-l focus:outline-none text-sm" placeholder="請輸入信箱" />
@@ -130,121 +130,3 @@ onMounted(() => {
     <Footer />
   </div>
 </template>
-
-<style scoped>
-.section-title span {
-  position: relative;
-}
-
-.section-title span::before {
-  position: absolute;
-  bottom: 0;
-  transform: translateX(50%);
-  content: "";
-  width: 50%;
-  height: 2px;
-  background: var(--color-primary);
-  margin-bottom: -10px;
-}
-
-.selected-text-shadow,
-.category-text-shadow {
-  text-shadow: 1px 1px rgba(0,0,0,0.3), 2px 2px rgba(0,0,0,0.3), 3px 3px rgba(0,0,0,0.3),
-    4px 4px rgba(0,0,0,0.3), 5px 5px rgba(0,0,0,0.3), 6px 6px rgba(0,0,0,0.3);
-}
-
-.category-card {
-  position: relative;
-  width: 30%;
-  height: 300px;
-  padding: 60px 0;
-  cursor: pointer;
-  overflow: hidden;
-  background-size: cover;
-  background-position: center;
-}
-
-@media (max-width: 1023px) {
-  .category-card {
-    height: 150px;
-    padding: 0;
-    pointer-events: none;
-  }
-  .category-card span {
-    line-height: 150px;
-  }
-}
-
-@media (max-width: 767px) {
-  .category-card {
-    width: 100%;
-    margin: 10px 0;
-  }
-}
-
-.category-card:hover span {
-  opacity: 0;
-}
-
-.category-card:hover .category-overlay {
-  opacity: 1;
-}
-
-.category-card:hover .category-overlay img {
-  transform: scale(0.6);
-}
-
-.category-overlay {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transition: all 0.5s ease-out;
-  background: rgba(38, 71, 16, 0.9);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.category-hover-pic img {
-  width: 60%;
-  transition: all 0.5s ease-out;
-}
-
-.lunchbox {
-  background-image: url('https://images.unsplash.com/photo-1570078420152-d016091ec97a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80');
-}
-
-.sousvide {
-  background-image: url('https://hexschool-api.s3.us-west-2.amazonaws.com/custom/H5qxPcglJ1S9RagBQnAT7pKkMgbFlgu7BRyydNvHaPhVkTnuXG6NLduRdk3zsHrfOKTpUzN2rCye7HTKc3JOkCBTe4XiX3fasKdKaM00jWOjiPcvPbxA8IXlPm1RleCK.jpg');
-}
-
-.salad {
-  background-image: url('https://images.unsplash.com/photo-1551248429-40975aa4de74?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80');
-}
-
-.about-figure::before {
-  content: "";
-  width: 30%;
-  height: 20px;
-  position: absolute;
-  background: var(--color-primary);
-}
-
-.about-figure::after {
-  content: "";
-  width: 20px;
-  height: 70%;
-  position: absolute;
-  left: 0;
-  top: 0;
-  background: var(--color-primary);
-}
-
-@media (max-width: 996px) {
-  .about-figure::before,
-  .about-figure::after {
-    display: none;
-  }
-}
-</style>

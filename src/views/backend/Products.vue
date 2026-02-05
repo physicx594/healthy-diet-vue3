@@ -187,9 +187,9 @@ onMounted(() => {
       <table class="w-full mt-3 text-left">
         <thead class="border-b-2 border-gray-300">
           <tr>
-            <th class="p-2 text-center w-6p">編號</th>
+            <th class="p-2 text-center w-3/50">編號</th>
             <th class="p-2">分類</th>
-            <th class="p-2 w-30p">產品名稱</th>
+            <th class="p-2 w-3/10">產品名稱</th>
             <th
               class="p-2 cursor-pointer select-none"
               @click="toggleSort('origin_price')"
@@ -219,7 +219,7 @@ onMounted(() => {
             <th class="p-2">數量</th>
             <th class="p-2">優惠券</th>
             <th class="p-2">上架</th>
-            <th class="p-2 w-15p">編輯</th>
+            <th class="p-2 w-3/20">編輯</th>
           </tr>
         </thead>
         <tbody>
