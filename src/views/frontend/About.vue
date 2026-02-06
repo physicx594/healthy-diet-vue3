@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import { useLoadingStore } from '@/stores'
-import Navbar from '@/components/frontend/Navbar.vue'
 import PageHeader from '@/components/frontend/PageHeader.vue'
-import Gotop from '@/components/frontend/Gotop.vue'
-import Footer from '@/components/frontend/Footer.vue'
 
 const loadingStore = useLoadingStore()
 
@@ -46,10 +43,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="bg-bg-light min-h-screen">
-    <Navbar />
-    <Gotop />
-    <div v-if="!loadingStore.isLoading">
+  <div v-if="!loadingStore.isLoading">
       <PageHeader
         title="About Us"
         subtitle="發掘蔬食的喜悅與美好"
@@ -163,7 +157,5 @@ onMounted(() => {
           </RouterLink>
         </div>
       </section>
-    </div>
-    <Footer />
   </div>
 </template>

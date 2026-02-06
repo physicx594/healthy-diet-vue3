@@ -1,9 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useLoadingStore } from '@/stores'
-import Navbar from '@/components/frontend/Navbar.vue'
-import Footer from '@/components/frontend/Footer.vue'
-
 const loadingStore = useLoadingStore()
 const showCheck = ref(false)
 
@@ -17,11 +14,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-bg-light flex flex-col">
-    <Navbar />
-
-    <!-- Success content -->
-    <div class="flex-1 flex items-center justify-center px-6 pt-16">
+  <div class="flex-1 flex items-center justify-center px-6 pt-16">
       <div class="text-center max-w-md">
         <!-- Animated checkmark -->
         <div class="mb-8">
@@ -59,8 +52,5 @@ onMounted(() => {
           <span class="absolute left-3/4 top-1 w-2 h-2 rounded-full bg-primary animate-bounce" style="animation-delay: 0.15s;"></span>
         </div>
       </div>
-    </div>
-
-    <Footer />
   </div>
 </template>

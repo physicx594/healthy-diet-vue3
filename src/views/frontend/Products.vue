@@ -3,10 +3,7 @@ import { ref, computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useProductsStore, useCartStore, useLoadingStore } from '@/stores'
 import { formatMoney } from '@/utils'
-import Navbar from '@/components/frontend/Navbar.vue'
 import PageHeader from '@/components/frontend/PageHeader.vue'
-import Footer from '@/components/frontend/Footer.vue'
-import Gotop from '@/components/frontend/Gotop.vue'
 import Pagination from '@/components/shared/Pagination.vue'
 
 const route = useRoute()
@@ -40,10 +37,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="bg-bg-light min-h-screen">
-    <Navbar />
-    <Gotop />
-    <div v-if="!loadingStore.isLoading">
+  <div v-if="!loadingStore.isLoading">
       <PageHeader
         title="Products"
         subtitle="享受蔬食的喜悅與美好"
@@ -215,8 +209,7 @@ onMounted(() => {
       </div>
     </Transition>
 
-    <Footer />
-  </div>
+  <!-- </div> -->
 </template>
 
 <style scoped>

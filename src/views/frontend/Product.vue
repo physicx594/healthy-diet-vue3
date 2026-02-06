@@ -5,8 +5,6 @@ import { useCartStore, useLoadingStore } from '@/stores'
 import { productsApi } from '@/api'
 import { formatMoney } from '@/utils'
 import type { Product } from '@/types'
-import Navbar from '@/components/frontend/Navbar.vue'
-import Footer from '@/components/frontend/Footer.vue'
 import Breadcrumb from '@/components/frontend/Breadcrumb.vue'
 import SwiperCarousel from '@/components/frontend/SwiperCarousel.vue'
 
@@ -44,8 +42,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-bg-light">
-    <Navbar />
+  <div>
     <div class="pt-16">
       <Breadcrumb :product="tempProduct" />
 
@@ -171,6 +168,5 @@ onMounted(async () => {
       <span v-else>該商品已在購物車中，請至購物車修改數量。</span>
     </div>
 
-    <Footer />
   </div>
 </template>

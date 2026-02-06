@@ -5,8 +5,6 @@ import { useCartStore, useLoadingStore } from '@/stores'
 import { ordersApi } from '@/api'
 import { formatMoney, truncateOrderId } from '@/utils'
 import type { Order } from '@/types'
-import Navbar from '@/components/frontend/Navbar.vue'
-import Footer from '@/components/frontend/Footer.vue'
 import CheckoutNav from '@/components/frontend/CheckoutNav.vue'
 
 const route = useRoute()
@@ -50,9 +48,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-bg-light">
-    <Navbar />
-    <div v-if="!loadingStore.isLoading" class="container mx-auto px-6">
+  <div v-if="!loadingStore.isLoading" class="container mx-auto px-6">
       <CheckoutNav :step1="true" :step2="true" :step3="true" />
 
       <div class="max-w-3xl mx-auto mb-16 space-y-6">
@@ -139,7 +135,5 @@ onMounted(async () => {
           </div>
         </div>
       </div>
-    </div>
-    <Footer />
   </div>
 </template>

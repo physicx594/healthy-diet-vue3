@@ -3,8 +3,6 @@ import { ref, onMounted } from 'vue'
 import { useCartStore, useLoadingStore } from '@/stores'
 import { formatMoney } from '@/utils'
 import { couponsApi } from '@/api'
-import Navbar from '@/components/frontend/Navbar.vue'
-import Footer from '@/components/frontend/Footer.vue'
 import CheckoutNav from '@/components/frontend/CheckoutNav.vue'
 
 const cartStore = useCartStore()
@@ -44,9 +42,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-bg-light">
-    <Navbar />
-    <div class="container mx-auto px-6">
+  <div class="container mx-auto px-6">
       <CheckoutNav :step1="true" />
 
       <!-- Cart Items -->
@@ -229,7 +225,5 @@ onMounted(() => {
           </div>
         </div>
       </div>
-    </div>
-    <Footer />
   </div>
 </template>

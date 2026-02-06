@@ -10,9 +10,9 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      component: () => import('@/views/frontend/Home.vue'),
+      component: () => import('@/views/frontend/Index.vue'),
       children: [
-        { path: '', name: 'index', component: () => import('@/views/frontend/Index.vue') },
+        { path: '', name: 'home', component: () => import('@/views/frontend/Home.vue') },
         { path: 'products', name: 'products', component: () => import('@/views/frontend/Products.vue') },
         { path: 'product/:id', name: 'product', component: () => import('@/views/frontend/Product.vue') },
         { path: 'about', name: 'about', component: () => import('@/views/frontend/About.vue') },

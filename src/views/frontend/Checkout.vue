@@ -4,8 +4,6 @@ import { useRouter } from 'vue-router'
 import { useForm, useField } from 'vee-validate'
 import { useLoadingStore } from '@/stores'
 import { ordersApi, cartApi } from '@/api'
-import Navbar from '@/components/frontend/Navbar.vue'
-import Footer from '@/components/frontend/Footer.vue'
 import CheckoutNav from '@/components/frontend/CheckoutNav.vue'
 
 const router = useRouter()
@@ -63,9 +61,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-bg-light">
-    <Navbar />
-    <div class="container mx-auto px-6">
+  <div class="container mx-auto px-6">
       <CheckoutNav :step1="true" :step2="true" />
 
       <div class="max-w-3xl mx-auto mb-16">
@@ -192,7 +188,5 @@ onMounted(async () => {
           </form>
         </div>
       </div>
-    </div>
-    <Footer />
   </div>
 </template>
