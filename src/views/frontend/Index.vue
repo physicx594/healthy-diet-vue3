@@ -3,6 +3,9 @@ import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useLoadingStore, useProductsStore, useCartStore } from '@/stores'
 import { formatMoney } from '@/utils'
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { Autoplay } from 'swiper/modules'
+import 'swiper/css'
 import Navbar from '@/components/frontend/Navbar.vue'
 import Gotop from '@/components/frontend/Gotop.vue'
 import Banner from '@/components/frontend/Banner.vue'
@@ -21,6 +24,8 @@ const toCategory = (category: string) => {
 const addToCart = (id: string) => {
   cartStore.addToCart(id)
 }
+
+const swiperModules = [Autoplay]
 
 const testimonials = [
   {
@@ -43,6 +48,41 @@ const testimonials = [
     avatar: 'W',
     rating: 5,
     text: '食材天然無添加，營養搭配均衡。真正做到了健康與美味兼顧，是我最推薦給客戶的外送餐盒。'
+  },
+  {
+    name: '張先生',
+    role: '軟體工程師',
+    avatar: 'Z',
+    rating: 5,
+    text: '加班到很晚也不用擔心吃不健康，冷藏配送隔天微波就能吃，味道跟現做的一樣好。'
+  },
+  {
+    name: '李小姐',
+    role: '瑜珈老師',
+    avatar: 'Li',
+    rating: 5,
+    text: '沙拉系列是我的最愛！蔬果都很新鮮脆口，醬汁清爽不膩，每週固定訂購三次。'
+  },
+  {
+    name: '黃先生',
+    role: '大學生',
+    avatar: 'H',
+    rating: 4,
+    text: '價格對學生來說很友善，份量也很夠。比起外面便當店，吃完不會有罪惡感，大推！'
+  },
+  {
+    name: '吳小姐',
+    role: '新手媽媽',
+    avatar: 'Wu',
+    rating: 5,
+    text: '產後調理期間特別注重飲食，Healthy Diet 的低鈉少油料理讓我吃得安心，恢復也更順利。'
+  },
+  {
+    name: '劉先生',
+    role: '馬拉松跑者',
+    avatar: 'Liu',
+    rating: 5,
+    text: '備賽期間需要精準控制熱量攝取，每份餐盒都有清楚的營養標示，幫助我維持最佳狀態。'
   }
 ]
 
@@ -66,7 +106,7 @@ onMounted(async () => {
       />
 
       <!-- Section 2: About Us -->
-      <section class="py-24 bg-white">
+      <section class="py-20 bg-white">
         <div class="container mx-auto px-6">
           <div class="flex max-lg:flex-col items-center gap-12 lg:gap-16">
             <!-- Image -->
@@ -74,7 +114,7 @@ onMounted(async () => {
               <div class="relative">
                 <img
                   src="https://images.unsplash.com/photo-1595786802424-d6efbc413db5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"
-                  class="w-full h-[400px] lg:h-[500px] object-cover rounded-2xl"
+                  class="w-full h-[360px] lg:h-[420px] object-cover rounded-2xl"
                   alt="About us"
                 />
                 <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-accent rounded-2xl -z-10 max-lg:hidden"></div>
@@ -102,9 +142,9 @@ onMounted(async () => {
       </section>
 
       <!-- Section 3: Features (嚴選) -->
-      <section class="py-24 bg-[#F5F7F2]">
+      <section class="py-20 bg-[#F5F7F2]">
         <div class="container mx-auto px-6">
-          <div class="text-center mb-16">
+          <div class="text-center mb-12">
             <span class="font-mono text-secondary text-[11px] font-medium tracking-[0.25em] uppercase">Our Promise</span>
             <h2 class="font-display text-4xl lg:text-5xl font-semibold text-text mt-3">嚴選好食材</h2>
             <p class="text-text-light mt-4 max-w-lg mx-auto text-sm">用心對待每份產品，堅持最高品質標準</p>
@@ -142,9 +182,9 @@ onMounted(async () => {
       </section>
 
       <!-- Section 4: Product Categories -->
-      <section class="py-24 bg-white">
+      <section class="py-20 bg-white">
         <div class="container mx-auto px-6">
-          <div class="text-center mb-16">
+          <div class="text-center mb-12">
             <span class="font-mono text-secondary text-[11px] font-medium tracking-[0.25em] uppercase">Categories</span>
             <h2 class="font-display text-4xl lg:text-5xl font-semibold text-text mt-3">探索美味</h2>
           </div>
@@ -152,7 +192,7 @@ onMounted(async () => {
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <!-- Category: 健康餐盒 -->
             <div
-              class="group relative aspect-[4/5] rounded-2xl overflow-hidden cursor-pointer shadow-card hover:shadow-card-hover transition-all duration-500"
+              class="group relative aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer shadow-card hover:shadow-card-hover transition-all duration-500"
               data-aos="fade-up" data-aos-delay="0"
               @click="toCategory('健康餐盒')"
             >
@@ -161,8 +201,8 @@ onMounted(async () => {
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-              <div class="absolute bottom-0 left-0 right-0 p-8">
-                <h3 class="font-brand text-3xl text-white font-bold mb-1 tracking-wide">Bento</h3>
+              <div class="absolute bottom-0 left-0 right-0 p-6">
+                <h3 class="font-brand text-2xl text-white font-bold mb-1 tracking-wide">Bento</h3>
                 <p class="font-mono text-white/70 text-[11px] tracking-wider uppercase">健康餐盒</p>
                 <p class="text-white/60 text-sm mt-2 max-h-0 overflow-hidden group-hover:max-h-20 transition-all duration-500">
                   每天都拿不定主意吃什麼嗎？請交給 Healthy Diet 幫您備餐
@@ -172,7 +212,7 @@ onMounted(async () => {
 
             <!-- Category: 舒肥系列 -->
             <div
-              class="group relative aspect-[4/5] rounded-2xl overflow-hidden cursor-pointer shadow-card hover:shadow-card-hover transition-all duration-500"
+              class="group relative aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer shadow-card hover:shadow-card-hover transition-all duration-500"
               data-aos="fade-up" data-aos-delay="150"
               @click="toCategory('舒肥系列')"
             >
@@ -181,8 +221,8 @@ onMounted(async () => {
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-              <div class="absolute bottom-0 left-0 right-0 p-8">
-                <h3 class="font-brand text-3xl text-white font-bold mb-1 tracking-wide">Sous Vide</h3>
+              <div class="absolute bottom-0 left-0 right-0 p-6">
+                <h3 class="font-brand text-2xl text-white font-bold mb-1 tracking-wide">Sous Vide</h3>
                 <p class="font-mono text-white/70 text-[11px] tracking-wider uppercase">舒肥系列</p>
                 <p class="text-white/60 text-sm mt-2 max-h-0 overflow-hidden group-hover:max-h-20 transition-all duration-500">
                   多種口味任你挑，輕鬆補足蛋白質，低熱量無負擔
@@ -192,7 +232,7 @@ onMounted(async () => {
 
             <!-- Category: 新鮮沙拉 -->
             <div
-              class="group relative aspect-[4/5] rounded-2xl overflow-hidden cursor-pointer shadow-card hover:shadow-card-hover transition-all duration-500"
+              class="group relative aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer shadow-card hover:shadow-card-hover transition-all duration-500"
               data-aos="fade-up" data-aos-delay="300"
               @click="toCategory('新鮮沙拉')"
             >
@@ -201,8 +241,8 @@ onMounted(async () => {
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-              <div class="absolute bottom-0 left-0 right-0 p-8">
-                <h3 class="font-brand text-3xl text-white font-bold mb-1 tracking-wide">Salad</h3>
+              <div class="absolute bottom-0 left-0 right-0 p-6">
+                <h3 class="font-brand text-2xl text-white font-bold mb-1 tracking-wide">Salad</h3>
                 <p class="font-mono text-white/70 text-[11px] tracking-wider uppercase">新鮮沙拉</p>
                 <p class="text-white/60 text-sm mt-2 max-h-0 overflow-hidden group-hover:max-h-20 transition-all duration-500">
                   豐富萵苣、蘿蔓與蔬果，品嚐生菜的鮮甜爽脆
@@ -214,9 +254,9 @@ onMounted(async () => {
       </section>
 
       <!-- Section 5: Popular Products -->
-      <section v-if="productsStore.products.length" class="py-24 bg-[#F5F7F2]">
+      <section v-if="productsStore.products.length" class="py-20 bg-[#F5F7F2]">
         <div class="container mx-auto px-6">
-          <div class="text-center mb-16">
+          <div class="text-center mb-12">
             <span class="font-mono text-secondary text-[11px] font-medium tracking-[0.25em] uppercase">Best Sellers</span>
             <h2 class="font-display text-4xl lg:text-5xl font-semibold text-text mt-3">人氣推薦</h2>
           </div>
@@ -225,42 +265,46 @@ onMounted(async () => {
             <div
               v-for="item in productsStore.products.slice(0, 4)"
               :key="item.id"
-              class="group bg-white rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1"
+              class="group"
               data-aos="fade-up"
             >
+              <div class="bg-white rounded-2xl overflow-hidden shadow-card group-hover:shadow-card-hover transition-all duration-500 group-hover:-translate-y-1.5 cursor-pointer">
               <RouterLink :to="`/product/${item.id}`" class="block">
-                <div class="relative aspect-square overflow-hidden">
+                <div class="relative aspect-[4/3] overflow-hidden">
                   <img
                     :src="item.imageUrl[0]"
                     :alt="item.title"
-                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
-                    <span class="text-white font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm">
-                      查看詳情
-                    </span>
-                  </div>
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-sm text-[11px] font-medium text-text shadow-sm">
+                    {{ item.category }}
+                  </span>
+                  <span v-if="item.price" class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-contrast text-white text-[11px] font-bold shadow-sm">
+                    {{ Math.round((1 - item.price / item.origin_price) * 100) }}% OFF
+                  </span>
                 </div>
               </RouterLink>
               <div class="p-5">
-                <h4 class="font-bold text-text mb-2 truncate">{{ item.title }}</h4>
-                <div class="flex items-center justify-between">
-                  <div>
-                    <span v-if="item.price" class="font-mono text-lg font-bold text-contrast">{{ formatMoney(item.price) }}</span>
-                    <span v-else class="font-mono text-lg font-bold text-contrast">{{ formatMoney(item.origin_price) }}</span>
+                <h4 class="font-bold text-text mb-3 truncate text-[15px]">{{ item.title }}</h4>
+                <div class="flex items-end justify-between">
+                  <div class="flex items-baseline gap-2">
+                    <span class="font-mono text-xl font-bold text-primary-dark">{{ formatMoney(item.price || item.origin_price) }}</span>
+                    <span v-if="item.price" class="font-mono text-xs text-text-light/60 line-through">{{ formatMoney(item.origin_price) }}</span>
                   </div>
                   <button
-                    class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center hover:bg-primary-dark transition-colors duration-200"
+                    class="w-9 h-9 rounded-full bg-primary/10 text-primary flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300"
                     @click.prevent="addToCart(item.id)"
                   >
-                    <i class="fa-solid fa-plus text-sm"></i>
+                    <i class="fa-solid fa-cart-plus text-xs"></i>
                   </button>
                 </div>
+              </div>
               </div>
             </div>
           </div>
 
-          <div class="text-center mt-12">
+          <div class="text-center mt-10">
             <RouterLink to="/products">
               <button class="px-10 py-3 rounded-xl border-2 border-primary text-primary font-medium hover:bg-primary hover:text-white transition-all duration-300">
                 查看全部商品
@@ -271,38 +315,51 @@ onMounted(async () => {
       </section>
 
       <!-- Section 6: Testimonials -->
-      <section class="py-24 bg-white">
+      <section class="py-20 bg-white overflow-hidden">
         <div class="container mx-auto px-6">
-          <div class="text-center mb-16">
+          <div class="text-center mb-12">
             <span class="font-mono text-secondary text-[11px] font-medium tracking-[0.25em] uppercase">Testimonials</span>
             <h2 class="font-display text-4xl lg:text-5xl font-semibold text-text mt-3">顧客好評</h2>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div
-              v-for="(t, i) in testimonials"
-              :key="i"
-              class="bg-white rounded-2xl p-8 shadow-card hover:shadow-card-hover transition-all duration-300"
-              data-aos="fade-up"
-              :data-aos-delay="i * 150"
-            >
-              <div class="flex items-center gap-1 mb-4">
-                <i v-for="s in t.rating" :key="s" class="fa-solid fa-star text-secondary text-sm"></i>
-              </div>
-              <div class="relative mb-6">
-                <i class="fa-solid fa-quote-left text-3xl text-primary-light/20 absolute -top-2 -left-1"></i>
-                <p class="text-text-light leading-relaxed pl-6">{{ t.text }}</p>
-              </div>
-              <div class="flex items-center gap-3 pt-4 border-t border-bg-dark/50">
-                <div class="w-10 h-10 rounded-full bg-primary-light/20 flex items-center justify-center text-primary font-bold text-sm">
-                  {{ t.avatar }}
+          <div class="py-4">
+          <Swiper
+            class="testimonial-swiper"
+            :modules="swiperModules"
+            :slides-per-view="1"
+            :space-between="24"
+            :loop="true"
+            :speed="800"
+            :allow-touch-move="false"
+            :simulate-touch="false"
+            :autoplay="{ delay: 3500, disableOnInteraction: false }"
+            :breakpoints="{
+              640: { slidesPerView: 2 },
+              1024: { slidesPerView: 3 }
+            }"
+          >
+            <SwiperSlide v-for="(t, i) in testimonials" :key="i">
+              <div class="bg-white rounded-2xl p-8 shadow-card h-full">
+                <div class="flex items-center gap-1 mb-4">
+                  <i v-for="s in t.rating" :key="s" class="fa-solid fa-star text-secondary text-sm"></i>
+                  <i v-for="s in (5 - t.rating)" :key="'e' + s" class="fa-regular fa-star text-secondary/30 text-sm"></i>
                 </div>
-                <div>
-                  <div class="font-bold text-text text-sm">{{ t.name }}</div>
-                  <div class="text-text-light text-xs">{{ t.role }}</div>
+                <div class="relative mb-6">
+                  <i class="fa-solid fa-quote-left text-3xl text-primary-light/20 absolute -top-2 -left-1"></i>
+                  <p class="text-text-light leading-relaxed pl-6">{{ t.text }}</p>
+                </div>
+                <div class="flex items-center gap-3 pt-4 border-t border-bg-dark/50">
+                  <div class="w-10 h-10 rounded-full bg-primary-light/20 flex items-center justify-center text-primary font-bold text-sm">
+                    {{ t.avatar }}
+                  </div>
+                  <div>
+                    <div class="font-bold text-text text-sm">{{ t.name }}</div>
+                    <div class="text-text-light text-xs">{{ t.role }}</div>
+                  </div>
                 </div>
               </div>
-            </div>
+            </SwiperSlide>
+          </Swiper>
           </div>
         </div>
       </section>
@@ -341,3 +398,12 @@ onMounted(async () => {
     <Footer />
   </div>
 </template>
+
+<style scoped>
+.testimonial-swiper {
+  overflow: visible;
+}
+.testimonial-swiper :deep(.swiper-wrapper) {
+  overflow: visible;
+}
+</style>
