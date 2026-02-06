@@ -42,7 +42,7 @@ const authStore = useAuthStore()
   display: block;
   padding: 8px 12px;
   font-weight: bold;
-  color: rgba(255, 255, 255, 0.75);
+  color: rgb(255 255 255 / 0.75);
   transition: color 0.3s;
 }
 

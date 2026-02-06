@@ -13,7 +13,7 @@ defineProps<{
     <div class="absolute inset-0 -z-10 bg-cover bg-center scale-105" :style="{ backgroundImage: `url('${bgImage}')` }" />
     <!-- Gradient overlays -->
     <div class="absolute inset-0 -z-10 bg-gradient-to-b from-black/50 via-black/20 to-transparent" />
-    <div class="absolute inset-0 -z-10 bg-gradient-to-t from-[#1B4332]/80 via-[#1B4332]/25 to-transparent" />
+    <div class="absolute inset-0 -z-10 bg-gradient-to-t from-primary-dark/80 via-primary-dark/25 to-transparent" />
 
     <!-- Content -->
     <div class="absolute inset-0 flex flex-col items-center justify-center px-6">

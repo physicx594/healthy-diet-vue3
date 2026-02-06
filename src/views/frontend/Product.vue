@@ -44,7 +44,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-[#FAFAF8]">
+  <div class="min-h-screen bg-bg-light">
     <Navbar />
     <div class="pt-16">
       <Breadcrumb :product="tempProduct" />

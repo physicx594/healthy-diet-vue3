@@ -67,7 +67,9 @@ onMounted(() => {
           />
         </figure>
         <div
-          class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+          role="button"
+          aria-label="刪除圖片"
+          class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
           @click="openDeleteModal(item)"
         >
           <i class="far fa-trash-alt fa-3x text-white hover:text-red-500 transition-colors"></i>

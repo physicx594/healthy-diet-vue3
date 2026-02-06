@@ -17,7 +17,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-[#FAFAF8] flex flex-col">
+  <div class="min-h-screen bg-bg-light flex flex-col">
     <Navbar />
 
     <!-- Success content -->

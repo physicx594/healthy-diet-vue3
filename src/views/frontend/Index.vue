@@ -142,7 +142,7 @@ onMounted(async () => {
       </section>
 
       <!-- Section 3: Features (嚴選) -->
-      <section class="py-20 bg-[#F5F7F2]">
+      <section class="py-20 bg-bg-light">
         <div class="container mx-auto px-6">
           <div class="text-center mb-12">
             <span class="font-mono text-secondary text-[11px] font-medium tracking-[0.25em] uppercase">Our Promise</span>
@@ -254,7 +254,7 @@ onMounted(async () => {
       </section>
 
       <!-- Section 5: Popular Products -->
-      <section v-if="productsStore.products.length" class="py-20 bg-[#F5F7F2]">
+      <section v-if="productsStore.products.length" class="py-20 bg-bg-light">
         <div class="container mx-auto px-6">
           <div class="text-center mb-12">
             <span class="font-mono text-secondary text-[11px] font-medium tracking-[0.25em] uppercase">Best Sellers</span>

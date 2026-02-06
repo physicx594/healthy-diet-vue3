@@ -44,7 +44,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-[#FAFAF8]">
+  <div class="min-h-screen bg-bg-light">
     <Navbar />
     <div class="container mx-auto px-6">
       <CheckoutNav :step1="true" />

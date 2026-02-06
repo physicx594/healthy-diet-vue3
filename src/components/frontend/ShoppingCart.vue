@@ -37,6 +37,7 @@ const closeCart = () => {
         <i class="fa-solid fa-bag-shopping text-primary mr-2"></i>購物車
       </h3>
       <button
+        aria-label="關閉購物車"
         class="w-8 h-8 rounded-full flex items-center justify-center text-text-light hover:bg-bg-dark hover:text-text transition-all"
         @click="closeCart"
       >

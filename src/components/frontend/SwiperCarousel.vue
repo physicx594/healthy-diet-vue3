@@ -85,10 +85,10 @@ onMounted(async () => {
 :deep(.swiper-button-next)::after {
   font-size: 0.875rem;
   font-weight: bold;
-  color: #2D6A4F;
+  color: var(--color-primary);
 }
 
 :deep(.swiper-pagination-bullet-active) {
-  background: #2D6A4F;
+  background: var(--color-primary);
 }
 </style>

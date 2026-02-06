@@ -16,11 +16,12 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
 </script>
 
 <template>
-  <div
+  <button
+    aria-label="回到頂部"
     class="fixed right-6 bottom-6 w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center cursor-pointer z-gotop transition-opacity duration-500 animate-bounce-slow"
     :class="show ? 'opacity-100' : 'opacity-0 pointer-events-none'"
     @click="goTop"
   >
     <i class="fa-solid fa-chevron-up text-primary text-sm"></i>
-  </div>
+  </button>
 </template>

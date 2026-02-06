@@ -51,6 +51,7 @@ onUnmounted(() => {
 
         <!-- Hamburger (mobile) -->
         <button
+          aria-label="開啟導航選單"
           class="hidden max-md:flex flex-col justify-center items-center w-10 h-10 gap-1.5"
           @click="show = !show"
         >
@@ -84,7 +85,7 @@ onUnmounted(() => {
               <i class="fa-solid fa-user text-base"></i>
             </RouterLink>
           </li>
-          <li class="relative cursor-pointer" @click.prevent="openCart = true">
+          <li class="relative cursor-pointer" role="button" aria-label="開啟購物車" @click.prevent="openCart = true">
             <span
               class="inline-flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300 hover:bg-white/20"
               :class="[
@@ -170,7 +171,7 @@ onUnmounted(() => {
   letter-spacing: 0.04em;
   padding: 6px 12px;
   transition: all 0.3s ease;
-  color: rgba(255, 255, 255, 0.92);
+  color: rgb(255 255 255 / 0.92);
   border-radius: 6px;
 }
 
@@ -184,10 +185,8 @@ onUnmounted(() => {
 
 .nav-link-scrolled:hover {
   color: var(--color-primary);
-  background: var(--color-primary-light);
   background: rgba(45, 106, 79, 0.06);
 }
-
 
 .mobile-nav-enter-active {
   transition: opacity 0.3s ease;

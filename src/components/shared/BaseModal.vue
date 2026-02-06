@@ -38,6 +38,7 @@ const sizeClass: Record<string, string> = {
             <h3 class="text-lg font-bold text-primary">{{ title }}</h3>
             <button
               type="button"
+              aria-label="關閉"
               class="w-8 h-8 flex items-center justify-center rounded-full text-text-light hover:bg-bg-dark hover:text-text transition-all duration-200 text-xl leading-none"
               @click="close"
             >
