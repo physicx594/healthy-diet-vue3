@@ -16,25 +16,25 @@ const pageNum = (page: number) => {
 
 <template>
   <nav aria-label="Page navigation">
-    <ul class="flex justify-center items-center gap-1">
+    <ul class="flex justify-center items-center gap-2">
       <li>
         <a
           href="#"
-          class="inline-flex items-center justify-center w-9 h-9 rounded-full border border-gray-300 text-sm transition hover:bg-primary hover:text-white"
-          :class="{ 'opacity-50 pointer-events-none': pages.current_page === 1 }"
+          class="inline-flex items-center justify-center w-10 h-10 rounded-xl text-sm transition-all duration-200 text-text-light hover:bg-primary hover:text-white"
+          :class="{ 'opacity-40 pointer-events-none': pages.current_page === 1 }"
           @click.prevent="pageNum(pages.current_page - 1)"
         >
-          &laquo;
+          <i class="fa-solid fa-chevron-left text-xs"></i>
         </a>
       </li>
       <li v-for="item in pages.total_pages" :key="item">
         <a
           href="#"
-          class="inline-flex items-center justify-center w-9 h-9 rounded-full border text-sm font-medium transition"
+          class="inline-flex items-center justify-center w-10 h-10 rounded-xl text-sm font-medium transition-all duration-200"
           :class="
             pages.current_page === item
-              ? 'bg-primary text-white border-primary pointer-events-none'
-              : 'border-gray-300 hover:bg-primary hover:text-white'
+              ? 'bg-primary text-white pointer-events-none shadow-md'
+              : 'text-text hover:bg-bg-dark hover:text-primary'
           "
           @click.prevent="pageNum(item)"
         >
@@ -44,11 +44,11 @@ const pageNum = (page: number) => {
       <li>
         <a
           href="#"
-          class="inline-flex items-center justify-center w-9 h-9 rounded-full border border-gray-300 text-sm transition hover:bg-primary hover:text-white"
-          :class="{ 'opacity-50 pointer-events-none': pages.current_page === pages.total_pages }"
+          class="inline-flex items-center justify-center w-10 h-10 rounded-xl text-sm transition-all duration-200 text-text-light hover:bg-primary hover:text-white"
+          :class="{ 'opacity-40 pointer-events-none': pages.current_page === pages.total_pages }"
           @click.prevent="pageNum(pages.current_page + 1)"
         >
-          &raquo;
+          <i class="fa-solid fa-chevron-right text-xs"></i>
         </a>
       </li>
     </ul>

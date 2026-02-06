@@ -4,7 +4,7 @@ import { useRoute } from 'vue-router'
 import { useProductsStore, useCartStore, useLoadingStore } from '@/stores'
 import { formatMoney } from '@/utils'
 import Navbar from '@/components/frontend/Navbar.vue'
-import Banner from '@/components/frontend/Banner.vue'
+import PageHeader from '@/components/frontend/PageHeader.vue'
 import Footer from '@/components/frontend/Footer.vue'
 import Gotop from '@/components/frontend/Gotop.vue'
 import Pagination from '@/components/shared/Pagination.vue'
@@ -44,73 +44,106 @@ onMounted(() => {
     <Navbar />
     <Gotop />
     <div v-if="!loadingStore.isLoading">
-      <Banner page-name="Products List" content="享受疏食的喜悅與美好" bg-image="https://images.unsplash.com/photo-1543353071-10c8ba85a904?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjI0MX0&auto=format&fit=crop&w=1500&q=80" />
+      <PageHeader title="Products" subtitle="享受蔬食的喜悅與美好" />
 
-      <div class="container mx-auto px-4 mt-5">
+      <div class="container mx-auto px-6 py-12">
         <!-- Category Filter -->
-        <div class="w-full">
-          <ul class="flex max-md:flex-col justify-center items-center gap-5 max-md:gap-2 mb-4 list-none">
-            <li v-for="cat in categories" :key="cat" @click="category = cat">
-              <button
-                class="rounded-full text-white px-8 py-1.5 font-bold transition-colors"
-                :class="category === cat ? 'bg-contrast' : 'bg-primary hover:bg-primary-dark'"
-              >
-                {{ cat }}
-              </button>
-            </li>
-          </ul>
+        <div class="flex flex-wrap justify-center gap-3 mb-12">
+          <button
+            v-for="cat in categories"
+            :key="cat"
+            class="px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300"
+            :class="category === cat
+              ? 'bg-primary text-white shadow-md'
+              : 'bg-white text-text-light hover:bg-bg-dark hover:text-primary border border-bg-dark'"
+            @click="category = cat"
+          >
+            {{ cat }}
+          </button>
         </div>
 
         <!-- Product Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           <div
             v-for="item in filteredProducts"
             :key="item.id"
-            class="my-12 text-center"
+            class="group bg-white rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1"
           >
-            <figure class="relative w-full max-w-62.5 max-h-62.5 max-md:w-50 max-md:h-50 rounded-full overflow-hidden mx-auto mb-3 shadow-product group aspect-square">
-              <RouterLink :to="`/product/${item.id}`">
-                <img :src="item.imageUrl[0]" class="w-full h-full object-cover transition-all duration-300 group-hover:brightness-20" />
-                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity text-white text-center">
-                  <div v-if="!item.price">
-                    <div class="text-xl font-bold text-red-500">{{ formatMoney(item.origin_price) }}</div>
-                  </div>
-                  <div v-else>
-                    <div class="text-gray-400"><del>{{ formatMoney(item.origin_price) }}</del></div>
-                    <div class="text-2xl font-bold text-red-500">{{ formatMoney(item.price) }}</div>
-                  </div>
+            <!-- Image -->
+            <RouterLink :to="`/product/${item.id}`" class="block">
+              <div class="relative aspect-square overflow-hidden">
+                <img
+                  :src="item.imageUrl[0]"
+                  :alt="item.title"
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                  <span class="text-white font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/20 backdrop-blur-sm px-5 py-2.5 rounded-full text-sm">
+                    查看詳情
+                  </span>
                 </div>
-              </RouterLink>
-            </figure>
-            <h5 class="font-bold mb-3">{{ item.title }}</h5>
-            <button
-              class="rounded-full border border-primary text-primary px-8 py-1.5 hover:bg-primary hover:text-white transition-colors"
-              @click="addToCart(item)"
-            >
-              加入購物車
-            </button>
+              </div>
+            </RouterLink>
+
+            <!-- Info -->
+            <div class="p-6">
+              <h5 class="font-bold text-text mb-3 text-lg">{{ item.title }}</h5>
+              <div class="flex items-center justify-between">
+                <div>
+                  <div v-if="item.price" class="flex items-center gap-2">
+                    <span class="font-mono text-xl font-bold text-contrast">{{ formatMoney(item.price) }}</span>
+                    <span class="text-text-light text-sm line-through">{{ formatMoney(item.origin_price) }}</span>
+                  </div>
+                  <span v-else class="font-mono text-xl font-bold text-text">{{ formatMoney(item.origin_price) }}</span>
+                </div>
+                <button
+                  class="w-11 h-11 rounded-full bg-primary text-white flex items-center justify-center hover:bg-primary-dark transition-all duration-200 hover:scale-105"
+                  @click="addToCart(item)"
+                >
+                  <i class="fa-solid fa-cart-plus text-sm"></i>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 
         <!-- Pagination -->
-        <div class="my-18">
+        <div class="mt-16 mb-8">
           <Pagination :pages="productsStore.pagination" @update="getProducts" />
         </div>
       </div>
     </div>
 
-    <!-- Add to cart message -->
-    <div
-      class="fixed top-17.75 px-5 py-1.5 text-white text-sm shadow transition-all duration-500 ease-out z-cart"
-      :class="[
-        cartStore.openMsg ? 'right-2.5' : '-right-87.5',
-        cartStore.joinMsg ? 'bg-primary-light' : 'bg-red-600'
-      ]"
-    >
-      <span v-if="cartStore.joinMsg">成功加入購物車</span>
-      <span v-else>該商品已放入購物車當中，<br />請至購物車修改數量即可。</span>
-    </div>
+    <!-- Add to cart toast -->
+    <Transition name="toast">
+      <div
+        v-if="cartStore.openMsg"
+        class="fixed top-24 right-4 px-5 py-3 rounded-xl text-white text-sm shadow-lg z-cart flex items-center gap-3"
+        :class="cartStore.joinMsg ? 'bg-primary' : 'bg-contrast'"
+      >
+        <i :class="cartStore.joinMsg ? 'fa-solid fa-check-circle' : 'fa-solid fa-info-circle'"></i>
+        <span v-if="cartStore.joinMsg">成功加入購物車</span>
+        <span v-else>該商品已在購物車中，請至購物車修改數量。</span>
+      </div>
+    </Transition>
 
     <Footer />
   </div>
 </template>
+
+<style scoped>
+.toast-enter-active {
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.toast-leave-active {
+  transition: all 0.2s ease;
+}
+.toast-enter-from {
+  opacity: 0;
+  transform: translateX(30px);
+}
+.toast-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+</style>

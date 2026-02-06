@@ -6,7 +6,7 @@ const loadingStore = useLoadingStore()
 </script>
 
 <template>
-  <div class="text-center h-full">
+  <div class="min-h-full bg-white">
     <LoadingPage :is-loading="loadingStore.isLoading" />
     <RouterView />
   </div>

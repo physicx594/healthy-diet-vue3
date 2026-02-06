@@ -21,6 +21,6 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
     :class="show ? 'opacity-100' : 'opacity-0 pointer-events-none'"
     @click="goTop"
   >
-    <i class="fas fa-chevron-up text-primary text-sm"></i>
+    <i class="fa-solid fa-chevron-up text-primary text-sm"></i>
   </div>
 </template>

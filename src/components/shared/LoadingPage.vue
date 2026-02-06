@@ -5,32 +5,76 @@ defineProps<{
 </script>
 
 <template>
-  <div
-    class="fixed inset-0 z-loading bg-primary flex items-center justify-center transition-opacity"
-    :class="isLoading ? 'opacity-100 visible' : 'opacity-0 invisible'"
-  >
-    <div class="text-center text-accent">
-      <span class="block font-yellowtail text-4xl font-bold relative">
-        Healthy Diet<sup class="text-xs absolute -top-1 -right-5 font-noto">&trade;</sup>
-      </span>
-      <p class="m-0 font-bold">Welcome!</p>
-      <p class="font-bold">｜新鮮沙拉｜健康餐盒｜舒肥系列｜</p>
-      <div class="flex justify-center mt-2">
-        <svg width="24" height="30" viewBox="0 0 24 30">
-          <rect x="0" y="13" width="4" height="5" class="fill-accent">
-            <animate attributeName="height" values="5;21;5" begin="0s" dur="0.6s" repeatCount="indefinite" />
-            <animate attributeName="y" values="13;5;13" begin="0s" dur="0.6s" repeatCount="indefinite" />
-          </rect>
-          <rect x="10" y="13" width="4" height="5" class="fill-accent">
-            <animate attributeName="height" values="5;21;5" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
-            <animate attributeName="y" values="13;5;13" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
-          </rect>
-          <rect x="20" y="13" width="4" height="5" class="fill-accent">
-            <animate attributeName="height" values="5;21;5" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
-            <animate attributeName="y" values="13;5;13" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
-          </rect>
-        </svg>
+  <Transition name="loading">
+    <div
+      v-if="isLoading"
+      class="fixed inset-0 z-loading flex flex-col items-center justify-center bg-white"
+    >
+      <!-- Top progress bar -->
+      <div class="absolute top-0 left-0 w-full h-[2px]">
+        <div class="h-full bg-primary loading-progress"></div>
+      </div>
+
+      <!-- Center logo mark -->
+      <div class="loading-content">
+        <div class="w-10 h-10 rounded-full border-2 border-primary/20 flex items-center justify-center mb-4">
+          <div class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></div>
+        </div>
+        <span class="font-brand text-sm font-medium text-text/60 tracking-[0.3em] uppercase">
+          Healthy Diet
+        </span>
       </div>
     </div>
-  </div>
+  </Transition>
 </template>
+
+<style scoped>
+.loading-progress {
+  animation: progress 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  transform-origin: left;
+}
+
+@keyframes progress {
+  0% {
+    transform: scaleX(0);
+    opacity: 1;
+  }
+  50% {
+    transform: scaleX(0.7);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 0;
+  }
+}
+
+.loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: content-in 0.4s ease-out both;
+}
+
+@keyframes content-in {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.loading-enter-active {
+  transition: opacity 0.2s ease;
+}
+.loading-leave-active {
+  transition: opacity 0.4s ease;
+}
+.loading-enter-from,
+.loading-leave-to {
+  opacity: 0;
+}
+</style>

@@ -1,13 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Mrs+Sheppards&family=Yellowtail&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:wght@400;500;600;700&family=DM+Mono:wght@300;400;500&family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap');
 @import "tailwindcss";
 @import "./tailwind.config.css";
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   html, body {
     height: 100%;
     margin: 0;
-    background-color: white;
+    background-color: #ffffff;
   }
 
   #app {
@@ -15,12 +18,17 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: black;
+    color: #3D405B;
   }
 
   a {
     text-decoration: none;
     color: inherit;
   }
-}
 
+  /* Selection styling */
+  ::selection {
+    background-color: #52B788;
+    color: white;
+  }
+}

@@ -4,66 +4,51 @@ defineProps<{
   step2?: boolean
   step3?: boolean
 }>()
+
+const steps = [
+  { label: '購物車', icon: 'fa-solid fa-cart-shopping' },
+  { label: '填寫資料', icon: 'fa-solid fa-pen-to-square' },
+  { label: '訂單確認', icon: 'fa-solid fa-check' }
+]
 </script>
 
 <template>
-  <div class="w-full mt-24 mb-8 flex justify-center checkout-steps">
-    <div class="step w-full max-w-60 h-17.5 text-center relative" :class="{ active: step1 }">
-      <div>購物車</div>
-    </div>
-    <div class="step w-full max-w-60 h-17.5 text-center relative" :class="{ active: step2 }">
-      <div>填寫資料</div>
-    </div>
-    <div class="step w-full max-w-60 h-17.5 text-center relative" :class="{ active: step3 }">
-      <div>訂單確認</div>
+  <div class="w-full pt-28 pb-8 px-4">
+    <div class="max-w-lg mx-auto flex items-center justify-between">
+      <template v-for="(s, i) in steps" :key="i">
+        <!-- Step circle -->
+        <div class="flex flex-col items-center gap-2">
+          <div
+            class="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 text-sm"
+            :class="(i === 0 && step1) || (i === 1 && step2) || (i === 2 && step3)
+              ? 'bg-primary text-white shadow-md'
+              : 'bg-bg-dark text-text-light'"
+          >
+            <i
+              v-if="(i === 0 && step2) || (i === 1 && step3)"
+              class="fa-solid fa-check text-xs"
+            ></i>
+            <i v-else :class="s.icon" class="text-xs"></i>
+          </div>
+          <span
+            class="text-xs font-medium transition-colors"
+            :class="(i === 0 && step1) || (i === 1 && step2) || (i === 2 && step3)
+              ? 'text-primary'
+              : 'text-text-light'"
+          >
+            {{ s.label }}
+          </span>
+        </div>
+
+        <!-- Connector line -->
+        <div
+          v-if="i < 2"
+          class="flex-1 h-0.5 mx-3 -mt-5 rounded-full transition-colors duration-300"
+          :class="(i === 0 && step2) || (i === 1 && step3)
+            ? 'bg-primary'
+            : 'bg-bg-dark'"
+        />
+      </template>
     </div>
   </div>
 </template>
-
-<style scoped>
-.checkout-steps {
-  counter-reset: step;
-}
-
-.step {
-  color: #ced4da;
-}
-
-.step::before {
-  content: counter(step);
-  counter-increment: step;
-  display: block;
-  color: #fff;
-  width: 25px;
-  height: 25px;
-  line-height: 25px;
-  margin: 5px auto;
-  border-radius: 50%;
-  background-color: #ced4da;
-  text-align: center;
-  font-size: 14px;
-}
-
-.step::after {
-  content: '';
-  position: absolute;
-  top: 17.5px;
-  left: -50%;
-  width: 100%;
-  height: 2px;
-  background-color: #ced4da;
-  z-index: -1;
-}
-
-.step:first-child::after {
-  content: none;
-}
-
-.step.active {
-  color: #264710;
-}
-
-.step.active::before {
-  background-color: #264710;
-}
-</style>

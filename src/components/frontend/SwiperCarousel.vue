@@ -3,6 +3,7 @@ import { ref, onMounted } from 'vue'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
 import { productsApi } from '@/api'
+import { formatMoney } from '@/utils'
 import type { Product } from '@/types'
 import 'swiper/css'
 import 'swiper/css/navigation'
@@ -23,27 +24,41 @@ onMounted(async () => {
 
 <template>
   <Swiper
-    class="my-5 pb-12 relative"
+    class="my-8 pb-14 relative"
     :modules="modules"
     :speed="1500"
     :slides-per-view="4"
-    :space-between="0"
+    :space-between="20"
     :slides-per-group="1"
     :loop="true"
     :pagination="{ clickable: true, dynamicBullets: true }"
     :navigation="true"
     :autoplay="{ delay: 3000 }"
     :breakpoints="{
-      320: { slidesPerView: 1, spaceBetween: 10 },
+      320: { slidesPerView: 1, spaceBetween: 16 },
       640: { slidesPerView: 2, spaceBetween: 20 },
-      768: { slidesPerView: 3, spaceBetween: 0 },
-      1024: { slidesPerView: 4, spaceBetween: 0 }
+      768: { slidesPerView: 3, spaceBetween: 20 },
+      1024: { slidesPerView: 4, spaceBetween: 24 }
     }"
   >
     <SwiperSlide v-for="(item, index) in randomItems" :key="index">
-      <figure class="w-full max-w-50 max-h-50 rounded-full overflow-hidden mx-auto cursor-pointer aspect-square">
-        <img :src="item.imageUrl[0]" class="w-full h-full object-cover" :alt="item.title" />
-      </figure>
+      <RouterLink :to="`/product/${item.id}`" class="block group">
+        <div class="bg-white rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1">
+          <div class="aspect-square overflow-hidden">
+            <img
+              :src="item.imageUrl[0]"
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              :alt="item.title"
+            />
+          </div>
+          <div class="p-4">
+            <h5 class="font-bold text-text text-sm truncate mb-1">{{ item.title }}</h5>
+            <span class="font-mono text-contrast font-bold text-sm">
+              {{ item.price ? formatMoney(item.price) : formatMoney(item.origin_price) }}
+            </span>
+          </div>
+        </div>
+      </RouterLink>
     </SwiperSlide>
   </Swiper>
 </template>
@@ -51,28 +66,29 @@ onMounted(async () => {
 <style scoped>
 :deep(.swiper-button-prev),
 :deep(.swiper-button-next) {
-  width: 2rem;
-  height: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 50%;
-  background: #fff;
-  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-  opacity: 0.8;
-  transition: 0.25s ease-in-out;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
 :deep(.swiper-button-prev):hover,
 :deep(.swiper-button-next):hover {
-  transform: scale(1.2);
-  opacity: 1;
+  transform: scale(1.1);
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 :deep(.swiper-button-prev)::after,
 :deep(.swiper-button-next)::after {
-  font-size: 1rem;
-  color: #264710;
+  font-size: 0.875rem;
+  font-weight: bold;
+  color: #2D6A4F;
 }
 
 :deep(.swiper-pagination-bullet-active) {
-  background: #264710;
+  background: #2D6A4F;
 }
 </style>

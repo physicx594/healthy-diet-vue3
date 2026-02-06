@@ -44,78 +44,97 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="mt-16 max-md:mt-20">
+  <div class="min-h-screen bg-[#FAFAF8]">
     <Navbar />
-    <Breadcrumb :product="tempProduct" />
-    <div class="container mx-auto px-4">
-      <div class="flex flex-col">
-        <!-- Product Images + Info -->
-        <div class="flex max-lg:flex-col gap-4">
+    <div class="pt-16">
+      <Breadcrumb :product="tempProduct" />
+
+      <div class="container mx-auto px-6 py-12">
+        <!-- Product Main -->
+        <div class="flex max-lg:flex-col gap-10 lg:gap-16">
           <!-- Images -->
           <div class="lg:w-7/12">
-            <div class="flex max-lg:flex-col justify-between w-full h-87.5 max-lg:h-auto overflow-hidden">
-              <img :src="selectPic" class="w-4/5 max-lg:w-full max-lg:h-70 h-full object-cover object-center" alt="" />
-              <div class="max-lg:w-full max-lg:flex max-lg:justify-between max-lg:mt-2" style="width: 18%">
-                <figure
-                  v-for="(img, key) in tempProduct.imageUrl"
-                  :key="tempProduct.id + key"
-                  class="w-full lg:h-20 max-lg:w-17.5 max-sm:w-12 mb-2.5 cursor-pointer overflow-hidden"
-                >
-                  <img :src="img" class="w-full h-full object-cover object-center" @click="selectPic = img" />
-                </figure>
-              </div>
+            <div class="bg-white rounded-2xl overflow-hidden shadow-card">
+              <img :src="selectPic" class="w-full h-[500px] max-lg:h-[350px] object-cover object-center" :alt="tempProduct.title" />
+            </div>
+            <!-- Thumbnails -->
+            <div class="flex gap-3 mt-4">
+              <button
+                v-for="(img, key) in tempProduct.imageUrl"
+                :key="tempProduct.id + key"
+                class="w-20 h-20 rounded-xl overflow-hidden border-2 transition-all duration-200 flex-shrink-0"
+                :class="selectPic === img ? 'border-primary shadow-md' : 'border-transparent opacity-70 hover:opacity-100'"
+                @click="selectPic = img"
+              >
+                <img :src="img" class="w-full h-full object-cover" />
+              </button>
             </div>
           </div>
 
           <!-- Product Info -->
-          <div class="lg:w-5/12 max-lg:p-2.5 max-md:text-sm">
-            <div class="relative flex flex-col justify-between text-left h-full">
-              <div>
-                <h2 class="font-bold text-2xl max-md:text-xl max-md:m-0">{{ tempProduct.title }}</h2>
-              </div>
-              <div class="max-md:bg-bg-light max-md:p-2.5 max-md:my-1">
-                <div v-if="tempProduct.price" class="text-2xl font-bold m-0">
-                  {{ formatMoney(tempProduct.price) }}
-                  <span class="text-xs font-light px-1.5 rounded-lg bg-contrast text-white">sale</span>
+          <div class="lg:w-5/12">
+            <div class="flex flex-col h-full">
+              <!-- Category badge -->
+              <span class="inline-block w-fit px-3 py-1 rounded-full bg-bg-dark text-text-light text-xs font-medium mb-4">
+                {{ tempProduct.category }}
+              </span>
+
+              <!-- Title -->
+              <h1 class="font-display text-3xl lg:text-4xl font-semibold text-text mb-6">{{ tempProduct.title }}</h1>
+
+              <!-- Price -->
+              <div class="mb-6">
+                <div v-if="tempProduct.price" class="flex items-baseline gap-3">
+                  <span class="font-mono text-3xl font-bold text-contrast">{{ formatMoney(tempProduct.price) }}</span>
+                  <span class="text-text-light line-through text-lg">{{ formatMoney(tempProduct.origin_price) }}</span>
+                  <span class="px-2 py-0.5 rounded-lg bg-contrast/10 text-contrast text-xs font-bold">SALE</span>
                 </div>
-                <div v-if="tempProduct.origin_price" class="text-gray-500 italic">
-                  <del>{{ formatMoney(tempProduct.origin_price) }}</del>
+                <div v-else>
+                  <span class="font-mono text-3xl font-bold text-text">{{ formatMoney(tempProduct.origin_price) }}</span>
                 </div>
               </div>
-              <div class="text-sm max-md:bg-bg-light max-md:p-2.5 max-md:my-1">{{ tempProduct.content }}</div>
-              <div class="max-md:bg-bg-light max-md:p-2.5 max-md:my-1">
-                <p class="mb-1 border-l-3 border-bg-dark pl-1.5">雙十節9 折優惠碼 : <span class="text-contrast font-bold text-lg ml-1">taiwan1010</span></p>
-                <p class="m-0 border-l-3 border-bg-dark pl-1.5">周年慶，全館滿<span class="text-contrast font-bold text-lg ml-1">3000免運費</span></p>
+
+              <!-- Content -->
+              <p class="text-text-light leading-relaxed mb-6">{{ tempProduct.content }}</p>
+
+              <!-- Promo info -->
+              <div class="bg-accent/50 rounded-xl p-5 mb-8 space-y-2">
+                <div class="flex items-center gap-2 text-sm">
+                  <i class="fa-solid fa-tag text-secondary"></i>
+                  <span>雙十節9 折優惠碼：<span class="text-contrast font-bold">taiwan1010</span></span>
+                </div>
+                <div class="flex items-center gap-2 text-sm">
+                  <i class="fa-solid fa-truck text-secondary"></i>
+                  <span>全館滿 <span class="text-contrast font-bold">3,000 免運費</span></span>
+                </div>
               </div>
-              <div class="flex justify-between items-center max-md:mt-1">
-                <div class="flex items-center rounded-full shadow-sm" style="width: 45%">
+
+              <!-- Quantity + Add to Cart -->
+              <div class="flex items-center gap-4 mt-auto">
+                <div class="flex items-center bg-white rounded-xl border border-bg-dark overflow-hidden">
                   <button
                     type="button"
-                    class="w-7.5 p-0 text-primary"
+                    class="w-11 h-11 flex items-center justify-center text-text-light hover:text-primary hover:bg-bg-dark transition-colors disabled:opacity-40"
                     :disabled="tempProduct.quantity === 1"
                     @click="tempProduct.quantity--"
                   >
-                    <i class="fas fa-minus text-base"></i>
+                    <i class="fa-solid fa-minus text-xs"></i>
                   </button>
-                  <input
-                    type="text"
-                    class="flex-1 bg-bg-light border-none text-center text-primary font-bold text-2.5xl p-0"
-                    :value="tempProduct.quantity"
-                    disabled
-                  />
+                  <span class="w-12 text-center font-mono font-bold text-lg text-text">{{ tempProduct.quantity }}</span>
                   <button
                     type="button"
-                    class="w-7.5 p-0 text-primary"
+                    class="w-11 h-11 flex items-center justify-center text-text-light hover:text-primary hover:bg-bg-dark transition-colors"
                     @click="tempProduct.quantity++"
                   >
-                    <i class="fas fa-plus text-base"></i>
+                    <i class="fa-solid fa-plus text-xs"></i>
                   </button>
                 </div>
                 <button
                   type="button"
-                  class="rounded-full shadow-sm text-white bg-primary hover:bg-primary-dark transition-colors py-2" style="width: 45%"
+                  class="flex-1 h-12 rounded-xl bg-primary text-white font-medium hover:bg-primary-dark transition-all duration-300 hover:shadow-lg flex items-center justify-center gap-2"
                   @click="addToCart"
                 >
+                  <i class="fa-solid fa-bag-shopping"></i>
                   加入購物車
                 </button>
               </div>
@@ -124,36 +143,32 @@ onMounted(async () => {
         </div>
 
         <!-- Product Description -->
-        <div class="mt-8">
-          <div class="font-bold text-xl text-primary my-5"><span class="relative before:content-[''] before:absolute before:bottom-0 before:translate-x-1/2 before:w-1/2 before:h-0.5 before:bg-primary before:-mb-2.5">商品描述</span></div>
-          <div class="whitespace-pre-wrap text-left leading-7.5 bg-bg-light p-5 max-sm:p-2.5">
+        <div class="mt-16">
+          <h3 class="font-display text-2xl font-semibold text-text mb-6">商品描述</h3>
+          <div class="bg-accent/30 rounded-2xl p-8 whitespace-pre-wrap text-text-light leading-relaxed">
             {{ tempProduct.description }}
           </div>
         </div>
 
         <!-- Related Products -->
-        <div class="w-full">
-          <div class="font-bold text-xl text-primary my-5"><span class="relative before:content-[''] before:absolute before:bottom-0 before:translate-x-1/2 before:w-1/2 before:h-0.5 before:bg-primary before:-mb-2.5">你可能會喜歡</span></div>
+        <div class="mt-16">
+          <h3 class="font-display text-2xl font-semibold text-text mb-6">你可能會喜歡</h3>
           <SwiperCarousel />
         </div>
       </div>
     </div>
 
-    <!-- Add to cart message -->
+    <!-- Add to cart toast -->
     <div
-      class="fixed top-25.75 px-5 py-1.5 text-white text-sm shadow transition-all duration-500 ease-out z-cart"
+      class="fixed top-24 right-4 px-5 py-3 rounded-xl text-white text-sm shadow-lg transition-all duration-500 ease-out z-cart flex items-center gap-3"
       :class="[
-        cartStore.openMsg ? 'right-2.5' : '-right-87.5',
-        cartStore.joinMsg ? 'bg-primary' : 'bg-red-600'
+        cartStore.openMsg ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0',
+        cartStore.joinMsg ? 'bg-primary' : 'bg-contrast'
       ]"
     >
-      <template v-if="cartStore.joinMsg">
-        <span>成功加入購物車</span>
-      </template>
-      <template v-else>
-        <span>該商品已放入購物車當中，</span><br />
-        <span>請至購物車修改數量即可。</span>
-      </template>
+      <i :class="cartStore.joinMsg ? 'fa-solid fa-check-circle' : 'fa-solid fa-info-circle'"></i>
+      <span v-if="cartStore.joinMsg">成功加入購物車</span>
+      <span v-else>該商品已在購物車中，請至購物車修改數量。</span>
     </div>
 
     <Footer />

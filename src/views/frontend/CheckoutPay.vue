@@ -50,74 +50,93 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div>
+  <div class="min-h-screen bg-[#FAFAF8]">
     <Navbar />
-    <div v-if="!loadingStore.isLoading" class="container mx-auto px-4">
+    <div v-if="!loadingStore.isLoading" class="container mx-auto px-6">
       <CheckoutNav :step1="true" :step2="true" :step3="true" />
 
-      <!-- Cart Summary -->
-      <div class="w-full border border-gray-200 p-3 relative">
-        <div class="text-center">
-          <div v-if="order?.total">合計{{ formatMoney(order.total) }}</div>
-          <span class="text-sm" v-if="productsList.length">購物車({{ productsList.length }}件)</span>
-          <span class="absolute top-1/2 -translate-y-1/2 p-5 cursor-pointer" style="left: 56%" @click="open = !open">
-            <i class="fa fa-angle-down text-red-600 transition-transform duration-500" :class="{ 'rotate-180': open }"></i>
-          </span>
-        </div>
-      </div>
+      <div class="max-w-3xl mx-auto mb-16 space-y-6">
+        <!-- Cart Summary -->
+        <div class="bg-white rounded-2xl shadow-card overflow-hidden">
+          <button
+            class="w-full px-6 py-4 flex items-center justify-between hover:bg-bg-light/50 transition-colors"
+            @click="open = !open"
+          >
+            <div class="flex items-center gap-3">
+              <i class="fa-solid fa-bag-shopping text-primary"></i>
+              <span class="font-bold text-text">購物車</span>
+              <span v-if="productsList.length" class="text-sm text-text-light">({{ productsList.length }} 件)</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span v-if="order?.total" class="font-mono font-bold text-contrast">{{ formatMoney(order.total) }}</span>
+              <i class="fa-solid fa-chevron-down text-xs text-text-light transition-transform duration-300" :class="{ 'rotate-180': open }"></i>
+            </div>
+          </button>
 
-      <!-- Expandable Product List -->
-      <div class="overflow-hidden transition-all duration-500 ease-out" :class="open ? 'max-h-132.25' : 'max-h-0'">
-        <table class="w-full border border-t-0 border-gray-200 text-base">
-          <thead>
-            <tr>
-              <th class="p-2"></th>
-              <th class="p-2">品名</th>
-              <th class="p-2">單價</th>
-              <th class="p-2">小計</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(item, index) in productsList" :key="index" class="border-b border-gray-200">
-              <td class="p-2"><img :src="item.product.imageUrl[0]" class="w-20 h-20 object-cover" /></td>
-              <td class="p-2">{{ item.product.title }}</td>
-              <td class="p-2">x{{ item.qty }}</td>
-              <td v-if="item.product.price" class="p-2">{{ formatMoney(item.product.price * item.qty) }}</td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <td colspan="2" class="text-right p-2">
-                <i class="fa fa-angle-up fa-2x text-red-600 cursor-pointer" @click="open = !open"></i>
-              </td>
-              <th class="p-2">合計</th>
-              <th v-if="order?.total" class="text-red-600 p-2">{{ formatMoney(order.total) }}</th>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
-
-      <!-- Order Info -->
-      <div class="w-full border border-gray-200 mt-5 mb-24 relative text-sm">
-        <div class="bg-primary text-white px-3 py-2 text-left font-bold flex justify-between items-center">
-          <span>訂單資訊</span>
-          <span v-if="order?.id" class="text-xs">{{ truncateOrderId(order.id) }}</span>
+          <!-- Expandable Product List -->
+          <div class="overflow-hidden transition-all duration-500 ease-out" :class="open ? 'max-h-[600px]' : 'max-h-0'">
+            <div class="border-t border-bg-dark/20">
+              <div v-for="(item, index) in productsList" :key="index" class="flex items-center gap-4 px-6 py-3 border-b border-bg-dark/10 last:border-b-0">
+                <img :src="item.product.imageUrl[0]" class="w-14 h-14 rounded-xl object-cover" />
+                <div class="flex-1">
+                  <h5 class="text-sm font-medium text-text">{{ item.product.title }}</h5>
+                  <span class="text-xs text-text-light">x{{ item.qty }}</span>
+                </div>
+                <span v-if="item.product.price" class="font-mono text-sm font-bold text-text">{{ formatMoney(item.product.price * item.qty) }}</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <table v-if="order?.user" class="w-full">
-          <tbody>
-            <tr class="border-b border-gray-200"><td class="p-2">姓名</td><td class="p-2">{{ order.user.name }}</td></tr>
-            <tr class="border-b border-gray-200"><td class="p-2">電話</td><td class="p-2">{{ order.user.tel }}</td></tr>
-            <tr class="border-b border-gray-200"><td class="p-2">Email</td><td class="p-2">{{ order.user.email }}</td></tr>
-            <tr class="border-b border-gray-200"><td class="p-2">地址</td><td class="p-2">{{ order.user.address }}</td></tr>
-            <tr class="border-b border-gray-200"><td class="p-2">付款方式</td><td class="p-2">{{ order.payment }}</td></tr>
-            <tr class="border-b border-gray-200">
-              <td class="p-2">付款狀態</td>
-              <td class="p-2 text-red-600 font-bold">{{ order.is_paid ? '已付款' : '未付款' }}</td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="absolute right-0 -bottom-11">
-          <button type="button" class="bg-green-600 text-white px-6 py-2 rounded" @click="paying">確定付款</button>
+
+        <!-- Order Info -->
+        <div class="bg-white rounded-2xl shadow-card overflow-hidden">
+          <div class="px-6 py-4 border-b border-bg-dark/30 flex items-center justify-between">
+            <h3 class="font-bold text-text flex items-center gap-2">
+              <i class="fa-solid fa-receipt text-primary"></i>
+              訂單資訊
+            </h3>
+            <span v-if="order?.id" class="text-xs text-text-light font-mono">{{ truncateOrderId(order.id) }}</span>
+          </div>
+
+          <div v-if="order?.user" class="divide-y divide-bg-dark/20">
+            <div class="flex justify-between px-6 py-3 text-sm">
+              <span class="text-text-light">姓名</span>
+              <span class="text-text font-medium">{{ order.user.name }}</span>
+            </div>
+            <div class="flex justify-between px-6 py-3 text-sm">
+              <span class="text-text-light">電話</span>
+              <span class="text-text font-medium">{{ order.user.tel }}</span>
+            </div>
+            <div class="flex justify-between px-6 py-3 text-sm">
+              <span class="text-text-light">Email</span>
+              <span class="text-text font-medium">{{ order.user.email }}</span>
+            </div>
+            <div class="flex justify-between px-6 py-3 text-sm">
+              <span class="text-text-light">地址</span>
+              <span class="text-text font-medium">{{ order.user.address }}</span>
+            </div>
+            <div class="flex justify-between px-6 py-3 text-sm">
+              <span class="text-text-light">付款方式</span>
+              <span class="text-text font-medium">{{ order.payment }}</span>
+            </div>
+            <div class="flex justify-between px-6 py-3 text-sm">
+              <span class="text-text-light">付款狀態</span>
+              <span :class="order.is_paid ? 'text-primary font-bold' : 'text-contrast font-bold'">
+                {{ order.is_paid ? '已付款' : '未付款' }}
+              </span>
+            </div>
+          </div>
+
+          <div class="px-6 py-5 border-t border-bg-dark/30">
+            <button
+              type="button"
+              class="w-full py-3 rounded-xl bg-primary text-white font-medium hover:bg-primary-dark transition-all duration-300 hover:shadow-lg flex items-center justify-center gap-2"
+              @click="paying"
+            >
+              <i class="fa-solid fa-credit-card"></i>
+              確定付款
+            </button>
+          </div>
         </div>
       </div>
     </div>

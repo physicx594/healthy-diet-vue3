@@ -7,11 +7,16 @@ defineProps<{
 </script>
 
 <template>
-  <div class="bg-bg-light/98 text-sm text-gray-400 py-1">
-    <div class="container mx-auto px-4 text-left">
-      <RouterLink to="/" class="text-inherit hover:text-primary after:content-['_/_']">首頁</RouterLink>
-      <RouterLink to="/products" class="text-inherit hover:text-primary after:content-['_/_']">全部商品</RouterLink>
-      <span class="text-contrast font-bold">{{ product.title }}</span>
+  <div class="bg-white/80 backdrop-blur-sm text-sm py-3 border-b border-bg-dark/30">
+    <div class="container mx-auto px-6 flex items-center gap-2 text-text-light">
+      <RouterLink to="/" class="hover:text-primary transition-colors">
+        <i class="fa-solid fa-house text-xs"></i>
+        <span class="ml-1">首頁</span>
+      </RouterLink>
+      <i class="fa-solid fa-chevron-right text-[10px] text-text-light/50"></i>
+      <RouterLink to="/products" class="hover:text-primary transition-colors">全部商品</RouterLink>
+      <i class="fa-solid fa-chevron-right text-[10px] text-text-light/50"></i>
+      <span class="text-primary font-medium">{{ product.title }}</span>
     </div>
   </div>
 </template>

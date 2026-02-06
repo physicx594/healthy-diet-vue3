@@ -3,31 +3,41 @@ defineProps<{
   pageName: string
   content: string
   bgImage: string
+  subPage?: boolean
 }>()
 
 const scrollDown = () => {
   const h = window.innerHeight
-  const offset = h >= 625 ? h - 42 : 1208 - h
-  window.scrollTo({ top: offset, behavior: 'smooth' })
+  window.scrollTo({ top: h - 56, behavior: 'smooth' })
 }
 </script>
 
 <template>
-  <div class="relative isolate w-full h-screen mb-5">
-    <div class="absolute inset-0 -z-10 bg-cover bg-center bg-fixed" :style="{ backgroundImage: `url('${bgImage}')` }" />
-    <div class="absolute top-1/2 left-1/2 w-full text-center animate-banner-title">
-      <div class="font-yellowtail text-7.5xl max-md:text-6xl font-bold text-primary pr-5">
+  <div class="relative isolate w-full overflow-hidden" :class="subPage ? 'h-[60vh]' : 'h-screen'">
+    <!-- Background image -->
+    <div class="absolute inset-0 -z-10 bg-cover bg-center scale-105" :style="{ backgroundImage: `url('${bgImage}')` }" />
+    <!-- Gradient overlay: top for navbar readability, bottom for content -->
+    <div class="absolute inset-0 -z-10 bg-gradient-to-b from-black/50 via-black/20 to-transparent" />
+    <div class="absolute inset-0 -z-10 bg-gradient-to-t from-[#1B4332]/80 via-[#1B4332]/25 to-transparent" />
+
+    <!-- Content -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center px-4">
+      <h1 class="font-brand text-white font-bold leading-tight drop-shadow-lg"
+        :class="subPage ? 'text-5xl max-md:text-3xl' : 'text-7xl max-md:text-4xl lg:text-8xl'"
+      >
         {{ pageName }}
-      </div>
-      <span class="inline-block px-5 py-0 border border-primary shadow-sm text-2xl max-md:text-base max-md:px-2.5 max-md:py-1 font-bold text-primary">
+      </h1>
+      <p class="text-white/90 text-lg max-md:text-base mt-4 tracking-[0.15em] font-light">
         {{ content }}
-      </span>
+      </p>
     </div>
-    <div class="absolute bottom-5p max-md:bottom-1/4 left-1/2 -translate-x-1/2">
-      <a href="#" class="text-contrast font-bold p-12 relative" @click.prevent="scrollDown">
-        <span class="absolute left-1/2 -top-12 w-6 h-6 border-l-5 border-b-5 border-primary box-border animate-scroll-arrow" />
-        Scroll
-      </a>
+
+    <!-- Scroll indicator (full page only) -->
+    <div v-if="!subPage" class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer group" @click="scrollDown">
+      <span class="text-white/70 text-xs tracking-[0.2em] uppercase font-light group-hover:text-white transition-colors">Scroll</span>
+      <span class="w-6 h-10 rounded-full border-2 border-white/40 flex items-start justify-center pt-2 group-hover:border-white/70 transition-colors">
+        <span class="w-1.5 h-1.5 rounded-full bg-white animate-scroll-arrow"></span>
+      </span>
     </div>
   </div>
 </template>

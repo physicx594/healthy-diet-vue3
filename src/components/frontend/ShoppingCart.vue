@@ -28,89 +28,97 @@ const closeCart = () => {
 
 <template>
   <div
-    class="fixed top-26.5 w-full max-w-125 max-h-120 bg-white shadow-navbar overflow-x-hidden overflow-y-auto transition-all duration-500 ease-out z-cart p-2 max-md:max-w-75 max-md:text-sm"
-    :class="openCart ? 'right-2.5' : '-right-125'"
+    class="fixed top-0 right-0 w-full max-w-md h-full bg-white/95 backdrop-blur-xl shadow-2xl transition-transform duration-500 ease-out z-cart flex flex-col"
+    :class="openCart ? 'translate-x-0' : 'translate-x-full'"
   >
-    <!-- Has items -->
-    <div v-if="cartStore.totalPrice !== 0">
-      <table class="w-full">
-        <thead>
-          <tr>
-            <th class="p-2 border-none max-md:hidden" style="width: 10%"></th>
-            <th class="w-1/5 p-2 border-none">品名</th>
-            <th class="w-1/5 p-2 border-none">單價</th>
-            <th class="w-1/5 p-2 border-none">數量</th>
-            <th class="p-2 border-none" style="width: 10%"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="item in cartStore.items" :key="item.id">
-            <td class="p-2 max-md:hidden">
-              <img :src="item.product.imageUrl[0]" class="w-12.5 h-12.5 object-cover" />
-            </td>
-            <td class="p-2">{{ item.product.title }}</td>
-            <td class="p-2">
+    <!-- Header -->
+    <div class="flex items-center justify-between px-6 py-5 border-b border-bg-dark/30">
+      <h3 class="text-lg font-bold text-text">
+        <i class="fa-solid fa-bag-shopping text-primary mr-2"></i>購物車
+      </h3>
+      <button
+        class="w-8 h-8 rounded-full flex items-center justify-center text-text-light hover:bg-bg-dark hover:text-text transition-all"
+        @click="closeCart"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <!-- Cart content -->
+    <div class="flex-1 overflow-y-auto px-6 py-4">
+      <div v-if="cartStore.totalPrice !== 0" class="space-y-4">
+        <div
+          v-for="item in cartStore.items"
+          :key="item.id"
+          class="flex gap-4 bg-bg-light rounded-xl p-3"
+        >
+          <img :src="item.product.imageUrl[0]" class="w-16 h-16 rounded-lg object-cover flex-shrink-0" />
+          <div class="flex-1 min-w-0">
+            <h5 class="text-sm font-bold text-text truncate">{{ item.product.title }}</h5>
+            <p class="text-sm text-contrast font-mono font-bold mt-1">
               {{ item.product.price ? formatMoney(item.product.price) : formatMoney(item.product.origin_price) }}
-            </td>
-            <td class="p-2">
-              <div class="flex items-center justify-center max-md:justify-center">
+            </p>
+            <div class="flex items-center justify-between mt-2">
+              <div class="flex items-center bg-white rounded-lg border border-bg-dark overflow-hidden">
                 <button
                   type="button"
-                  class="rounded-full border border-primary text-primary font-bold transition-all duration-300 hover:bg-primary hover:text-accent disabled:opacity-50 disabled:cursor-not-allowed max-md:w-5 max-md:p-0"
+                  class="w-7 h-7 flex items-center justify-center text-text-light hover:text-primary transition-colors disabled:opacity-40"
                   :disabled="item.qty === 1 || loadingStore.formLoading"
                   @click="changeQuantity(item.id, item.product.id, item.qty - 1)"
-                >-</button>
-                <input
-                  type="text"
-                  class="w-10 text-center border-y border-gray-300 p-0"
-                  :value="item.qty"
-                  @change="changeQuantity(item.id, item.product.id, Number(($event.target as HTMLInputElement).value))"
-                />
+                >
+                  <i class="fa-solid fa-minus text-[10px]"></i>
+                </button>
+                <span class="w-8 text-center text-sm font-bold text-text">{{ item.qty }}</span>
                 <button
                   type="button"
-                  class="rounded-full border border-primary text-primary font-bold transition-all duration-300 hover:bg-primary hover:text-accent disabled:opacity-50 disabled:cursor-not-allowed max-md:w-5 max-md:p-0"
+                  class="w-7 h-7 flex items-center justify-center text-text-light hover:text-primary transition-colors disabled:opacity-40"
                   :disabled="loadingStore.formLoading"
                   @click="changeQuantity(item.id, item.product.id, item.qty + 1)"
-                >+</button>
+                >
+                  <i class="fa-solid fa-plus text-[10px]"></i>
+                </button>
               </div>
-            </td>
-            <td class="p-2">
               <button
                 type="button"
-                class="border border-contrast text-contrast rounded-full px-2 py-1 hover:bg-contrast hover:text-white transition-colors"
+                class="w-7 h-7 rounded-full flex items-center justify-center text-text-light/50 hover:text-contrast hover:bg-contrast/10 transition-all"
                 :disabled="loadingStore.formLoading"
                 @click="delItem(item.id)"
               >
-                <i class="far fa-trash-alt"></i>
+                <i class="fa-solid fa-trash-can text-xs"></i>
               </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div class="mt-4">
-        <div v-if="!loadingStore.formLoading" class="w-full flex justify-center bg-bg-light py-1">
-          <span class="mr-1">小計:</span>
-          <span class="text-red-600 font-bold">{{ formatMoney(cartStore.totalPrice) }}</span>
+            </div>
+          </div>
         </div>
-        <div v-else class="loading-bar h-6" />
-        <RouterLink to="/cart">
-          <button
-            v-if="!loadingStore.formLoading"
-            class="rounded-full border border-primary text-primary font-bold transition-all duration-300 hover:bg-primary hover:text-accent disabled:opacity-50 disabled:cursor-not-allowed block mx-auto mt-3 px-8 py-1.5"
-            @click="closeCart"
-          >
-            前往購物車
+      </div>
+
+      <!-- Empty cart -->
+      <div v-else class="flex flex-col items-center justify-center h-full text-center">
+        <i class="fa-solid fa-bag-shopping text-5xl text-bg-dark mb-4"></i>
+        <h4 class="text-text font-bold text-lg mb-2">購物車是空的</h4>
+        <p class="text-text-light text-sm mb-6">快去探索美味的健康餐點吧！</p>
+        <RouterLink to="/products">
+          <button class="px-6 py-2.5 rounded-xl bg-primary text-white font-medium hover:bg-primary-dark transition-colors" @click="closeCart">
+            來去購物
           </button>
         </RouterLink>
       </div>
     </div>
 
-    <!-- Empty cart -->
-    <div v-else class="py-3 text-center">
-      <h3 class="text-primary font-bold mb-5 text-xl">購物車是空的</h3>
-      <RouterLink to="/products">
-        <button class="rounded-full border border-primary text-primary font-bold transition-all duration-300 hover:bg-primary hover:text-accent disabled:opacity-50 disabled:cursor-not-allowed px-8 py-1.5" @click="closeCart">來去購物</button>
+    <!-- Footer -->
+    <div v-if="cartStore.totalPrice !== 0" class="border-t border-bg-dark/30 px-6 py-5">
+      <div v-if="!loadingStore.formLoading" class="flex justify-between items-center mb-4">
+        <span class="text-text-light">小計</span>
+        <span class="text-xl font-mono font-bold text-text">{{ formatMoney(cartStore.totalPrice) }}</span>
+      </div>
+      <div v-else class="loading-bar h-5 rounded mb-4" />
+      <RouterLink to="/cart">
+        <button
+          v-if="!loadingStore.formLoading"
+          class="w-full py-3 rounded-xl bg-primary text-white font-medium hover:bg-primary-dark transition-all duration-300 hover:shadow-lg"
+          @click="closeCart"
+        >
+          前往購物車
+        </button>
       </RouterLink>
     </div>
   </div>
