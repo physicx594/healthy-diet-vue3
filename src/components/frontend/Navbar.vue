@@ -41,9 +41,8 @@ onUnmounted(() => {
     >
       <div class="container mx-auto relative flex justify-between items-center px-6 h-14">
         <!-- Logo -->
-        <RouterLink to="/" class="flex items-center gap-2.5 group">
-          <img src="@/assets/logo.png" class="w-9 max-md:w-10 transition-transform duration-300 group-hover:scale-105" alt="logo" />
-          <span class="font-brand text-lg font-semibold tracking-wider hidden sm:block transition-colors duration-300"
+        <RouterLink to="/" class="group">
+          <span class="font-brand text-lg font-semibold tracking-wider transition-colors duration-300"
             :class="scrolled ? 'text-primary-dark' : 'text-white'"
           >
             Healthy Diet
@@ -189,22 +188,6 @@ onUnmounted(() => {
   background: rgba(45, 106, 79, 0.06);
 }
 
-.nav-link-item::after {
-  content: '';
-  position: absolute;
-  bottom: 2px;
-  left: 50%;
-  transform: translateX(-50%) scaleX(0);
-  width: 60%;
-  height: 2px;
-  background: var(--color-secondary);
-  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-  border-radius: 1px;
-}
-
-.nav-link-item:hover::after {
-  transform: translateX(-50%) scaleX(1);
-}
 
 .mobile-nav-enter-active {
   transition: opacity 0.3s ease;

@@ -94,7 +94,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div>
+  <div class="bg-bg-light min-h-screen">
     <Navbar />
     <Gotop />
     <div v-if="!loadingStore.isLoading">
