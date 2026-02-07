@@ -16,7 +16,6 @@
     "@vee-validate/i18n": "^4.15.1",
     "@vee-validate/rules": "^4.15.1",
     "animate.css": "^4.1.1",
-    "aos": "^2.3.4",
     "axios": "^1.13.4",
     "pinia": "^3.0.4",
     "swiper": "^12.1.0",
