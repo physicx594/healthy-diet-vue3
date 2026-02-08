@@ -27,7 +27,7 @@
 
         <!-- Quick Links -->
         <div>
-          <h4 class="text-white font-medium text-xs uppercase tracking-[0.15em] mb-4">快速連結</h4>
+          <h4 class="text-white font-medium text-xs uppercase tracking-relaxed mb-4">快速連結</h4>
           <ul class="space-y-2 list-none p-0 m-0">
             <li><RouterLink to="/products" class="text-white/50 hover:text-primary-light transition-colors text-xs">全部商品</RouterLink></li>
             <li><RouterLink to="/about" class="text-white/50 hover:text-primary-light transition-colors text-xs">關於我們</RouterLink></li>
@@ -38,7 +38,7 @@
 
         <!-- Contact Info -->
         <div>
-          <h4 class="text-white font-medium text-xs uppercase tracking-[0.15em] mb-4">聯絡資訊</h4>
+          <h4 class="text-white font-medium text-xs uppercase tracking-relaxed mb-4">聯絡資訊</h4>
           <ul class="space-y-2.5 list-none p-0 m-0 text-xs text-white/50">
             <li class="flex items-center gap-2.5">
               <i class="fa-solid fa-location-dot text-primary-light/70 w-3.5 text-center"></i>
@@ -63,9 +63,9 @@
 
     <!-- Bottom bar -->
     <div class="border-t border-white/8">
-      <div class="container mx-auto px-6 py-3.5 flex max-md:flex-col justify-between items-center gap-1.5 text-[10px] text-white/30 tracking-wide">
+      <div class="container mx-auto px-6 py-3.5 flex max-md:flex-col justify-between items-center gap-1.5 text-xs text-white/30 tracking-wide">
         <span>&copy; 2025 Healthy Diet All Rights Reserved.</span>
-        <span>Crafted with <i class="fa-solid fa-heart text-contrast/60 text-[9px]"></i> for a healthier world</span>
+        <span>Crafted with <i class="fa-solid fa-heart text-contrast/60 text-xs"></i> for a healthier world</span>
       </div>
     </div>
   </footer>

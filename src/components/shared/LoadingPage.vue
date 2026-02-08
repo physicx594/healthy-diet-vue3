@@ -11,7 +11,7 @@ defineProps<{
       class="fixed inset-0 z-loading flex flex-col items-center justify-center bg-white"
     >
       <!-- Top progress bar -->
-      <div class="absolute top-0 left-0 w-full h-[2px]">
+      <div class="absolute top-0 left-0 w-full h-0.5">
         <div class="h-full bg-primary loading-progress"></div>
       </div>
 
@@ -20,7 +20,7 @@ defineProps<{
         <div class="w-10 h-10 rounded-full border-2 border-primary/20 flex items-center justify-center mb-4">
           <div class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></div>
         </div>
-        <span class="font-brand text-sm font-medium text-text/60 tracking-[0.3em] uppercase">
+        <span class="font-brand text-sm font-medium text-text/60 tracking-hero uppercase">
           Healthy Diet
         </span>
       </div>

@@ -8,7 +8,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="relative isolate w-full overflow-hidden h-[40vh] min-h-[280px]">
+  <div class="relative isolate w-full overflow-hidden h-40vh min-h-hero">
     <!-- Background image -->
     <div class="absolute inset-0 -z-10 bg-cover bg-center scale-105" :style="{ backgroundImage: `url('${bgImage}')` }" />
     <!-- Gradient overlays -->
@@ -20,14 +20,14 @@ defineProps<{
       <!-- Breadcrumb -->
       <nav v-if="showBreadcrumb" class="flex items-center gap-2 text-white/50 text-xs mb-5 tracking-wider">
         <RouterLink to="/" class="hover:text-white/80 transition-colors">首頁</RouterLink>
-        <i class="fa-solid fa-chevron-right text-[8px]"></i>
+        <i class="fa-solid fa-chevron-right text-xs"></i>
         <span class="text-white/80">{{ title }}</span>
       </nav>
 
       <h1 class="font-brand text-5xl max-md:text-3xl text-white font-bold leading-tight drop-shadow-lg tracking-wide">
         {{ title }}
       </h1>
-      <p v-if="subtitle" class="text-white/80 text-sm max-md:text-xs mt-3 tracking-[0.15em] font-light">
+      <p v-if="subtitle" class="text-white/80 text-sm max-md:text-xs mt-3 tracking-relaxed font-light">
         {{ subtitle }}
       </p>
     </div>

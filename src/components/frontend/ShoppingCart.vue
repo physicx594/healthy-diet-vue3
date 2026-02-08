@@ -67,7 +67,7 @@ const closeCart = () => {
                   :disabled="item.qty === 1 || loadingStore.formLoading"
                   @click="changeQuantity(item.id, item.product.id, item.qty - 1)"
                 >
-                  <i class="fa-solid fa-minus text-[10px]"></i>
+                  <i class="fa-solid fa-minus text-xs"></i>
                 </button>
                 <span class="w-8 text-center text-sm font-bold text-text">{{ item.qty }}</span>
                 <button
@@ -76,7 +76,7 @@ const closeCart = () => {
                   :disabled="loadingStore.formLoading"
                   @click="changeQuantity(item.id, item.product.id, item.qty + 1)"
                 >
-                  <i class="fa-solid fa-plus text-[10px]"></i>
+                  <i class="fa-solid fa-plus text-xs"></i>
                 </button>
               </div>
               <button

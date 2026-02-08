@@ -70,7 +70,7 @@ onMounted(async () => {
           </button>
 
           <!-- Expandable Product List -->
-          <div class="overflow-hidden transition-all duration-500 ease-out" :class="open ? 'max-h-[600px]' : 'max-h-0'">
+          <div class="overflow-hidden transition-all duration-500 ease-out" :class="open ? 'max-h-accordion' : 'max-h-0'">
             <div class="border-t border-bg-dark/20">
               <div v-for="(item, index) in productsList" :key="index" class="flex items-center gap-4 px-6 py-3 border-b border-bg-dark/10 last:border-b-0">
                 <img :src="item.product.imageUrl[0]" class="w-14 h-14 rounded-xl object-cover" />

@@ -54,7 +54,7 @@ onMounted(() => {
       <section class="py-20">
         <div class="max-w-5xl mx-auto px-6">
           <div class="text-center mb-14">
-            <span class="font-mono text-secondary text-[11px] font-medium tracking-[0.25em] uppercase">Our Story</span>
+            <span class="font-mono text-secondary text-xs font-medium tracking-label uppercase">Our Story</span>
             <h2 class="font-display text-3xl lg:text-4xl font-semibold text-text mt-2">品牌故事</h2>
           </div>
 
@@ -80,7 +80,7 @@ onMounted(() => {
                 <div class="absolute left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-primary ring-4 ring-bg-light z-10 max-md:left-6"></div>
 
                 <!-- Content card -->
-                <div class="md:w-[calc(50%-2rem)] max-md:w-full">
+                <div class="md:w-timeline max-md:w-full">
                   <div class="bg-white rounded-2xl p-6 shadow-card">
                     <span class="font-mono text-primary text-sm font-bold">{{ item.year }}</span>
                     <h3 class="font-bold text-text text-lg mt-1 mb-2">{{ item.title }}</h3>
@@ -89,7 +89,7 @@ onMounted(() => {
                 </div>
 
                 <!-- Spacer for the other side -->
-                <div class="md:w-[calc(50%-2rem)] max-md:hidden"></div>
+                <div class="md:w-timeline max-md:hidden"></div>
               </div>
             </div>
           </div>
@@ -100,7 +100,7 @@ onMounted(() => {
       <section class="py-20">
         <div class="max-w-6xl mx-auto px-6">
           <div class="text-center mb-14">
-            <span class="font-mono text-secondary text-[11px] font-medium tracking-[0.25em] uppercase">Our Values</span>
+            <span class="font-mono text-secondary text-xs font-medium tracking-label uppercase">Our Values</span>
             <h2 class="font-display text-3xl lg:text-4xl font-semibold text-text mt-2">核心理念</h2>
           </div>
 
@@ -116,7 +116,7 @@ onMounted(() => {
                 <img
                   :src="item.image"
                   :alt="item.title"
-                  class="w-full h-[300px] lg:h-[360px] object-cover rounded-2xl"
+                  class="w-full h-about-sm lg:h-about-lg object-cover rounded-2xl"
                 />
               </div>
 

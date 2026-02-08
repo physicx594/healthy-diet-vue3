@@ -13,9 +13,9 @@ defineProps<{
         <i class="fa-solid fa-house text-xs"></i>
         <span class="ml-1">首頁</span>
       </RouterLink>
-      <i class="fa-solid fa-chevron-right text-[10px] text-text-light/50"></i>
+      <i class="fa-solid fa-chevron-right text-xs text-text-light/50"></i>
       <RouterLink to="/products" class="hover:text-primary transition-colors">全部商品</RouterLink>
-      <i class="fa-solid fa-chevron-right text-[10px] text-text-light/50"></i>
+      <i class="fa-solid fa-chevron-right text-xs text-text-light/50"></i>
       <span class="text-primary font-medium">{{ product.title }}</span>
     </div>
   </div>

@@ -1,25 +1,28 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { useRoute } from 'vue-router'
 import { useCartStore } from '@/stores'
 import ShoppingCart from './ShoppingCart.vue'
 
+const route = useRoute()
 const cartStore = useCartStore()
 
 const show = ref(false)
 const openCart = ref(false)
-const scrolled = ref(false)
+const isScrolled = ref(false)
 
-const mask = () => {
+/** 只有帶深色 hero 的頁面才啟用透明 navbar */
+const darkHeroPages = new Set(['home', 'products', 'about'])
+const hasTransparentNav = computed(() => darkHeroPages.has(route.name as string))
+const scrolled = computed(() => !hasTransparentNav.value || isScrolled.value)
+
+const closeDrawers = () => {
   show.value = false
   openCart.value = false
 }
 
-const closeCart = () => {
-  openCart.value = false
-}
-
 const handleScroll = () => {
-  scrolled.value = window.scrollY > 50
+  isScrolled.value = window.scrollY > 50
 }
 
 onMounted(() => {
@@ -93,11 +96,11 @@ onUnmounted(() => {
                 openCart ? 'text-contrast' : ''
               ]"
             >
-              <i class="fa-solid fa-bag-shopping text-[15px]"></i>
+              <i class="fa-solid fa-bag-shopping text-base"></i>
             </span>
             <div
               v-if="cartStore.items.length > 0"
-              class="absolute -top-0.5 -right-0.5 w-[18px] h-[18px] rounded-full text-center text-[10px] leading-[18px] bg-contrast text-white font-bold"
+              class="absolute -top-0.5 -right-0.5 cart-badge rounded-full text-center text-xs bg-contrast text-white font-bold"
             >
               {{ cartStore.items.length }}
             </div>
@@ -112,7 +115,7 @@ onUnmounted(() => {
         v-if="show"
         class="fixed inset-0 z-overlay md:hidden"
       >
-        <div class="absolute inset-0 bg-black/30 backdrop-blur-sm" @click="mask" />
+        <div class="absolute inset-0 bg-black/30 backdrop-blur-sm" @click="closeDrawers" />
         <div class="absolute top-0 right-0 w-72 h-full bg-white/95 backdrop-blur-xl shadow-2xl">
           <div class="pt-18 px-6">
             <ul class="list-none p-0 m-0 space-y-2">
@@ -152,13 +155,13 @@ onUnmounted(() => {
     </Transition>
 
     <!-- Shopping cart drawer -->
-    <ShoppingCart :open-cart="openCart" @close="closeCart" />
+    <ShoppingCart :open-cart="openCart" @close="openCart = false" />
 
     <!-- Overlay mask for cart -->
     <div
       class="fixed inset-0 z-overlay bg-black/20 backdrop-blur-sm transition-opacity duration-300"
       :class="openCart ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'"
-      @click.prevent="mask"
+      @click.prevent="closeDrawers"
     />
   </div>
 </template>
