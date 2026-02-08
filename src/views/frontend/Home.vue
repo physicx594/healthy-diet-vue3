@@ -99,7 +99,7 @@ const featuredTestimonial = testimonials[0]!
           <!-- Title row: left title + right CTA -->
           <div class="flex items-end justify-between mb-12">
             <div>
-              <span class="font-mono text-secondary text-[11px] font-medium tracking-[0.25em] uppercase">Best Sellers</span>
+              <span class="label-text text-secondary font-medium">Best Sellers</span>
               <h2 class="font-display text-4xl lg:text-5xl font-semibold text-text mt-3">人氣推薦</h2>
             </div>
             <RouterLink to="/products" class="max-sm:hidden">
@@ -113,18 +113,18 @@ const featuredTestimonial = testimonials[0]!
             <!-- Left: large featured card -->
             <div
               v-if="productsStore.products[0]"
-              class="lg:w-[60%] group"
+              class="lg:w-3/5 group"
             >
               <div class="relative h-full rounded-2xl overflow-hidden shadow-card group-hover:shadow-card-hover transition-all duration-500 cursor-pointer">
                 <RouterLink :to="`/product/${productsStore.products[0].id}`" class="block h-full">
                   <img
                     :src="productsStore.products[0].imageUrl[0]"
                     :alt="productsStore.products[0].title"
-                    class="w-full h-full min-h-[360px] object-cover transition-transform duration-700 group-hover:scale-105"
+                    class="w-full h-full min-h-90 object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                   <div class="absolute bottom-0 left-0 right-0 p-8">
-                    <span class="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm text-white text-[11px] font-medium mb-3">
+                    <span class="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm text-white text-xs font-medium mb-3">
                       {{ productsStore.products[0].category }}
                     </span>
                     <h3 class="font-brand text-2xl lg:text-3xl text-white font-bold mb-2">{{ productsStore.products[0].title }}</h3>
@@ -143,7 +143,7 @@ const featuredTestimonial = testimonials[0]!
               </div>
             </div>
             <!-- Right: 2 small cards stacked -->
-            <div class="lg:w-[40%] flex flex-col gap-6">
+            <div class="lg:w-2/5 flex flex-col gap-6">
               <div
                 v-for="item in productsStore.products.slice(1, 3)"
                 :key="item.id"
@@ -151,23 +151,23 @@ const featuredTestimonial = testimonials[0]!
               >
                 <div class="bg-white rounded-2xl overflow-hidden shadow-card group-hover:shadow-card-hover transition-all duration-500 group-hover:-translate-y-1 cursor-pointer h-full flex max-sm:flex-col sm:flex-row">
                   <RouterLink :to="`/product/${item.id}`" class="sm:w-2/5 shrink-0">
-                    <div class="relative aspect-[4/3] sm:aspect-auto sm:h-full overflow-hidden">
+                    <div class="relative aspect-4/3 sm:aspect-auto sm:h-full overflow-hidden">
                       <img
                         :src="item.imageUrl[0]"
                         :alt="item.title"
                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       />
-                      <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-sm text-[11px] font-medium text-text shadow-sm">
+                      <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-sm text-xs font-medium text-text shadow-sm">
                         {{ item.category }}
                       </span>
                     </div>
                   </RouterLink>
                   <div class="p-5 flex flex-col justify-center">
-                    <h4 class="font-bold text-text mb-2 text-[15px]">{{ item.title }}</h4>
+                    <h4 class="font-bold text-text mb-2 text-base">{{ item.title }}</h4>
                     <div class="flex items-baseline gap-2 mb-4">
                       <span class="font-mono text-xl font-bold text-primary-dark">{{ formatMoney(item.price || item.origin_price) }}</span>
                       <span v-if="item.price" class="font-mono text-xs text-text-light/60 line-through">{{ formatMoney(item.origin_price) }}</span>
-                      <span v-if="item.price" class="px-2 py-0.5 rounded-full bg-contrast/10 text-contrast text-[11px] font-bold">
+                      <span v-if="item.price" class="px-2 py-0.5 rounded-full bg-contrast/10 text-contrast text-xs font-bold">
                         {{ Math.round((1 - item.price / item.origin_price) * 100) }}% OFF
                       </span>
                     </div>
@@ -197,17 +197,17 @@ const featuredTestimonial = testimonials[0]!
         <div class="container mx-auto px-6">
           <div class="flex max-lg:flex-col gap-12 lg:gap-16 items-center">
             <!-- Left: title + description -->
-            <div class="lg:w-[30%] shrink-0">
-              <span class="font-mono text-secondary text-[11px] font-medium tracking-[0.25em] uppercase">Categories</span>
+            <div class="lg:w-3/10 shrink-0">
+              <span class="label-text text-secondary font-medium">Categories</span>
               <h2 class="font-display text-4xl lg:text-5xl font-semibold text-text mt-3 mb-6 leading-tight">探索<br class="max-lg:hidden" />美味</h2>
-              <p class="text-text-light text-sm leading-relaxed">從健康餐盒到新鮮沙拉，每一口都是對身體的溫柔呵護。</p>
+              <p class="text-text-light text-base leading-relaxed">從健康餐盒到新鮮沙拉，每一口都是對身體的溫柔呵護。</p>
               <div class="w-16 h-1 bg-primary-light/40 rounded-full mt-6"></div>
             </div>
             <!-- Right: 3 category cards in a row -->
-            <div class="lg:w-[70%] grid grid-cols-1 sm:grid-cols-3 gap-5">
+            <div class="lg:w-7/10 grid grid-cols-1 sm:grid-cols-3 gap-5">
               <!-- 健康餐盒 -->
               <div
-                class="group relative aspect-[3/4] rounded-2xl overflow-hidden cursor-pointer shadow-card hover:shadow-card-hover transition-all duration-500"
+                class="group relative aspect-3/4 rounded-2xl overflow-hidden cursor-pointer shadow-card hover:shadow-card-hover transition-all duration-500"
                 @click="toCategory('健康餐盒')"
               >
                 <img
@@ -217,12 +217,12 @@ const featuredTestimonial = testimonials[0]!
                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                 <div class="absolute bottom-0 left-0 right-0 p-6">
                   <h3 class="font-brand text-2xl text-white font-bold mb-1 tracking-wide">Bento</h3>
-                  <p class="font-mono text-white/70 text-[11px] tracking-wider uppercase">健康餐盒</p>
+                  <p class="font-mono text-white/70 text-xs tracking-wider uppercase">健康餐盒</p>
                 </div>
               </div>
               <!-- 舒肥系列 — slightly offset upward -->
               <div
-                class="group relative aspect-[3/4] rounded-2xl overflow-hidden cursor-pointer shadow-card hover:shadow-card-hover transition-all duration-500 sm:-mt-6"
+                class="group relative aspect-3/4 rounded-2xl overflow-hidden cursor-pointer shadow-card hover:shadow-card-hover transition-all duration-500 sm:-mt-6"
                 @click="toCategory('舒肥系列')"
               >
                 <img
@@ -232,12 +232,12 @@ const featuredTestimonial = testimonials[0]!
                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                 <div class="absolute bottom-0 left-0 right-0 p-6">
                   <h3 class="font-brand text-2xl text-white font-bold mb-1 tracking-wide">Sous Vide</h3>
-                  <p class="font-mono text-white/70 text-[11px] tracking-wider uppercase">舒肥系列</p>
+                  <p class="font-mono text-white/70 text-xs tracking-wider uppercase">舒肥系列</p>
                 </div>
               </div>
               <!-- 新鮮沙拉 -->
               <div
-                class="group relative aspect-[3/4] rounded-2xl overflow-hidden cursor-pointer shadow-card hover:shadow-card-hover transition-all duration-500"
+                class="group relative aspect-3/4 rounded-2xl overflow-hidden cursor-pointer shadow-card hover:shadow-card-hover transition-all duration-500"
                 @click="toCategory('新鮮沙拉')"
               >
                 <img
@@ -247,7 +247,7 @@ const featuredTestimonial = testimonials[0]!
                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                 <div class="absolute bottom-0 left-0 right-0 p-6">
                   <h3 class="font-brand text-2xl text-white font-bold mb-1 tracking-wide">Salad</h3>
-                  <p class="font-mono text-white/70 text-[11px] tracking-wider uppercase">新鮮沙拉</p>
+                  <p class="font-mono text-white/70 text-xs tracking-wider uppercase">新鮮沙拉</p>
                 </div>
               </div>
             </div>
@@ -258,23 +258,23 @@ const featuredTestimonial = testimonials[0]!
       <section class="py-20 bg-white overflow-hidden">
         <div class="container mx-auto px-6">
           <!-- Upper: image + floating card -->
-          <div class="relative lg:flex lg:items-center lg:min-h-[480px]">
-            <div class="lg:w-[65%] lg:-ml-12">
+          <div class="relative lg:flex lg:items-center lg:min-h-120">
+            <div class="lg:w-13/20 lg:-ml-12">
               <img
                 src="https://images.unsplash.com/photo-1595786802424-d6efbc413db5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"
-                class="w-full h-[320px] lg:h-[480px] object-cover rounded-2xl"
+                class="w-full h-80 lg:h-120 object-cover rounded-2xl"
                 alt="About us"
               />
             </div>
             <div
-              class="relative lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2 lg:w-[45%] max-lg:mt-8"
+              class="relative lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2 lg:w-9/20 max-lg:mt-8"
             >
               <div class="bg-white rounded-2xl p-8 lg:p-10 shadow-card-hover">
-                <span class="font-mono text-secondary text-[11px] font-medium tracking-[0.25em] uppercase">About Us</span>
+                <span class="label-text text-secondary font-medium">About Us</span>
                 <h2 class="font-display text-3xl lg:text-4xl font-semibold text-text mt-3 mb-6 leading-tight">
                   用心做好<br />每一份餐點
                 </h2>
-                <div class="space-y-4 text-text-light leading-relaxed text-sm">
+                <div class="space-y-4 text-text-light leading-relaxed text-base">
                   <p>在生活步調快速的現代，忙於課業、工作及娛樂上，飲食也是一種健康的代表，許多人經常用速食來解決三餐，忽略了營養均衡的重要。</p>
                   <p>Healthy Diet 屬於輕食文化，採用低鹽低鈉少油，主餐以少量的肉類搭配大量的新鮮蔬果，降低消費者對身體的負擔，注重消費者能夠吃得健康又安心。</p>
                 </div>
@@ -294,7 +294,7 @@ const featuredTestimonial = testimonials[0]!
               </div>
               <div>
                 <h3 class="font-bold text-text mb-1.5">在地食材</h3>
-                <p class="text-text-light text-sm leading-relaxed">和小農合作，使用當地、當季蔬菜，實踐「吃當季、買在地」。</p>
+                <p class="text-text-light text-base leading-relaxed">和小農合作，使用當地、當季蔬菜，實踐「吃當季、買在地」。</p>
               </div>
             </div>
             <div class="flex gap-5 items-start">
@@ -303,7 +303,7 @@ const featuredTestimonial = testimonials[0]!
               </div>
               <div>
                 <h3 class="font-bold text-text mb-1.5">天然無添加</h3>
-                <p class="text-text-light text-sm leading-relaxed">不做多餘調味，保留食材本身的鮮與甜，吃得健康安心。</p>
+                <p class="text-text-light text-base leading-relaxed">不做多餘調味，保留食材本身的鮮與甜，吃得健康安心。</p>
               </div>
             </div>
             <div class="flex gap-5 items-start">
@@ -312,7 +312,7 @@ const featuredTestimonial = testimonials[0]!
               </div>
               <div>
                 <h3 class="font-bold text-text mb-1.5">新鮮直送</h3>
-                <p class="text-text-light text-sm leading-relaxed">當日限量製作，專業冷凍物流配送，確保最新鮮品質。</p>
+                <p class="text-text-light text-base leading-relaxed">當日限量製作，專業冷凍物流配送，確保最新鮮品質。</p>
               </div>
             </div>
           </div>
@@ -323,8 +323,8 @@ const featuredTestimonial = testimonials[0]!
         <div class="container mx-auto px-6">
           <div class="flex max-lg:flex-col gap-12 lg:gap-0">
             <!-- Left: featured quote (40%) -->
-            <div class="lg:w-[40%] lg:pr-12 lg:border-r border-bg-dark/40">
-              <span class="font-mono text-secondary text-[11px] font-medium tracking-[0.25em] uppercase">Testimonials</span>
+            <div class="lg:w-2/5 lg:pr-12 lg:border-r border-bg-dark/40">
+              <span class="label-text text-secondary font-medium">Testimonials</span>
               <h2 class="font-display text-4xl lg:text-5xl font-semibold text-text mt-3 mb-8">顧客好評</h2>
               <!-- Featured large quote -->
               <div class="relative">
@@ -347,7 +347,7 @@ const featuredTestimonial = testimonials[0]!
               </div>
             </div>
             <!-- Right: swiper carousel (60%) -->
-            <div class="lg:w-[60%] lg:pl-12 min-w-0">
+            <div class="lg:w-3/5 lg:pl-12 min-w-0">
               <div class="py-4 overflow-hidden">
                 <Swiper
                   class="testimonial-swiper"
@@ -371,15 +371,15 @@ const featuredTestimonial = testimonials[0]!
                       </div>
                       <div class="relative mb-6">
                         <i class="fa-solid fa-quote-left text-2xl text-primary-light/20 absolute -top-1 -left-1" aria-hidden="true"></i>
-                        <p class="text-text-light leading-relaxed pl-6 text-sm">{{ t.text }}</p>
+                        <p class="text-text-light leading-relaxed pl-6 text-base">{{ t.text }}</p>
                       </div>
                       <div class="flex items-center gap-3 pt-4 border-t border-primary-light/10">
                         <div class="w-10 h-10 rounded-full bg-primary-light/20 flex items-center justify-center text-primary font-bold text-sm">
                           {{ t.avatar }}
                         </div>
                         <div>
-                          <div class="font-bold text-text text-sm">{{ t.name }}</div>
-                          <div class="text-text-light text-xs">{{ t.role }}</div>
+                          <div class="font-bold text-text text-base">{{ t.name }}</div>
+                          <div class="text-text-light text-sm">{{ t.role }}</div>
                         </div>
                       </div>
                     </div>
@@ -395,17 +395,17 @@ const featuredTestimonial = testimonials[0]!
         <div class="container mx-auto px-6 relative z-10">
           <div class="flex max-lg:flex-col items-center gap-12 lg:gap-20">
             <!-- Left: decorative large text -->
-            <div class="lg:w-[45%] max-lg:text-center">
-              <span class="font-brand text-[5rem] md:text-[8rem] lg:text-[12rem] leading-none font-bold text-white/[0.06] select-none block" aria-hidden="true">
+            <div class="lg:w-9/20 max-lg:text-center">
+              <span class="font-brand text-7_5xl md:text-9xl lg:text-12xl leading-none font-bold text-white/5 select-none block" aria-hidden="true">
                 Fresh
               </span>
               <p class="text-white/50 text-sm -mt-8 lg:-mt-12 relative z-10 max-lg:text-center">自然 · 新鮮 · 健康</p>
             </div>
             <!-- Right: title + form -->
-            <div class="lg:w-[55%]">
-              <span class="font-mono text-white/40 text-[11px] tracking-[0.25em] uppercase block mb-3">Newsletter</span>
+            <div class="lg:w-11/20">
+              <span class="label-text text-white/40 block mb-3">Newsletter</span>
               <h2 class="font-display text-4xl lg:text-5xl font-semibold text-white mb-4">訂閱我們</h2>
-              <p class="text-white/60 mb-8 text-sm">獲得最新消息、獨家優惠與健康飲食小知識</p>
+              <p class="text-white/60 mb-8 text-base">獲得最新消息、獨家優惠與健康飲食小知識</p>
               <div class="flex max-sm:flex-col gap-3 max-w-lg">
                 <input
                   v-model="email"

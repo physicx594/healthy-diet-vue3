@@ -42,15 +42,31 @@
   --text-3_5xl: 2.5rem;
   --text-7_5xl: 5rem;
   --text-10xl: 6.25rem;
+  --text-12xl: 12rem;
 
   /* === Width === */
   --width-3\/50: 6%;
   --width-3\/25: 12%;
   --width-3\/20: 15%;
   --width-3\/10: 30%;
+  --width-9\/20: 45%;
+  --width-11\/20: 55%;
+  --width-13\/20: 65%;
+  --width-7\/10: 70%;
 
   /* === Height === */
   --height-7\/10: 70%;
+  --height-60vh: 60vh;
+
+  /* === Aspect Ratios === */
+  --aspect-ratio-3\/4: 3 / 4;
+  --aspect-ratio-4\/3: 4 / 3;
+
+  /* === Letter Spacing === */
+  --tracking-relaxed: 0.15em;
+  --tracking-expanded: 0.2em;
+  --tracking-label: 0.25em;
+  --tracking-hero: 0.3em;
 
   /* === Line Height === */
   --line-height-20: 5rem;
@@ -150,4 +166,13 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Section label utility */
+@utility label-text {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
 }

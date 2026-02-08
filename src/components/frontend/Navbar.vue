@@ -166,7 +166,7 @@ onUnmounted(() => {
 <style scoped>
 .nav-link-item {
   position: relative;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.04em;
   padding: 6px 12px;

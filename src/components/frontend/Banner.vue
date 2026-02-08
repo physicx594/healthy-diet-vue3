@@ -13,7 +13,7 @@ const scrollDown = () => {
 </script>
 
 <template>
-  <div class="relative isolate w-full overflow-hidden" :class="subPage ? 'h-[60vh]' : 'h-screen'">
+  <div class="relative isolate w-full overflow-hidden" :class="subPage ? 'h-60vh' : 'h-screen'">
     <!-- Background image -->
     <div class="absolute inset-0 -z-10 bg-cover bg-center scale-105" :style="{ backgroundImage: `url('${bgImage}')` }" />
     <!-- Gradient overlay -->
@@ -25,7 +25,7 @@ const scrollDown = () => {
       <h1 class="font-brand text-white font-bold leading-tight drop-shadow-lg text-5xl max-md:text-3xl">
         {{ pageName }}
       </h1>
-      <p class="text-white/90 text-lg max-md:text-base mt-4 tracking-[0.15em] font-light">
+      <p class="text-white/90 text-lg max-md:text-base mt-4 tracking-relaxed font-light">
         {{ content }}
       </p>
     </div>
@@ -34,12 +34,12 @@ const scrollDown = () => {
     <div v-else class="absolute inset-0 flex items-end pb-28 md:pb-32">
       <div class="container mx-auto px-6 lg:px-12">
         <div class="max-w-2xl animate-banner-title">
-          <span class="font-mono text-white/50 text-[11px] tracking-[0.3em] uppercase block mb-4">Organic &amp; Fresh</span>
+          <span class="font-mono text-white/50 text-xs tracking-hero uppercase block mb-4">Organic &amp; Fresh</span>
           <h1 class="font-brand text-white font-bold leading-tight drop-shadow-lg text-5xl md:text-7xl lg:text-8xl text-left">
             {{ pageName }}
           </h1>
           <div class="border-l-4 border-accent pl-6 mt-6">
-            <p class="text-white/85 text-lg md:text-xl font-light tracking-[0.1em]">
+            <p class="text-white/85 text-lg md:text-xl font-light tracking-widest">
               {{ content }}
             </p>
           </div>
@@ -55,7 +55,7 @@ const scrollDown = () => {
 
     <!-- Scroll indicator: centered bottom -->
     <div v-if="!subPage" class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer group" @click="scrollDown">
-      <span class="text-white/70 text-xs tracking-[0.2em] uppercase font-light group-hover:text-white transition-colors">Scroll</span>
+      <span class="text-white/70 text-xs tracking-expanded uppercase font-light group-hover:text-white transition-colors">Scroll</span>
       <span class="w-6 h-10 rounded-full border-2 border-white/40 flex items-start justify-center pt-2 group-hover:border-white/70 transition-colors">
         <span class="w-1.5 h-1.5 rounded-full bg-white animate-scroll-arrow"></span>
       </span>
