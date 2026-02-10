@@ -2,7 +2,9 @@
 import { ref, onMounted } from 'vue'
 import { uploadApi } from '@/api'
 import { useNotificationStore, useLoadingStore } from '@/stores'
-import BaseModal from '@/components/shared/BaseModal.vue'
+import VButton from '@/components/ui/VButton.vue'
+import VModal from '@/components/ui/VModal.vue'
+import VLoading from '@/components/ui/VLoading.vue'
 
 interface StorageImage {
   id: string
@@ -13,37 +15,77 @@ const notification = useNotificationStore()
 const loadingStore = useLoadingStore()
 
 const storages = ref<StorageImage[]>([])
-const showDeleteModal = ref(false)
-const tempImg = ref<StorageImage>({ id: '', path: '' })
+const loading = ref(true)
+const uploading = ref(false)
+
+const deleteModalOpen = ref(false)
+const deletingImage = ref<StorageImage | null>(null)
+const deleting = ref(false)
+
+const copiedId = ref('')
+const fileInput = ref<HTMLInputElement | null>(null)
 
 const getStorages = async () => {
-  loadingStore.setLoading(true)
+  loading.value = true
   try {
     const res = await uploadApi.getAll()
     storages.value = res.data.images
   } catch {
     notification.show('取得圖片失敗', 'error')
   } finally {
+    loading.value = false
     loadingStore.setLoading(false)
   }
 }
 
-const openDeleteModal = (item: StorageImage) => {
-  tempImg.value = { ...item }
-  showDeleteModal.value = true
+function triggerUpload() {
+  fileInput.value?.click()
 }
 
-const deleteImg = async () => {
-  loadingStore.setLoading(true)
+async function handleFileChange(event: Event) {
+  const input = event.target as HTMLInputElement
+  const file = input.files?.[0]
+  if (!file) return
+  uploading.value = true
   try {
-    await uploadApi.delete(tempImg.value.id)
+    await uploadApi.upload(file)
+    notification.show('上傳成功')
+    await getStorages()
+  } catch {
+    notification.show('上傳失敗，不可超過 2MB', 'error')
+  } finally {
+    uploading.value = false
+    input.value = ''
+  }
+}
+
+function openDelete(image: StorageImage) {
+  deletingImage.value = image
+  deleteModalOpen.value = true
+}
+
+async function handleDelete() {
+  if (!deletingImage.value) return
+  deleting.value = true
+  try {
+    await uploadApi.delete(deletingImage.value.id)
     notification.show('刪除成功')
-    showDeleteModal.value = false
+    deleteModalOpen.value = false
+    deletingImage.value = null
     await getStorages()
   } catch {
     notification.show('刪除失敗', 'error')
-    loadingStore.setLoading(false)
+  } finally {
+    deleting.value = false
   }
+}
+
+async function copyUrl(image: StorageImage) {
+  await navigator.clipboard.writeText(image.path)
+  copiedId.value = image.id
+  setTimeout(() => {
+    copiedId.value = ''
+  }, 2000)
 }
 
 onMounted(() => {
@@ -52,55 +94,104 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="container mx-auto px-4 mt-16">
-    <h2 class="text-lg font-bold mb-4 border-b pb-2">圖片庫</h2>
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+  <div>
+    <!-- Toolbar -->
+    <div class="mb-6 flex items-center justify-between">
+      <p class="text-sm text-bark-500">
+        共 {{ storages.length }} 張圖片
+      </p>
+      <div>
+        <input
+          ref="fileInput"
+          type="file"
+          accept="image/*"
+          class="hidden"
+          @change="handleFileChange"
+        />
+        <VButton :loading="uploading" @click="triggerUpload">
+          <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+          </svg>
+          上傳圖片
+        </VButton>
+      </div>
+    </div>
+
+    <VLoading v-if="loading" />
+
+    <!-- Empty State -->
+    <div v-else-if="!storages.length" class="py-20 text-center">
+      <svg class="mx-auto size-16 text-bark-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+      </svg>
+      <p class="mt-4 text-lg font-medium text-bark-600">尚無圖片</p>
+      <p class="mt-1 text-sm text-bark-400">點擊上方按鈕上傳第一張圖片</p>
+    </div>
+
+    <!-- Image Grid -->
+    <div v-else class="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       <div
-        v-for="item in storages"
-        :key="item.id"
-        class="relative group cursor-pointer"
+        v-for="image in storages"
+        :key="image.id"
+        class="group relative overflow-hidden rounded-xl border border-cream-200 bg-white"
       >
-        <figure class="h-37.5 overflow-hidden rounded-md">
+        <!-- Image -->
+        <div class="aspect-square bg-cream-100">
           <img
-            :src="item.path"
-            class="w-full h-full object-cover object-center transition-all duration-300 group-hover:brightness-20"
+            :src="image.path"
+            :alt="image.id"
+            class="size-full object-cover"
           />
-        </figure>
-        <div
-          role="button"
-          aria-label="刪除圖片"
-          class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
-          @click="openDeleteModal(item)"
-        >
-          <i class="far fa-trash-alt fa-3x text-white hover:text-red-500 transition-colors"></i>
+        </div>
+
+        <!-- Overlay Actions -->
+        <div class="absolute inset-0 flex items-center justify-center gap-2 bg-bark-900/0 opacity-0 transition-all group-hover:bg-bark-900/40 group-hover:opacity-100">
+          <button
+            class="rounded-lg bg-white/90 p-2.5 text-bark-700 shadow-sm transition-colors hover:bg-white"
+            title="複製網址"
+            @click="copyUrl(image)"
+          >
+            <svg v-if="copiedId === image.id" class="size-5 text-olive-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <svg v-else class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+            </svg>
+          </button>
+          <button
+            class="rounded-lg bg-white/90 p-2.5 text-terra-500 shadow-sm transition-colors hover:bg-white"
+            title="刪除"
+            @click="openDelete(image)"
+          >
+            <svg class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- URL Bar -->
+        <div class="border-t border-cream-200 px-3 py-2">
+          <p class="truncate text-xs text-bark-500" :title="image.path">
+            {{ image.path }}
+          </p>
         </div>
       </div>
     </div>
 
-    <!-- Delete Modal -->
-    <BaseModal v-model="showDeleteModal" title="刪除圖片" size="sm">
-      <figure class="w-50 mx-auto">
-        <img :src="tempImg.path" class="w-full rounded" />
-      </figure>
-      <p class="mt-3">
-        是否 <span class="text-red-600 font-bold">刪除</span> 這張圖片
-      </p>
-      <template #footer>
-        <button
-          type="button"
-          class="border border-gray-800 text-gray-800 px-4 py-2 rounded hover:bg-gray-800 hover:text-white transition-colors"
-          @click="showDeleteModal = false"
-        >
-          取消
-        </button>
-        <button
-          type="button"
-          class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition-colors"
-          @click="deleteImg"
-        >
-          確認
-        </button>
-      </template>
-    </BaseModal>
+    <!-- Delete Confirmation -->
+    <VModal v-model:open="deleteModalOpen" title="確認刪除">
+      <div class="space-y-4">
+        <div v-if="deletingImage" class="mx-auto size-32 overflow-hidden rounded-lg bg-cream-100">
+          <img :src="deletingImage.path" :alt="deletingImage.id" class="size-full object-cover" />
+        </div>
+        <p class="text-center text-sm text-bark-600">
+          確定要刪除這張圖片嗎？此操作無法復原。
+        </p>
+        <div class="flex justify-end gap-3">
+          <VButton variant="outline" @click="deleteModalOpen = false">取消</VButton>
+          <VButton variant="danger" :loading="deleting" @click="handleDelete">確認刪除</VButton>
+        </div>
+      </div>
+    </VModal>
   </div>
 </template>
