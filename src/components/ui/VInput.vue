@@ -12,19 +12,19 @@ const model = defineModel<string>({ default: '' })
 
 <template>
   <div class="space-y-1.5">
-    <label v-if="label" class="block text-sm font-medium text-bark-700">{{ label }}</label>
+    <label v-if="label" class="text-bark-700 block text-sm font-medium">{{ label }}</label>
     <input
       v-model="model"
       :type="type"
       :placeholder="placeholder"
       :class="[
-        'w-full rounded-lg border bg-white px-4 py-2.5 text-sm text-bark-800 outline-none transition-colors',
+        'text-bark-800 w-full rounded-lg border bg-white px-4 py-2.5 text-sm transition-colors outline-none',
         'placeholder:text-bark-400',
         error
-          ? 'border-terra-400 focus:border-terra-500 focus:ring-2 focus:ring-terra-200'
-          : 'border-cream-200 focus:border-olive-400 focus:ring-2 focus:ring-olive-100',
+          ? 'border-terra-400 focus:border-terra-500 focus:ring-terra-200 focus:ring-2'
+          : 'border-bark-100 focus:border-primary-dark focus:ring-primary-dark/10 focus:ring-2'
       ]"
     />
-    <p v-if="error" class="text-xs text-terra-500">{{ error }}</p>
+    <p v-if="error" class="text-terra-500 text-xs">{{ error }}</p>
   </div>
 </template>

@@ -17,7 +17,7 @@ function goPage(page: number) {
   <nav v-if="pagination.total_pages > 1" class="flex items-center justify-center gap-1">
     <button
       :disabled="!pagination.has_pre"
-      class="rounded-lg px-3 py-2 text-sm text-bark-600 transition-colors hover:bg-olive-50 disabled:opacity-40 disabled:cursor-not-allowed"
+      class="text-bark-600 hover:bg-primary-dark/10 hover:text-primary-dark rounded-lg px-3 py-2 text-sm transition-colors disabled:cursor-not-allowed disabled:opacity-40"
       @click="goPage(pagination.current_page - 1)"
     >
       <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -31,8 +31,8 @@ function goPage(page: number) {
       :class="[
         'rounded-lg px-3.5 py-2 text-sm font-medium transition-colors',
         page === pagination.current_page
-          ? 'bg-olive-800 text-cream-50'
-          : 'text-bark-600 hover:bg-olive-50',
+          ? 'bg-primary-dark text-white'
+          : 'text-bark-600 hover:bg-primary-dark/10 hover:text-primary-dark'
       ]"
       @click="goPage(page)"
     >
@@ -41,7 +41,7 @@ function goPage(page: number) {
 
     <button
       :disabled="!pagination.has_next"
-      class="rounded-lg px-3 py-2 text-sm text-bark-600 transition-colors hover:bg-olive-50 disabled:opacity-40 disabled:cursor-not-allowed"
+      class="text-bark-600 hover:bg-primary-dark/10 hover:text-primary-dark rounded-lg px-3 py-2 text-sm transition-colors disabled:cursor-not-allowed disabled:opacity-40"
       @click="goPage(pagination.current_page + 1)"
     >
       <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

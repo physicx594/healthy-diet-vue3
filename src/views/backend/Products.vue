@@ -98,7 +98,10 @@ const updateProduct = async () => {
   saving.value = true
   try {
     if (tempProduct.value.id) {
-      await productsApi.update(tempProduct.value.id, tempProduct.value as unknown as Record<string, unknown>)
+      await productsApi.update(
+        tempProduct.value.id,
+        tempProduct.value as unknown as Record<string, unknown>
+      )
       notification.show('編輯成功')
     } else {
       await productsApi.create(tempProduct.value as unknown as Record<string, unknown>)
@@ -139,16 +142,6 @@ const uploadFile = async (event: Event) => {
   target.value = ''
 }
 
-const toggleEnabled = async (item: Product) => {
-  try {
-    const data = { ...item, is_enabled: item.is_enabled ? 0 : 1 }
-    await productsApi.update(item.id, data as unknown as Record<string, unknown>)
-    await getProducts()
-  } catch {
-    notification.show('操作失敗', 'error')
-  }
-}
-
 const toggleSort = (type: string) => {
   if (sortType.value === type) {
     isReverse.value = !isReverse.value
@@ -175,12 +168,15 @@ onMounted(() => {
   <div>
     <!-- Toolbar -->
     <div class="mb-6 flex items-center justify-between">
-      <p class="text-sm text-bark-500">
-        共 {{ products.length }} 筆商品
-      </p>
+      <p class="text-bark-500 text-sm">共 {{ products.length }} 筆商品</p>
       <VButton @click="openAddModal">
         <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 4v16m8-8H4"
+          />
         </svg>
         新增商品
       </VButton>
@@ -189,15 +185,15 @@ onMounted(() => {
     <VLoading v-if="loading" />
 
     <!-- Table -->
-    <div v-else class="overflow-hidden rounded-xl border border-cream-200 bg-white">
+    <div v-else class="border-bark-100 overflow-hidden rounded-xl border bg-white shadow-sm">
       <table class="w-full text-sm">
         <thead>
-          <tr class="border-b border-cream-200 bg-cream-50">
-            <th class="px-5 py-3 text-left font-medium text-bark-600">圖片</th>
-            <th class="px-5 py-3 text-left font-medium text-bark-600">商品名稱</th>
-            <th class="px-5 py-3 text-left font-medium text-bark-600">分類</th>
+          <tr class="bg-primary-dark">
+            <th class="px-5 py-3.5 text-left font-medium text-white/60">圖片</th>
+            <th class="px-5 py-3.5 text-left font-medium text-white/60">商品名稱</th>
+            <th class="px-5 py-3.5 text-left font-medium text-white/60">分類</th>
             <th
-              class="px-5 py-3 text-right font-medium text-bark-600 cursor-pointer select-none"
+              class="cursor-pointer px-5 py-3.5 text-left font-medium text-white/60 transition-colors select-none hover:text-white"
               @click="toggleSort('origin_price')"
             >
               原價
@@ -207,12 +203,17 @@ onMounted(() => {
                 :class="{ 'rotate-180': isReverse }"
               >
                 <svg class="inline size-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 15l7-7 7 7"
+                  />
                 </svg>
               </span>
             </th>
             <th
-              class="px-5 py-3 text-right font-medium text-bark-600 cursor-pointer select-none"
+              class="cursor-pointer px-5 py-3.5 text-left font-medium text-white/60 transition-colors select-none hover:text-white"
               @click="toggleSort('price')"
             >
               售價
@@ -222,28 +223,31 @@ onMounted(() => {
                 :class="{ 'rotate-180': isReverse }"
               >
                 <svg class="inline size-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 15l7-7 7 7"
+                  />
                 </svg>
               </span>
             </th>
-            <th class="px-5 py-3 text-center font-medium text-bark-600">狀態</th>
-            <th class="px-5 py-3 text-right font-medium text-bark-600">操作</th>
+            <th class="px-5 py-3.5 text-center font-medium text-white/60">狀態</th>
+            <th class="px-5 py-3.5 text-center font-medium text-white/60">操作</th>
           </tr>
         </thead>
-        <tbody class="divide-y divide-cream-100">
+        <tbody class="divide-bark-100 divide-y">
           <tr v-if="!products.length">
-            <td colspan="7" class="px-5 py-12 text-center text-bark-400">
-              尚無商品資料
-            </td>
+            <td colspan="7" class="text-bark-400 px-5 py-12 text-center">尚無商品資料</td>
           </tr>
           <tr
             v-for="product in sortData"
             :key="product.id"
-            class="transition-colors hover:bg-cream-50/50"
+            class="hover:bg-bark-50 transition-colors"
           >
             <!-- Image -->
             <td class="px-5 py-3">
-              <div class="size-12 overflow-hidden rounded-lg bg-cream-100">
+              <div class="bg-bark-100 size-12 overflow-hidden rounded-lg">
                 <img
                   v-if="product.imageUrl?.[0]"
                   :src="product.imageUrl[0]"
@@ -254,20 +258,22 @@ onMounted(() => {
             </td>
             <!-- Title -->
             <td class="px-5 py-3">
-              <p class="font-medium text-bark-800">{{ product.title }}</p>
+              <p class="text-bark-800 font-medium">{{ product.title }}</p>
             </td>
             <!-- Category -->
             <td class="px-5 py-3">
-              <span class="rounded-full bg-olive-50 px-2.5 py-1 text-xs font-medium text-olive-700">
+              <span
+                class="bg-primary-dark/10 text-primary-dark rounded-full px-2.5 py-1 text-xs font-medium"
+              >
                 {{ product.category }}
               </span>
             </td>
             <!-- Origin Price -->
-            <td class="px-5 py-3 text-right text-bark-500">
+            <td class="text-bark-500 px-5 py-3 text-left">
               {{ formatMoney(product.origin_price) }}
             </td>
             <!-- Price -->
-            <td class="px-5 py-3 text-right font-medium text-olive-800">
+            <td class="text-primary-dark px-5 py-3 text-left font-medium">
               {{ formatMoney(product.price) }}
             </td>
             <!-- Status -->
@@ -276,15 +282,14 @@ onMounted(() => {
                 :class="[
                   'inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium transition-colors',
                   product.is_enabled
-                    ? 'bg-olive-50 text-olive-700 hover:bg-olive-100'
-                    : 'bg-bark-100 text-bark-500 hover:bg-bark-200',
+                    ? 'bg-primary-dark/10 text-primary-dark hover:bg-primary-dark/20'
+                    : 'bg-bark-100 text-bark-500 hover:bg-bark-200'
                 ]"
-                @click="toggleEnabled(product)"
               >
                 <span
                   :class="[
                     'size-1.5 rounded-full',
-                    product.is_enabled ? 'bg-olive-500' : 'bg-bark-400',
+                    product.is_enabled ? 'bg-primary-dark' : 'bg-bark-400'
                   ]"
                 />
                 {{ product.is_enabled ? '啟用' : '停用' }}
@@ -292,23 +297,33 @@ onMounted(() => {
             </td>
             <!-- Actions -->
             <td class="px-5 py-3">
-              <div class="flex items-center justify-end gap-1">
+              <div class="flex items-center justify-center gap-1">
                 <button
-                  class="rounded-lg p-2 text-bark-400 transition-colors hover:bg-olive-50 hover:text-olive-700"
+                  class="text-bark-400 hover:bg-primary-dark/10 hover:text-primary-dark rounded-lg p-2 transition-colors"
                   title="編輯"
                   @click="openEditModal(product)"
                 >
                   <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                    />
                   </svg>
                 </button>
                 <button
-                  class="rounded-lg p-2 text-bark-400 transition-colors hover:bg-terra-50 hover:text-terra-500"
+                  class="text-bark-400 hover:bg-terra-50 hover:text-terra-500 rounded-lg p-2 transition-colors"
                   title="刪除"
                   @click="openDeleteModal(product)"
                 >
                   <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                    />
                   </svg>
                 </button>
               </div>
@@ -337,21 +352,21 @@ onMounted(() => {
 
         <div class="grid gap-4 sm:grid-cols-3">
           <div class="space-y-1.5">
-            <label class="block text-sm font-medium text-bark-700">原價</label>
+            <label class="text-bark-700 block text-sm font-medium">原價</label>
             <input
               v-model.number="tempProduct.origin_price"
               type="number"
               placeholder="0"
-              class="w-full rounded-lg border border-cream-200 bg-white px-4 py-2.5 text-sm text-bark-800 outline-none transition-colors placeholder:text-bark-400 focus:border-olive-400 focus:ring-2 focus:ring-olive-100"
+              class="border-bark-100 text-bark-800 placeholder:text-bark-400 focus:border-primary-dark focus:ring-primary-dark/10 w-full rounded-lg border bg-white px-4 py-2.5 text-sm transition-colors outline-none focus:ring-2"
             />
           </div>
           <div class="space-y-1.5">
-            <label class="block text-sm font-medium text-bark-700">售價</label>
+            <label class="text-bark-700 block text-sm font-medium">售價</label>
             <input
               v-model.number="tempProduct.price"
               type="number"
               placeholder="0"
-              class="w-full rounded-lg border border-cream-200 bg-white px-4 py-2.5 text-sm text-bark-800 outline-none transition-colors placeholder:text-bark-400 focus:border-olive-400 focus:ring-2 focus:ring-olive-100"
+              class="border-bark-100 text-bark-800 placeholder:text-bark-400 focus:border-primary-dark focus:ring-primary-dark/10 w-full rounded-lg border bg-white px-4 py-2.5 text-sm transition-colors outline-none focus:ring-2"
             />
           </div>
           <VInput v-model="tempProduct.unit" label="單位" placeholder="如：包、盒" />
@@ -359,53 +374,54 @@ onMounted(() => {
 
         <div class="grid gap-4 sm:grid-cols-2">
           <div class="space-y-1.5">
-            <label class="block text-sm font-medium text-bark-700">商品描述</label>
+            <label class="text-bark-700 block text-sm font-medium">商品描述</label>
             <textarea
               v-model="tempProduct.description"
               rows="3"
               placeholder="請輸入簡短描述"
-              class="w-full rounded-lg border border-cream-200 bg-white px-4 py-2.5 text-sm text-bark-800 outline-none transition-colors placeholder:text-bark-400 focus:border-olive-400 focus:ring-2 focus:ring-olive-100"
+              class="border-bark-100 text-bark-800 placeholder:text-bark-400 focus:border-primary-dark focus:ring-primary-dark/10 w-full rounded-lg border bg-white px-4 py-2.5 text-sm transition-colors outline-none focus:ring-2"
             />
           </div>
           <div class="space-y-1.5">
-            <label class="block text-sm font-medium text-bark-700">說明內容</label>
+            <label class="text-bark-700 block text-sm font-medium">說明內容</label>
             <textarea
               v-model="tempProduct.content"
               rows="3"
               placeholder="請輸入詳細內容"
-              class="w-full rounded-lg border border-cream-200 bg-white px-4 py-2.5 text-sm text-bark-800 outline-none transition-colors placeholder:text-bark-400 focus:border-olive-400 focus:ring-2 focus:ring-olive-100"
+              class="border-bark-100 text-bark-800 placeholder:text-bark-400 focus:border-primary-dark focus:ring-primary-dark/10 w-full rounded-lg border bg-white px-4 py-2.5 text-sm transition-colors outline-none focus:ring-2"
             />
           </div>
         </div>
 
         <!-- Image URLs -->
         <div class="space-y-2">
-          <label class="block text-sm font-medium text-bark-700">圖片網址</label>
-          <div
-            v-for="(_, index) in tempProduct.imageUrl"
-            :key="index"
-            class="flex gap-2"
-          >
+          <label class="text-bark-700 block text-sm font-medium">圖片網址</label>
+          <div v-for="(_, index) in tempProduct.imageUrl" :key="index" class="flex gap-2">
             <input
               v-model="tempProduct.imageUrl[index]"
               type="url"
               placeholder="https://..."
-              class="flex-1 rounded-lg border border-cream-200 bg-white px-4 py-2.5 text-sm text-bark-800 outline-none transition-colors placeholder:text-bark-400 focus:border-olive-400 focus:ring-2 focus:ring-olive-100"
+              class="border-bark-100 text-bark-800 placeholder:text-bark-400 focus:border-primary-dark focus:ring-primary-dark/10 flex-1 rounded-lg border bg-white px-4 py-2.5 text-sm transition-colors outline-none focus:ring-2"
             />
             <button
               v-if="tempProduct.imageUrl.length > 1"
               type="button"
-              class="rounded-lg p-2.5 text-bark-400 transition-colors hover:bg-terra-50 hover:text-terra-500"
+              class="text-bark-400 hover:bg-terra-50 hover:text-terra-500 rounded-lg p-2.5 transition-colors"
               @click="removeImageField(index)"
             >
               <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             </button>
           </div>
           <button
             type="button"
-            class="text-sm text-olive-600 transition-colors hover:text-olive-800"
+            class="text-primary-dark/70 hover:text-primary-dark text-sm transition-colors"
             @click="addImageField"
           >
             + 新增圖片欄位
@@ -414,10 +430,10 @@ onMounted(() => {
 
         <!-- Upload -->
         <div class="space-y-1.5">
-          <label class="block text-sm font-medium text-bark-700">或上傳圖片</label>
+          <label class="text-bark-700 block text-sm font-medium">或上傳圖片</label>
           <input
             type="file"
-            class="w-full text-sm text-bark-500 file:mr-3 file:rounded-lg file:border-0 file:bg-olive-50 file:px-4 file:py-2 file:text-sm file:font-medium file:text-olive-700 hover:file:bg-olive-100"
+            class="text-bark-500 file:bg-primary-dark/10 file:text-primary-dark hover:file:bg-primary-dark/20 w-full text-sm file:mr-3 file:rounded-lg file:border-0 file:px-4 file:py-2 file:text-sm file:font-medium"
             @change="uploadFile"
           />
         </div>
@@ -432,13 +448,15 @@ onMounted(() => {
               :false-value="0"
               class="peer sr-only"
             />
-            <div class="h-6 w-11 rounded-full bg-bark-200 after:absolute after:left-[2px] after:top-[2px] after:size-5 after:rounded-full after:bg-white after:transition-all peer-checked:bg-olive-600 peer-checked:after:translate-x-full" />
+            <div
+              class="bg-bark-200 peer-checked:bg-primary-dark h-6 w-11 rounded-full after:absolute after:top-[2px] after:left-[2px] after:size-5 after:rounded-full after:bg-white after:transition-all peer-checked:after:translate-x-full"
+            />
           </label>
-          <span class="text-sm text-bark-700">{{ tempProduct.is_enabled ? '啟用' : '停用' }}</span>
+          <span class="text-bark-700 text-sm">{{ tempProduct.is_enabled ? '啟用' : '停用' }}</span>
         </div>
 
         <!-- Actions -->
-        <div class="flex justify-end gap-3 border-t border-cream-200 pt-4">
+        <div class="border-bark-100 flex justify-end gap-3 border-t pt-4">
           <VButton variant="outline" type="button" @click="showProductModal = false">取消</VButton>
           <VButton :loading="saving" type="submit">
             {{ isEditMode ? '更新' : '新增' }}
@@ -450,8 +468,9 @@ onMounted(() => {
     <!-- Delete Confirmation -->
     <VModal v-model:open="showDeleteModal" title="確認刪除">
       <div class="space-y-4">
-        <p class="text-sm text-bark-600">
-          確定要刪除「<span class="font-medium text-bark-800">{{ tempProduct.title }}</span>」嗎？此操作無法復原。
+        <p class="text-bark-600 text-sm">
+          確定要刪除「<span class="text-bark-800 font-medium">{{ tempProduct.title }}</span
+          >」嗎？此操作無法復原。
         </p>
         <div class="flex justify-end gap-3">
           <VButton variant="outline" @click="showDeleteModal = false">取消</VButton>
