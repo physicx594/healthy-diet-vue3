@@ -1,0 +1,326 @@
+[
+  {
+    "id": "-OkgGELbby7ejOmtGGlY",
+    "title": "凱薩雞肉沙拉",
+    "category": "新鮮沙拉",
+    "description": "經典凱薩醬搭配嫩烤雞胸肉，佐以新鮮蘿蔓生菜、帕瑪森起司與酥脆麵包丁，口感層次豐富。",
+    "content": "熱量約 380 大卡，蛋白質 28g。使用當日現採蘿蔓生菜，雞胸肉以低溫慢烤方式料理，保留肉質鮮嫩多汁。",
+    "price": 180,
+    "origin_price": 220,
+    "unit": "份",
+    "imageUrl": [
+      "https://images.unsplash.com/photo-1550304943-4f24f54ddde9?w=600"
+    ],
+    "is_enabled": 1,
+    "options": {
+      "coupon": true,
+      "quantity": 50
+    }
+  },
+  {
+    "id": "-OkgGE_n4lfbkRo8jJBH",
+    "title": "鮮蝦酪梨沙拉",
+    "category": "新鮮沙拉",
+    "description": "彈牙白蝦搭配熟成酪梨，淋上清爽柑橘油醋醬，營養均衡又美味。",
+    "content": "熱量約 350 大卡，蛋白質 22g，富含優質脂肪。選用產地直送白蝦，酪梨每日新鮮切片。",
+    "price": 220,
+    "origin_price": 260,
+    "unit": "份",
+    "imageUrl": [
+      "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600"
+    ],
+    "is_enabled": 1,
+    "options": {
+      "coupon": true,
+      "quantity": 40
+    }
+  },
+  {
+    "id": "-OkgGEqEnGcS3rEqFjad",
+    "title": "煙燻鮭魚沙拉",
+    "category": "新鮮沙拉",
+    "description": "挪威煙燻鮭魚片鋪在綜合嫩葉上，搭配酸豆、紫洋蔥與檸檬時蘿醬。",
+    "content": "熱量約 320 大卡，蛋白質 25g，Omega-3 豐富。鮭魚選用挪威進口冷燻工藝製作，風味濃郁細緻。",
+    "price": 240,
+    "origin_price": 280,
+    "unit": "份",
+    "imageUrl": [
+      "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=600"
+    ],
+    "is_enabled": 1,
+    "options": {
+      "coupon": true,
+      "quantity": 35
+    }
+  },
+  {
+    "id": "-OkgGF5h_grx8tFkY4Hy",
+    "title": "地中海鷹嘴豆沙拉",
+    "category": "新鮮沙拉",
+    "description": "鷹嘴豆、小黃瓜、番茄、紫洋蔥與菲達起司，佐以橄欖油檸檬醬，充滿地中海風情。",
+    "content": "熱量約 290 大卡，蛋白質 15g，高纖維。純素友善（可去起司），適合輕食愛好者。",
+    "price": 160,
+    "origin_price": 200,
+    "unit": "份",
+    "imageUrl": [
+      "https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?w=600"
+    ],
+    "is_enabled": 1,
+    "options": {
+      "coupon": false,
+      "quantity": 45
+    }
+  },
+  {
+    "id": "-OkgGFKeQzF36NmTpqsW",
+    "title": "泰式牛肉沙拉",
+    "category": "新鮮沙拉",
+    "description": "香煎嫩牛肉片佐以魚露檸檬辣醬，搭配薄荷葉、香菜與爽脆蔬菜，酸辣開胃。",
+    "content": "熱量約 360 大卡，蛋白質 30g。嚴選澳洲草飼牛肉，搭配自製泰式酸辣醬汁，風味道地。",
+    "price": 230,
+    "origin_price": 270,
+    "unit": "份",
+    "imageUrl": [
+      "https://images.unsplash.com/photo-1607532941433-304659e8198a?w=600"
+    ],
+    "is_enabled": 1,
+    "options": {
+      "coupon": true,
+      "quantity": 30
+    }
+  },
+  {
+    "id": "-OkgGF_0YtgBGvlvyi2J",
+    "title": "藜麥蔬果沙拉",
+    "category": "新鮮沙拉",
+    "description": "超級食物藜麥搭配烤甜菜根、南瓜、核桃與芝麻菜，營養密度極高。",
+    "content": "熱量約 310 大卡，蛋白質 14g，富含膳食纖維與礦物質。全素可食，適合追求高營養密度的健康飲食者。",
+    "price": 190,
+    "origin_price": 230,
+    "unit": "份",
+    "imageUrl": [
+      "https://images.unsplash.com/photo-1543339308-d595c4975407?w=600"
+    ],
+    "is_enabled": 1,
+    "options": {
+      "coupon": false,
+      "quantity": 40
+    }
+  },
+  {
+    "id": "-OkgGFrRQYkzoQMHPWTu",
+    "title": "日式照燒雞腿餐盒",
+    "category": "健康餐盒",
+    "description": "醬燒入味的去骨雞腿排，搭配五穀飯、季節時蔬與溏心蛋，營養滿分的日式便當。",
+    "content": "熱量約 520 大卡，蛋白質 35g。雞腿以自製照燒醬慢煎，外皮酥脆內裡多汁，搭配每日現煮五穀飯。",
+    "price": 150,
+    "origin_price": 180,
+    "unit": "盒",
+    "imageUrl": [
+      "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600"
+    ],
+    "is_enabled": 1,
+    "options": {
+      "coupon": true,
+      "quantity": 60
+    }
+  },
+  {
+    "id": "-OkgGG5HyCEkw42Q9r8i",
+    "title": "香草迷迭香豬排餐盒",
+    "category": "健康餐盒",
+    "description": "迷迭香醃漬豬里肌排，低油煎烤至金黃，配糙米飯與橄欖油炒時蔬。",
+    "content": "熱量約 490 大卡，蛋白質 32g。選用台灣本土豬里肌，以新鮮迷迭香與蒜片醃漬入味，少油健康料理。",
+    "price": 170,
+    "origin_price": 200,
+    "unit": "盒",
+    "imageUrl": [
+      "https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=600"
+    ],
+    "is_enabled": 1,
+    "options": {
+      "coupon": true,
+      "quantity": 45
+    }
+  },
+  {
+    "id": "-OkgGGMfGITy_VW0_rMM",
+    "title": "韓式辣醬牛肉餐盒",
+    "category": "健康餐盒",
+    "description": "韓式辣醬嫩炒牛肉片，搭配紫米飯、韓式泡菜與涼拌菠菜，微辣暖胃。",
+    "content": "熱量約 540 大卡，蛋白質 33g。澳洲牛肉搭配正宗韓式辣醬調味，配菜豐富均衡，適合喜愛微辣口味者。",
+    "price": 200,
+    "origin_price": 230,
+    "unit": "盒",
+    "imageUrl": [
+      "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600"
+    ],
+    "is_enabled": 1,
+    "options": {
+      "coupon": true,
+      "quantity": 35
+    }
+  },
+  {
+    "id": "-OkgGGbcp4Th7t1gypYB",
+    "title": "Mediterranean 地中海鮭魚餐盒",
+    "category": "健康餐盒",
+    "description": "香煎鮭魚排佐檸檬奶油醬，搭配烤蔬菜、藜麥與橄欖，地中海風味健康餐。",
+    "content": "熱量約 510 大卡，蛋白質 30g，Omega-3 豐富。挪威鮭魚煎至表皮酥脆，搭配多種烤蔬菜與超級穀物藜麥。",
+    "price": 240,
+    "origin_price": 280,
+    "unit": "盒",
+    "imageUrl": [
+      "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600"
+    ],
+    "is_enabled": 1,
+    "options": {
+      "coupon": false,
+      "quantity": 30
+    }
+  },
+  {
+    "id": "-OkgGGropyJ-GSJRfHfu",
+    "title": "低卡蒟蒻麵蔬食餐盒",
+    "category": "健康餐盒",
+    "description": "低熱量蒟蒻麵搭配鮮炒綜合菇類、毛豆與胡麻醬，輕盈無負擔。",
+    "content": "熱量僅 280 大卡，蛋白質 12g，低碳水化合物。蒟蒻麵口感Q彈，搭配多種菇類提供鮮味，胡麻醬香濃不膩。",
+    "price": 140,
+    "origin_price": 170,
+    "unit": "盒",
+    "imageUrl": [
+      "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600"
+    ],
+    "is_enabled": 1,
+    "options": {
+      "coupon": false,
+      "quantity": 55
+    }
+  },
+  {
+    "id": "-OkgGHG1i-M0559eUNKN",
+    "title": "墨西哥風味雞肉餐盒",
+    "category": "健康餐盒",
+    "description": "墨西哥香料烤雞胸肉搭配黑豆、玉米莎莎醬、糙米飯與酪梨醬，異國風味十足。",
+    "content": "熱量約 480 大卡，蛋白質 34g。雞胸肉以墨西哥辣椒粉、孜然等香料醃漬烤製，搭配新鮮莎莎醬清爽解膩。",
+    "price": 160,
+    "origin_price": 190,
+    "unit": "盒",
+    "imageUrl": [
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600"
+    ],
+    "is_enabled": 1,
+    "options": {
+      "coupon": true,
+      "quantity": 40
+    }
+  },
+  {
+    "id": "-OkgGHUrWv0GpI6h9Y1z",
+    "title": "舒肥經典雞胸肉",
+    "category": "舒肥系列",
+    "description": "原味舒肥雞胸肉，以 63°C 低溫烹調 90 分鐘，鎖住肉汁，軟嫩不柴。",
+    "content": "每包約 180g，蛋白質 40g，脂肪僅 3g。無添加防腐劑，真空包裝可冷藏保存 7 天，加熱即食方便快速。",
+    "price": 100,
+    "origin_price": 130,
+    "unit": "包",
+    "imageUrl": [
+      "https://images.unsplash.com/photo-1532550907401-a500c9a57435?w=600"
+    ],
+    "is_enabled": 1,
+    "options": {
+      "coupon": true,
+      "quantity": 100
+    }
+  },
+  {
+    "id": "-OkgGHiV0YFW8yq7PDR1",
+    "title": "舒肥黑胡椒雞胸肉",
+    "category": "舒肥系列",
+    "description": "粗磨黑胡椒與海鹽調味的舒肥雞胸，香氣十足，適合搭配沙拉或直接享用。",
+    "content": "每包約 180g，蛋白質 39g，脂肪僅 4g。嚴選台灣溫體雞胸，搭配進口粗磨黑胡椒，風味層次分明。",
+    "price": 110,
+    "origin_price": 140,
+    "unit": "包",
+    "imageUrl": [
+      "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=600"
+    ],
+    "is_enabled": 1,
+    "options": {
+      "coupon": true,
+      "quantity": 80
+    }
+  },
+  {
+    "id": "-OkgGHx2Kww604NL3i9E",
+    "title": "舒肥義式香草雞胸肉",
+    "category": "舒肥系列",
+    "description": "羅勒、奧勒岡與百里香三重義式香草風味，地中海風情的高蛋白選擇。",
+    "content": "每包約 180g，蛋白質 38g，脂肪僅 4g。使用新鮮義式綜合香草醃漬 24 小時，風味深入肉質每一層。",
+    "price": 120,
+    "origin_price": 150,
+    "unit": "包",
+    "imageUrl": [
+      "https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?w=600"
+    ],
+    "is_enabled": 1,
+    "options": {
+      "coupon": true,
+      "quantity": 70
+    }
+  },
+  {
+    "id": "-OkgGIC6X9N0qlUqkvWY",
+    "title": "舒肥嫩煎牛排",
+    "category": "舒肥系列",
+    "description": "澳洲穀飼牛排以 56°C 舒肥至完美三分熟，回煎即可享用餐廳級牛排。",
+    "content": "每包約 200g，蛋白質 45g。選用澳洲穀飼 120 天牛肋眼，舒肥後真空封存，在家輕鬆煎出完美焦香外皮。",
+    "price": 300,
+    "origin_price": 350,
+    "unit": "包",
+    "imageUrl": [
+      "https://images.unsplash.com/photo-1558030006-450675393462?w=600"
+    ],
+    "is_enabled": 1,
+    "options": {
+      "coupon": true,
+      "quantity": 25
+    }
+  },
+  {
+    "id": "-OkgGIQoJZIzHXg2yrfw",
+    "title": "舒肥檸檬鮭魚",
+    "category": "舒肥系列",
+    "description": "挪威鮭魚以 48°C 低溫舒肥，搭配新鮮檸檬與時蘿，入口即化的細緻口感。",
+    "content": "每包約 180g，蛋白質 32g，Omega-3 脂肪酸豐富。低溫舒肥保留鮭魚最佳口感，檸檬清香去腥提味。",
+    "price": 210,
+    "origin_price": 250,
+    "unit": "包",
+    "imageUrl": [
+      "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=600"
+    ],
+    "is_enabled": 1,
+    "options": {
+      "coupon": true,
+      "quantity": 30
+    }
+  },
+  {
+    "id": "-OkgGIfszjxGzXaoCpJ_",
+    "title": "舒肥蒜味豬里肌",
+    "category": "舒肥系列",
+    "description": "台灣本土豬里肌以蒜片與迷迭香舒肥烹調，軟嫩多汁，高蛋白低脂肪。",
+    "content": "每包約 200g，蛋白質 42g，脂肪僅 5g。選用台灣優質豬里肌，蒜香與迷迭香完美融合，是增肌減脂的理想蛋白質來源。",
+    "price": 130,
+    "origin_price": 160,
+    "unit": "包",
+    "imageUrl": [
+      "https://images.unsplash.com/photo-1432139555190-58524dae6a55?w=600"
+    ],
+    "is_enabled": 1,
+    "options": {
+      "coupon": false,
+      "quantity": 60
+    }
+  }
+]

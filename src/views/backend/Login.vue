@@ -7,7 +7,7 @@ import VButton from '@/components/ui/VButton.vue'
 const authStore = useAuthStore()
 
 const user = ref({
-  email: '',
+  email: 'hd2026@test.com',
   password: ''
 })
 const errorMsg = ref('')

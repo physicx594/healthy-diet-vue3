@@ -1,0 +1,22 @@
+[
+  { "title": "新會員優惠",    "code": "NEW10",     "percent": 90, "due_date": 1798761600, "is_enabled": 1 },
+  { "title": "夏日特賣",      "code": "SUMMER15",  "percent": 85, "due_date": 1798761600, "is_enabled": 1 },
+  { "title": "秋季健康節",    "code": "FALL10",    "percent": 90, "due_date": 1798761600, "is_enabled": 1 },
+  { "title": "冬季暖心特惠",  "code": "WINTER20",  "percent": 80, "due_date": 1798761600, "is_enabled": 1 },
+  { "title": "春季鮮食節",    "code": "SPRING15",  "percent": 85, "due_date": 1798761600, "is_enabled": 1 },
+  { "title": "生日優惠券",    "code": "BIRTHDAY",  "percent": 80, "due_date": 1798761600, "is_enabled": 1 },
+  { "title": "週年慶折扣",    "code": "ANNIV25",   "percent": 75, "due_date": 1798761600, "is_enabled": 1 },
+  { "title": "舒肥系列優惠",  "code": "SOUSVIDE",  "percent": 90, "due_date": 1798761600, "is_enabled": 1 },
+  { "title": "沙拉愛好者",    "code": "SALAD10",   "percent": 90, "due_date": 1798761600, "is_enabled": 1 },
+  { "title": "餐盒套餐折扣",  "code": "BENTO15",   "percent": 85, "due_date": 1798761600, "is_enabled": 1 },
+  { "title": "首次下單禮",    "code": "FIRST20",   "percent": 80, "due_date": 1798761600, "is_enabled": 1 },
+  { "title": "好友推薦碼",    "code": "FRIEND10",  "percent": 90, "due_date": 1798761600, "is_enabled": 1 },
+  { "title": "健身族專屬",    "code": "FIT15",     "percent": 85, "due_date": 1798761600, "is_enabled": 1 },
+  { "title": "週一輕食日",    "code": "MON10",     "percent": 90, "due_date": 1798761600, "is_enabled": 1 },
+  { "title": "週五犒賞日",    "code": "FRI15",     "percent": 85, "due_date": 1798761600, "is_enabled": 1 },
+  { "title": "滿額回饋",      "code": "VIP20",     "percent": 80, "due_date": 1798761600, "is_enabled": 1 },
+  { "title": "限時閃購",      "code": "FLASH30",   "percent": 70, "due_date": 1798761600, "is_enabled": 1 },
+  { "title": "學生優惠",      "code": "STUDENT",   "percent": 85, "due_date": 1798761600, "is_enabled": 1 },
+  { "title": "上班族輕鬆吃",  "code": "OFFICE10",  "percent": 90, "due_date": 1798761600, "is_enabled": 1 },
+  { "title": "節日特惠",      "code": "HOLIDAY20", "percent": 80, "due_date": 1798761600, "is_enabled": 1 }
+]
