@@ -46,13 +46,21 @@ const router = createRouter({
   ]
 })
 
-router.beforeEach(async (to) => {
-  if (to.meta.requiresAuth) {
-    const auth = useAuthStore()
+router.beforeEach(async (to, from) => {
+  const auth = useAuthStore()
+
+  // 進入登入頁：check 通過直接導後台，不通過留在登入頁
+  if (to.name === 'login') {
     const isValid = await auth.checkAuth()
-    if (!isValid) {
-      return { name: 'login' }
-    }
+    if (isValid) return { name: 'admin-products' }
+    return true
+  }
+
+  // 進入後台：已在 admin 內切換、或本次 session 已驗證過，直接放行
+  if (to.meta.requiresAuth) {
+    if (from.path.startsWith('/admin') || auth.isAuthenticated) return true
+    const isValid = await auth.checkAuth()
+    if (!isValid) return { name: 'login' }
   }
 })
 

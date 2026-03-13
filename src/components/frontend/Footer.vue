@@ -32,7 +32,7 @@
             <li><RouterLink to="/products" class="text-white/50 hover:text-primary-light transition-colors text-xs">全部商品</RouterLink></li>
             <li><RouterLink to="/about" class="text-white/50 hover:text-primary-light transition-colors text-xs">關於我們</RouterLink></li>
             <li><RouterLink to="/cart" class="text-white/50 hover:text-primary-light transition-colors text-xs">購物車</RouterLink></li>
-            <li><RouterLink to="/admin/products" class="text-white/50 hover:text-primary-light transition-colors text-xs">後台管理</RouterLink></li>
+            <li><RouterLink to="/login" class="text-white/50 hover:text-primary-light transition-colors text-xs">後台管理</RouterLink></li>
           </ul>
         </div>
 

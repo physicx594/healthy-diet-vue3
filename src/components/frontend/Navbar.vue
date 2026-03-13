@@ -84,7 +84,7 @@ onUnmounted(() => {
             <RouterLink to="/about" class="nav-link-item" :class="{ 'nav-link-scrolled': scrolled }">關於我們</RouterLink>
           </li>
           <li>
-            <RouterLink to="/admin/products" class="nav-link-item" :class="{ 'nav-link-scrolled': scrolled }">
+            <RouterLink to="/login" class="nav-link-item" :class="{ 'nav-link-scrolled': scrolled }">
               <i class="fa-solid fa-user text-base"></i>
             </RouterLink>
           </li>
@@ -135,7 +135,7 @@ onUnmounted(() => {
                 </RouterLink>
               </li>
               <li>
-                <RouterLink to="/admin/products" class="block text-lg font-medium py-3 px-4 rounded-xl text-text hover:bg-bg-dark hover:text-primary transition-all" @click="show = false">
+                <RouterLink to="/login" class="block text-lg font-medium py-3 px-4 rounded-xl text-text hover:bg-bg-dark hover:text-primary transition-all" @click="show = false">
                   <i class="fa-solid fa-user w-6 mr-3 text-primary-light"></i>後台管理
                 </RouterLink>
               </li>
