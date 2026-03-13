@@ -19,7 +19,8 @@ const router = createRouter({
         { path: 'cart', name: 'cart', component: () => import('@/views/frontend/Cart.vue') },
         { path: 'checkout', name: 'checkout', component: () => import('@/views/frontend/Checkout.vue') },
         { path: 'checkoutPay/:orderId?', name: 'checkoutPay', component: () => import('@/views/frontend/CheckoutPay.vue') },
-        { path: 'checkoutSuccess', name: 'checkoutSuccess', component: () => import('@/views/frontend/CheckoutSuccess.vue') }
+        { path: 'checkoutSuccess', name: 'checkoutSuccess', component: () => import('@/views/frontend/CheckoutSuccess.vue') },
+        { path: 'ui', name: 'ui', component: () => import('@/views/frontend/UIShowcase.vue') }
       ]
     },
     {
