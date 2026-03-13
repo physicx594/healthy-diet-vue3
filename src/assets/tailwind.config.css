@@ -308,6 +308,15 @@
   width: calc(50% - 2rem);
 }
 
+/* Hide scrollbar while keeping scroll functionality */
+@utility scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 /* Cart badge sizing */
 @utility cart-badge {
   width: 20px;

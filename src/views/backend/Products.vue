@@ -165,9 +165,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
+  <div class="flex h-full flex-col">
     <!-- Toolbar -->
-    <div class="mb-6 flex items-center justify-between">
+    <div class="mb-4 flex shrink-0 items-center justify-between">
       <p class="text-bark-500 text-sm">共 {{ products.length }} 筆商品</p>
       <VButton @click="openAddModal">
         <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -182,159 +182,165 @@ onMounted(() => {
       </VButton>
     </div>
 
-    <VLoading v-if="loading" />
+    <!-- Content area -->
+    <div class="min-h-0 flex-1">
+      <VLoading v-if="loading" />
 
-    <!-- Table -->
-    <div v-else class="border-bark-100 overflow-hidden rounded-xl border bg-white shadow-sm">
-      <table class="w-full text-sm">
-        <thead>
-          <tr class="bg-primary-dark">
-            <th class="px-5 py-3.5 text-left font-medium text-white/60">圖片</th>
-            <th class="px-5 py-3.5 text-left font-medium text-white/60">商品名稱</th>
-            <th class="px-5 py-3.5 text-left font-medium text-white/60">分類</th>
-            <th
-              class="cursor-pointer px-5 py-3.5 text-left font-medium text-white/60 transition-colors select-none hover:text-white"
-              @click="toggleSort('origin_price')"
-            >
-              原價
-              <span
-                v-if="sortType === 'origin_price' || sortType === ''"
-                class="inline-block transition-transform"
-                :class="{ 'rotate-180': isReverse }"
+      <!-- Table -->
+      <div
+        v-else
+        class="border-bark-100 scrollbar-hide h-full overflow-y-auto rounded-xl border bg-white shadow-sm"
+      >
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="bg-primary-dark sticky top-0">
+              <th class="px-5 py-3.5 text-left font-medium text-white/60">圖片</th>
+              <th class="px-5 py-3.5 text-left font-medium text-white/60">商品名稱</th>
+              <th class="px-5 py-3.5 text-left font-medium text-white/60">分類</th>
+              <th
+                class="cursor-pointer px-5 py-3.5 text-left font-medium text-white/60 transition-colors select-none hover:text-white"
+                @click="toggleSort('origin_price')"
               >
-                <svg class="inline size-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 15l7-7 7 7"
-                  />
-                </svg>
-              </span>
-            </th>
-            <th
-              class="cursor-pointer px-5 py-3.5 text-left font-medium text-white/60 transition-colors select-none hover:text-white"
-              @click="toggleSort('price')"
-            >
-              售價
-              <span
-                v-if="sortType === 'price' || sortType === ''"
-                class="inline-block transition-transform"
-                :class="{ 'rotate-180': isReverse }"
-              >
-                <svg class="inline size-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 15l7-7 7 7"
-                  />
-                </svg>
-              </span>
-            </th>
-            <th class="px-5 py-3.5 text-center font-medium text-white/60">狀態</th>
-            <th class="px-5 py-3.5 text-center font-medium text-white/60">操作</th>
-          </tr>
-        </thead>
-        <tbody class="divide-bark-100 divide-y">
-          <tr v-if="!products.length">
-            <td colspan="7" class="text-bark-400 px-5 py-12 text-center">尚無商品資料</td>
-          </tr>
-          <tr
-            v-for="product in sortData"
-            :key="product.id"
-            class="hover:bg-bark-50 transition-colors"
-          >
-            <!-- Image -->
-            <td class="px-5 py-3">
-              <div class="bg-bark-100 size-12 overflow-hidden rounded-lg">
-                <img
-                  v-if="product.imageUrl?.[0]"
-                  :src="product.imageUrl[0]"
-                  :alt="product.title"
-                  class="size-full object-cover"
-                />
-              </div>
-            </td>
-            <!-- Title -->
-            <td class="px-5 py-3">
-              <p class="text-bark-800 font-medium">{{ product.title }}</p>
-            </td>
-            <!-- Category -->
-            <td class="px-5 py-3">
-              <span
-                class="bg-primary-dark/10 text-primary-dark rounded-full px-2.5 py-1 text-xs font-medium"
-              >
-                {{ product.category }}
-              </span>
-            </td>
-            <!-- Origin Price -->
-            <td class="text-bark-500 px-5 py-3 text-left">
-              {{ formatMoney(product.origin_price) }}
-            </td>
-            <!-- Price -->
-            <td class="text-primary-dark px-5 py-3 text-left font-medium">
-              {{ formatMoney(product.price) }}
-            </td>
-            <!-- Status -->
-            <td class="px-5 py-3 text-center">
-              <button
-                :class="[
-                  'inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium transition-colors',
-                  product.is_enabled
-                    ? 'bg-primary-dark/10 text-primary-dark hover:bg-primary-dark/20'
-                    : 'bg-bark-100 text-bark-500 hover:bg-bark-200'
-                ]"
-              >
+                原價
                 <span
+                  v-if="sortType === 'origin_price' || sortType === ''"
+                  class="inline-block transition-transform"
+                  :class="{ 'rotate-180': isReverse }"
+                >
+                  <svg class="inline size-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 15l7-7 7 7"
+                    />
+                  </svg>
+                </span>
+              </th>
+              <th
+                class="cursor-pointer px-5 py-3.5 text-left font-medium text-white/60 transition-colors select-none hover:text-white"
+                @click="toggleSort('price')"
+              >
+                售價
+                <span
+                  v-if="sortType === 'price' || sortType === ''"
+                  class="inline-block transition-transform"
+                  :class="{ 'rotate-180': isReverse }"
+                >
+                  <svg class="inline size-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 15l7-7 7 7"
+                    />
+                  </svg>
+                </span>
+              </th>
+              <th class="px-5 py-3.5 text-center font-medium text-white/60">狀態</th>
+              <th class="px-5 py-3.5 text-center font-medium text-white/60">操作</th>
+            </tr>
+          </thead>
+          <tbody class="divide-bark-100 divide-y">
+            <tr v-if="!products.length">
+              <td colspan="7" class="text-bark-400 px-5 py-12 text-center">尚無商品資料</td>
+            </tr>
+            <tr
+              v-for="product in sortData"
+              :key="product.id"
+              class="hover:bg-bark-50 transition-colors"
+            >
+              <!-- Image -->
+              <td class="px-5 py-3">
+                <div class="bg-bark-100 size-12 overflow-hidden rounded-lg">
+                  <img
+                    v-if="product.imageUrl?.[0]"
+                    :src="product.imageUrl[0]"
+                    :alt="product.title"
+                    class="size-full object-cover"
+                  />
+                </div>
+              </td>
+              <!-- Title -->
+              <td class="px-5 py-3">
+                <p class="text-bark-800 font-medium">{{ product.title }}</p>
+              </td>
+              <!-- Category -->
+              <td class="px-5 py-3">
+                <span
+                  class="bg-primary-dark/10 text-primary-dark rounded-full px-2.5 py-1 text-xs font-medium"
+                >
+                  {{ product.category }}
+                </span>
+              </td>
+              <!-- Origin Price -->
+              <td class="text-bark-500 px-5 py-3 text-left">
+                {{ formatMoney(product.origin_price) }}
+              </td>
+              <!-- Price -->
+              <td class="text-primary-dark px-5 py-3 text-left font-medium">
+                {{ formatMoney(product.price) }}
+              </td>
+              <!-- Status -->
+              <td class="px-5 py-3 text-center">
+                <button
                   :class="[
-                    'size-1.5 rounded-full',
-                    product.is_enabled ? 'bg-primary-dark' : 'bg-bark-400'
+                    'inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium transition-colors',
+                    product.is_enabled
+                      ? 'bg-primary-dark/10 text-primary-dark hover:bg-primary-dark/20'
+                      : 'bg-bark-100 text-bark-500 hover:bg-bark-200'
                   ]"
-                />
-                {{ product.is_enabled ? '啟用' : '停用' }}
-              </button>
-            </td>
-            <!-- Actions -->
-            <td class="px-5 py-3">
-              <div class="flex items-center justify-center gap-1">
-                <button
-                  class="text-bark-400 hover:bg-primary-dark/10 hover:text-primary-dark rounded-lg p-2 transition-colors"
-                  title="編輯"
-                  @click="openEditModal(product)"
                 >
-                  <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                    />
-                  </svg>
+                  <span
+                    :class="[
+                      'size-1.5 rounded-full',
+                      product.is_enabled ? 'bg-primary-dark' : 'bg-bark-400'
+                    ]"
+                  />
+                  {{ product.is_enabled ? '啟用' : '停用' }}
                 </button>
-                <button
-                  class="text-bark-400 hover:bg-terra-50 hover:text-terra-500 rounded-lg p-2 transition-colors"
-                  title="刪除"
-                  @click="openDeleteModal(product)"
-                >
-                  <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                    />
-                  </svg>
-                </button>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+              </td>
+              <!-- Actions -->
+              <td class="px-5 py-3">
+                <div class="flex items-center justify-center gap-1">
+                  <button
+                    class="text-bark-400 hover:bg-primary-dark/10 hover:text-primary-dark rounded-lg p-2 transition-colors"
+                    title="編輯"
+                    @click="openEditModal(product)"
+                  >
+                    <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                      />
+                    </svg>
+                  </button>
+                  <button
+                    class="text-bark-400 hover:bg-terra-50 hover:text-terra-500 rounded-lg p-2 transition-colors"
+                    title="刪除"
+                    @click="openDeleteModal(product)"
+                  >
+                    <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <!-- Pagination -->
-    <div class="mt-6">
+    <div class="mt-4 shrink-0">
       <VPagination
         v-if="(pagination as PaginationType).total_pages"
         :pagination="pagination as PaginationType"

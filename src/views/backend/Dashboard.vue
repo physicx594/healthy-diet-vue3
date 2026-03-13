@@ -124,7 +124,7 @@ function currentLabel() {
       </header>
 
       <!-- Page content — each page manages its own scroll -->
-      <main class="bg-bark-50 flex-1 overflow-y-auto p-6">
+      <main class="bg-bark-50 flex flex-1 flex-col overflow-hidden p-4">
         <RouterView />
       </main>
     </div>
