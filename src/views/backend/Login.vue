@@ -68,7 +68,7 @@ const signin = async () => {
       <p class="mt-6 text-center">
         <RouterLink
           to="/"
-          class="text-primary-dark/50 hover:text-primary-dark/80 text-sm transition-colors"
+          class="text-white/60 hover:text-white text-sm transition-colors"
         >
           &larr; 回到前台
         </RouterLink>
