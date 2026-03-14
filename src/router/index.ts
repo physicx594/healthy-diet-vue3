@@ -35,8 +35,7 @@ const router = createRouter({
       children: [
         { path: 'products', name: 'admin-products', component: () => import('@/views/backend/Products.vue') },
         { path: 'orders', name: 'admin-orders', component: () => import('@/views/backend/Orders.vue') },
-        { path: 'coupons', name: 'admin-coupons', component: () => import('@/views/backend/Coupons.vue') },
-        { path: 'storages', name: 'admin-storages', component: () => import('@/views/backend/Storages.vue') }
+        { path: 'coupons', name: 'admin-coupons', component: () => import('@/views/backend/Coupons.vue') }
       ]
     },
     {
