@@ -154,15 +154,15 @@ onMounted(() => {
 
     <!-- Table -->
     <div v-else class="border-bark-100 overflow-hidden rounded-xl border bg-white shadow-sm">
-      <table class="w-full text-sm">
+      <table class="w-full table-fixed text-sm">
         <thead>
           <tr class="bg-primary-dark">
-            <th class="px-5 py-3.5 text-left font-medium text-white/60">名稱</th>
-            <th class="px-5 py-3.5 text-left font-medium text-white/60">優惠碼</th>
-            <th class="px-5 py-3.5 text-right font-medium text-white/60">折扣</th>
-            <th class="px-5 py-3.5 text-left font-medium text-white/60">到期日</th>
+            <th class="px-5 py-3.5 text-center font-medium text-white/60">名稱</th>
+            <th class="px-5 py-3.5 text-center font-medium text-white/60">優惠碼</th>
+            <th class="px-5 py-3.5 text-center font-medium text-white/60">折扣</th>
+            <th class="px-5 py-3.5 text-center font-medium text-white/60">到期日</th>
             <th class="px-5 py-3.5 text-center font-medium text-white/60">狀態</th>
-            <th class="px-5 py-3.5 text-right font-medium text-white/60">操作</th>
+            <th class="px-5 py-3.5 text-center font-medium text-white/60">操作</th>
           </tr>
         </thead>
         <tbody class="divide-bark-100 divide-y">
@@ -171,11 +171,11 @@ onMounted(() => {
           </tr>
           <tr v-for="coupon in coupons" :key="coupon.id" class="hover:bg-bark-50 transition-colors">
             <!-- Title -->
-            <td class="text-bark-800 px-5 py-3 font-medium">
+            <td class="text-bark-800 px-5 py-3 text-center font-medium">
               {{ coupon.title }}
             </td>
             <!-- Code -->
-            <td class="px-5 py-3">
+            <td class="px-5 py-3 text-center">
               <code
                 class="bg-primary-dark/10 text-primary-dark rounded px-2 py-0.5 font-mono text-xs"
               >
@@ -183,11 +183,11 @@ onMounted(() => {
               </code>
             </td>
             <!-- Percent -->
-            <td class="text-primary-dark px-5 py-3 text-right font-medium">
+            <td class="text-primary-dark px-5 py-3 text-center font-medium">
               {{ coupon.percent }}%
             </td>
             <!-- Due Date -->
-            <td class="px-5 py-3">
+            <td class="px-5 py-3 text-center">
               <span :class="isExpired(coupon.due_date) ? 'text-terra-500' : 'text-bark-600'">
                 {{ formatDate(coupon.due_date) }}
               </span>
@@ -216,7 +216,7 @@ onMounted(() => {
             </td>
             <!-- Actions -->
             <td class="px-5 py-3">
-              <div class="flex items-center justify-end gap-1">
+              <div class="flex items-center justify-center gap-1">
                 <button
                   class="text-bark-400 hover:bg-primary-dark/10 hover:text-primary-dark rounded-lg p-2 transition-colors"
                   title="編輯"

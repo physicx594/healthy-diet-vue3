@@ -191,14 +191,14 @@ onMounted(() => {
         v-else
         class="border-bark-100 scrollbar-hide h-full overflow-y-auto rounded-xl border bg-white shadow-sm"
       >
-        <table class="w-full text-sm">
+        <table class="w-full table-fixed text-sm">
           <thead>
             <tr class="bg-primary-dark sticky top-0">
-              <th class="px-5 py-3.5 text-left font-medium text-white/60">圖片</th>
-              <th class="px-5 py-3.5 text-left font-medium text-white/60">商品名稱</th>
-              <th class="px-5 py-3.5 text-left font-medium text-white/60">分類</th>
+              <th class="px-5 py-3.5 text-center font-medium text-white/60">圖片</th>
+              <th class="px-5 py-3.5 text-center font-medium text-white/60">商品名稱</th>
+              <th class="px-5 py-3.5 text-center font-medium text-white/60">分類</th>
               <th
-                class="cursor-pointer px-5 py-3.5 text-left font-medium text-white/60 transition-colors select-none hover:text-white"
+                class="cursor-pointer px-5 py-3.5 text-center font-medium text-white/60 transition-colors select-none hover:text-white"
                 @click="toggleSort('origin_price')"
               >
                 原價
@@ -218,7 +218,7 @@ onMounted(() => {
                 </span>
               </th>
               <th
-                class="cursor-pointer px-5 py-3.5 text-left font-medium text-white/60 transition-colors select-none hover:text-white"
+                class="cursor-pointer px-5 py-3.5 text-center font-medium text-white/60 transition-colors select-none hover:text-white"
                 @click="toggleSort('price')"
               >
                 售價
@@ -251,8 +251,8 @@ onMounted(() => {
               class="hover:bg-bark-50 transition-colors"
             >
               <!-- Image -->
-              <td class="px-5 py-3">
-                <div class="bg-bark-100 size-12 overflow-hidden rounded-lg">
+              <td class="px-5 py-3 text-center">
+                <div class="bg-bark-100 mx-auto size-12 overflow-hidden rounded-lg">
                   <img
                     v-if="product.imageUrl?.[0]"
                     :src="product.imageUrl[0]"
@@ -262,11 +262,11 @@ onMounted(() => {
                 </div>
               </td>
               <!-- Title -->
-              <td class="px-5 py-3">
+              <td class="px-5 py-3 text-center">
                 <p class="text-bark-800 font-medium">{{ product.title }}</p>
               </td>
               <!-- Category -->
-              <td class="px-5 py-3">
+              <td class="px-5 py-3 text-center">
                 <span
                   class="bg-primary-dark/10 text-primary-dark rounded-full px-2.5 py-1 text-xs font-medium"
                 >
@@ -274,11 +274,11 @@ onMounted(() => {
                 </span>
               </td>
               <!-- Origin Price -->
-              <td class="text-bark-500 px-5 py-3 text-left">
+              <td class="text-bark-500 px-5 py-3 text-center">
                 {{ formatMoney(product.origin_price) }}
               </td>
               <!-- Price -->
-              <td class="text-primary-dark px-5 py-3 text-left font-medium">
+              <td class="text-primary-dark px-5 py-3 text-center font-medium">
                 {{ formatMoney(product.price) }}
               </td>
               <!-- Status -->

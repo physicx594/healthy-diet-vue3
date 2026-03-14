@@ -79,16 +79,16 @@ onMounted(() => {
 
     <!-- Table -->
     <div v-else class="border-bark-100 overflow-hidden rounded-xl border bg-white shadow-sm">
-      <table class="w-full text-sm">
+      <table class="w-full table-fixed text-sm">
         <thead>
           <tr class="bg-primary-dark">
-            <th class="px-5 py-3.5 text-left font-medium text-white/60">訂單編號</th>
-            <th class="px-5 py-3.5 text-left font-medium text-white/60">收件人</th>
-            <th class="px-5 py-3.5 text-left font-medium text-white/60">Email</th>
-            <th class="px-5 py-3.5 text-right font-medium text-white/60">總金額</th>
+            <th class="px-5 py-3.5 text-center font-medium text-white/60">訂單編號</th>
+            <th class="px-5 py-3.5 text-center font-medium text-white/60">收件人</th>
+            <th class="px-5 py-3.5 text-center font-medium text-white/60">Email</th>
+            <th class="px-5 py-3.5 text-center font-medium text-white/60">總金額</th>
             <th class="px-5 py-3.5 text-center font-medium text-white/60">付款狀態</th>
-            <th class="px-5 py-3.5 text-left font-medium text-white/60">建立時間</th>
-            <th class="px-5 py-3.5 text-right font-medium text-white/60">操作</th>
+            <th class="px-5 py-3.5 text-center font-medium text-white/60">建立時間</th>
+            <th class="px-5 py-3.5 text-center font-medium text-white/60">操作</th>
           </tr>
         </thead>
         <tbody class="divide-bark-100 divide-y">
@@ -97,7 +97,7 @@ onMounted(() => {
           </tr>
           <tr v-for="order in orders" :key="order.id" class="hover:bg-bark-50 transition-colors">
             <!-- ID -->
-            <td class="px-5 py-3">
+            <td class="px-5 py-3 text-center">
               <button
                 class="text-primary-dark hover:text-primary font-mono text-xs transition-colors hover:underline"
                 @click="openDetail(order)"
@@ -106,15 +106,15 @@ onMounted(() => {
               </button>
             </td>
             <!-- Name -->
-            <td class="text-bark-800 px-5 py-3 font-medium">
+            <td class="text-bark-800 px-5 py-3 text-center font-medium">
               {{ order.user?.name }}
             </td>
             <!-- Email -->
-            <td class="text-bark-600 px-5 py-3">
+            <td class="text-bark-600 px-5 py-3 text-center">
               {{ order.user?.email }}
             </td>
             <!-- Total -->
-            <td class="text-primary-dark px-5 py-3 text-right font-medium">
+            <td class="text-primary-dark px-5 py-3 text-center font-medium">
               {{ formatMoney(order.total) }}
             </td>
             <!-- Paid Status -->
@@ -145,12 +145,12 @@ onMounted(() => {
               </button>
             </td>
             <!-- Date -->
-            <td class="text-bark-500 px-5 py-3">
+            <td class="text-bark-500 px-5 py-3 text-center">
               {{ formatDate(order.create_at) }}
             </td>
             <!-- Actions -->
             <td class="px-5 py-3">
-              <div class="flex justify-end">
+              <div class="flex justify-center">
                 <button
                   class="text-bark-400 hover:bg-primary-dark/10 hover:text-primary-dark rounded-lg p-2 transition-colors"
                   title="查看詳情"
