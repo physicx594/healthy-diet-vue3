@@ -6,7 +6,10 @@ import type { Coupon } from '@/types'
 import VButton from '@/components/ui/VButton.vue'
 import VInput from '@/components/ui/VInput.vue'
 import VModal from '@/components/ui/VModal.vue'
-import VLoading from '@/components/ui/VLoading.vue'
+import AdminDataTable from '@/components/backend/AdminDataTable.vue'
+import IconPlus from '@/components/icons/IconPlus.vue'
+import IconPencil from '@/components/icons/IconPencil.vue'
+import IconTrash from '@/components/icons/IconTrash.vue'
 
 const notification = useNotificationStore()
 const loadingStore = useLoadingStore()
@@ -14,10 +17,8 @@ const loadingStore = useLoadingStore()
 const coupons = ref<Coupon[]>([])
 const loading = ref(true)
 const saving = ref(false)
-
 const modalOpen = ref(false)
 const editingId = ref('')
-
 const deleteModalOpen = ref(false)
 const deletingCoupon = ref<Coupon | null>(null)
 const deleting = ref(false)
@@ -32,7 +33,7 @@ const defaultForm = {
 
 const form = reactive({ ...defaultForm })
 
-function formatDate(ts: number): string {
+const formatDate = (ts: number): string => {
   return new Date(ts * 1000).toLocaleDateString('zh-TW', {
     year: 'numeric',
     month: '2-digit',
@@ -40,11 +41,11 @@ function formatDate(ts: number): string {
   })
 }
 
-function tsToDateInput(ts: number): string {
+const tsToDateInput = (ts: number): string => {
   return new Date(ts * 1000).toISOString().slice(0, 10)
 }
 
-function isExpired(ts: number): boolean {
+const isExpired = (ts: number): boolean => {
   return ts * 1000 < Date.now()
 }
 
@@ -61,13 +62,13 @@ const getCoupons = async () => {
   }
 }
 
-function openCreate() {
+const openCreate = () => {
   editingId.value = ''
   Object.assign(form, { ...defaultForm })
   modalOpen.value = true
 }
 
-function openEdit(coupon: Coupon) {
+const openEdit = (coupon: Coupon) => {
   editingId.value = coupon.id
   Object.assign(form, {
     title: coupon.title,
@@ -79,7 +80,7 @@ function openEdit(coupon: Coupon) {
   modalOpen.value = true
 }
 
-async function handleSave() {
+const handleSave = async () => {
   saving.value = true
   try {
     const dueTs = form.due_date ? Math.floor(new Date(form.due_date).getTime() / 1000) : 0
@@ -106,12 +107,12 @@ async function handleSave() {
   }
 }
 
-function openDelete(coupon: Coupon) {
+const openDelete = (coupon: Coupon) => {
   deletingCoupon.value = coupon
   deleteModalOpen.value = true
 }
 
-async function handleDelete() {
+const handleDelete = async () => {
   if (!deletingCoupon.value) return
   deleting.value = true
   try {
@@ -138,119 +139,87 @@ onMounted(() => {
     <div class="mb-6 flex items-center justify-between">
       <p class="text-bark-500 text-sm">共 {{ coupons.length }} 筆優惠券</p>
       <VButton @click="openCreate">
-        <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M12 4v16m8-8H4"
-          />
-        </svg>
+        <IconPlus class="size-4" />
         新增優惠券
       </VButton>
     </div>
 
-    <VLoading v-if="loading" />
-
     <!-- Table -->
-    <div v-else class="border-bark-100 overflow-hidden rounded-xl border bg-white shadow-sm">
-      <table class="w-full table-fixed text-sm">
-        <thead>
-          <tr class="bg-primary-dark">
-            <th class="px-5 py-3.5 text-center font-medium text-white/60">名稱</th>
-            <th class="px-5 py-3.5 text-center font-medium text-white/60">優惠碼</th>
-            <th class="px-5 py-3.5 text-center font-medium text-white/60">折扣</th>
-            <th class="px-5 py-3.5 text-center font-medium text-white/60">到期日</th>
-            <th class="px-5 py-3.5 text-center font-medium text-white/60">狀態</th>
-            <th class="px-5 py-3.5 text-center font-medium text-white/60">操作</th>
-          </tr>
-        </thead>
-        <tbody class="divide-bark-100 divide-y">
-          <tr v-if="!coupons.length">
-            <td colspan="6" class="text-bark-400 px-5 py-12 text-center">尚無優惠券資料</td>
-          </tr>
-          <tr v-for="coupon in coupons" :key="coupon.id" class="hover:bg-bark-50 transition-colors">
-            <!-- Title -->
-            <td class="text-bark-800 px-5 py-3 text-center font-medium">
-              {{ coupon.title }}
-            </td>
-            <!-- Code -->
-            <td class="px-5 py-3 text-center">
-              <code
-                class="bg-primary-dark/10 text-primary-dark rounded px-2 py-0.5 font-mono text-xs"
-              >
-                {{ coupon.code }}
-              </code>
-            </td>
-            <!-- Percent -->
-            <td class="text-primary-dark px-5 py-3 text-center font-medium">
-              {{ coupon.percent }}%
-            </td>
-            <!-- Due Date -->
-            <td class="px-5 py-3 text-center">
-              <span :class="isExpired(coupon.due_date) ? 'text-terra-500' : 'text-bark-600'">
-                {{ formatDate(coupon.due_date) }}
-              </span>
-              <span v-if="isExpired(coupon.due_date)" class="text-terra-400 ml-1 text-xs">
-                已過期
-              </span>
-            </td>
-            <!-- Status -->
-            <td class="px-5 py-3 text-center">
-              <span
-                :class="[
-                  'inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium',
-                  coupon.is_enabled
-                    ? 'bg-primary-dark/10 text-primary-dark'
-                    : 'bg-bark-100 text-bark-500'
-                ]"
-              >
-                <span
-                  :class="[
-                    'size-1.5 rounded-full',
-                    coupon.is_enabled ? 'bg-primary-dark' : 'bg-bark-400'
-                  ]"
-                />
-                {{ coupon.is_enabled ? '啟用' : '停用' }}
-              </span>
-            </td>
-            <!-- Actions -->
-            <td class="px-5 py-3">
-              <div class="flex items-center justify-center gap-1">
-                <button
-                  class="text-bark-400 hover:bg-primary-dark/10 hover:text-primary-dark rounded-lg p-2 transition-colors"
-                  title="編輯"
-                  @click="openEdit(coupon)"
-                >
-                  <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                    />
-                  </svg>
-                </button>
-                <button
-                  class="text-bark-400 hover:bg-terra-50 hover:text-terra-500 rounded-lg p-2 transition-colors"
-                  title="刪除"
-                  @click="openDelete(coupon)"
-                >
-                  <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                    />
-                  </svg>
-                </button>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <AdminDataTable
+      :columns="[
+        { label: '名稱' },
+        { label: '優惠碼' },
+        { label: '折扣' },
+        { label: '到期日' },
+        { label: '狀態' },
+        { label: '操作' }
+      ]"
+      :items="coupons"
+      :loading="loading"
+      v-slot="{ item: coupon }"
+    >
+      <tr :key="coupon.id" class="hover:bg-bark-50 transition-colors">
+        <!-- Title -->
+        <td>
+          {{ coupon.title }}
+        </td>
+        <!-- Code -->
+        <td>
+          <code class="bg-primary-dark/10 text-primary-dark rounded px-2 py-0.5 text-xs">
+            {{ coupon.code }}
+          </code>
+        </td>
+        <!-- Percent -->
+        <td>{{ coupon.percent }}%</td>
+        <!-- Due Date -->
+        <td>
+          <span :class="isExpired(coupon.due_date) ? 'text-terra-500' : ''">
+            {{ formatDate(coupon.due_date) }}
+          </span>
+          <span v-if="isExpired(coupon.due_date)" class="text-terra-400 ml-1 text-xs">
+            已過期
+          </span>
+        </td>
+        <!-- Status -->
+        <td>
+          <span
+            :class="[
+              'inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium',
+              coupon.is_enabled
+                ? 'bg-primary-dark/10 text-primary-dark'
+                : 'bg-bark-100 text-bark-500'
+            ]"
+          >
+            <span
+              :class="[
+                'size-1.5 rounded-full',
+                coupon.is_enabled ? 'bg-primary-dark' : 'bg-bark-400'
+              ]"
+            />
+            {{ coupon.is_enabled ? '啟用' : '停用' }}
+          </span>
+        </td>
+        <!-- Actions -->
+        <td>
+          <div class="flex items-center justify-center gap-1">
+            <button
+              class="hover:bg-primary-dark/10 cursor-pointer rounded-lg p-2 transition-colors"
+              title="編輯"
+              @click="openEdit(coupon)"
+            >
+              <IconPencil class="size-4" />
+            </button>
+            <button
+              class="hover:bg-terra-100 hover:text-terra-500 cursor-pointer rounded-lg p-2 transition-colors"
+              title="刪除"
+              @click="openDelete(coupon)"
+            >
+              <IconTrash class="size-4" />
+            </button>
+          </div>
+        </td>
+      </tr>
+    </AdminDataTable>
 
     <!-- Add/Edit Modal -->
     <VModal v-model:open="modalOpen" :title="editingId ? '編輯優惠券' : '新增優惠券'">

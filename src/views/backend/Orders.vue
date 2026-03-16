@@ -6,7 +6,8 @@ import { formatMoney } from '@/utils'
 import type { Order } from '@/types'
 import VButton from '@/components/ui/VButton.vue'
 import VModal from '@/components/ui/VModal.vue'
-import VLoading from '@/components/ui/VLoading.vue'
+import AdminDataTable from '@/components/backend/AdminDataTable.vue'
+import IconEye from '@/components/icons/IconEye.vue'
 
 const notification = useNotificationStore()
 const loadingStore = useLoadingStore()
@@ -14,11 +15,10 @@ const loadingStore = useLoadingStore()
 const orders = ref<Order[]>([])
 const loading = ref(true)
 const updatingId = ref('')
-
 const detailOpen = ref(false)
 const selectedOrder = ref<Order | null>(null)
 
-function formatDate(ts: number): string {
+const formatDate = (ts: number): string => {
   return new Date(ts * 1000).toLocaleDateString('zh-TW', {
     year: 'numeric',
     month: '2-digit',
@@ -54,12 +54,12 @@ const togglePaid = async (item: Order) => {
   }
 }
 
-function openDetail(order: Order) {
+const openDetail = (order: Order) => {
   selectedOrder.value = order
   detailOpen.value = true
 }
 
-function productList(order: Order) {
+const productList = (order: Order) => {
   return Object.values(order.products)
 }
 
@@ -75,108 +75,79 @@ onMounted(() => {
       <p class="text-bark-500 text-sm">共 {{ orders.length }} 筆訂單</p>
     </div>
 
-    <VLoading v-if="loading" />
-
     <!-- Table -->
-    <div v-else class="border-bark-100 overflow-hidden rounded-xl border bg-white shadow-sm">
-      <table class="w-full table-fixed text-sm">
-        <thead>
-          <tr class="bg-primary-dark">
-            <th class="px-5 py-3.5 text-center font-medium text-white/60">訂單編號</th>
-            <th class="px-5 py-3.5 text-center font-medium text-white/60">收件人</th>
-            <th class="px-5 py-3.5 text-center font-medium text-white/60">Email</th>
-            <th class="px-5 py-3.5 text-center font-medium text-white/60">總金額</th>
-            <th class="px-5 py-3.5 text-center font-medium text-white/60">付款狀態</th>
-            <th class="px-5 py-3.5 text-center font-medium text-white/60">建立時間</th>
-            <th class="px-5 py-3.5 text-center font-medium text-white/60">操作</th>
-          </tr>
-        </thead>
-        <tbody class="divide-bark-100 divide-y">
-          <tr v-if="!orders.length">
-            <td colspan="7" class="text-bark-400 px-5 py-12 text-center">尚無訂單資料</td>
-          </tr>
-          <tr v-for="order in orders" :key="order.id" class="hover:bg-bark-50 transition-colors">
-            <!-- ID -->
-            <td class="px-5 py-3 text-center">
-              <button
-                class="text-primary-dark hover:text-primary font-mono text-xs transition-colors hover:underline"
-                @click="openDetail(order)"
-              >
-                {{ order.id.slice(0, 8) }}...
-              </button>
-            </td>
-            <!-- Name -->
-            <td class="text-bark-800 px-5 py-3 text-center font-medium">
-              {{ order.user?.name }}
-            </td>
-            <!-- Email -->
-            <td class="text-bark-600 px-5 py-3 text-center">
-              {{ order.user?.email }}
-            </td>
-            <!-- Total -->
-            <td class="text-primary-dark px-5 py-3 text-center font-medium">
-              {{ formatMoney(order.total) }}
-            </td>
-            <!-- Paid Status -->
-            <td class="px-5 py-3 text-center">
-              <button
-                :disabled="updatingId === order.id"
-                class="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium transition-colors disabled:opacity-50"
-                :class="
-                  order.is_paid
-                    ? 'bg-primary-dark/10 text-primary-dark hover:bg-primary-dark/20'
-                    : 'bg-terra-50 text-terra-600 hover:bg-terra-100'
-                "
-                @click="togglePaid(order)"
-              >
-                <span
-                  v-if="updatingId === order.id"
-                  class="size-3 animate-spin rounded-full border-2 border-current border-t-transparent"
-                />
-                <template v-else>
-                  <span
-                    :class="[
-                      'size-1.5 rounded-full',
-                      order.is_paid ? 'bg-primary-dark' : 'bg-terra-500'
-                    ]"
-                  />
-                  {{ order.is_paid ? '已付款' : '未付款' }}
-                </template>
-              </button>
-            </td>
-            <!-- Date -->
-            <td class="text-bark-500 px-5 py-3 text-center">
-              {{ formatDate(order.create_at) }}
-            </td>
-            <!-- Actions -->
-            <td class="px-5 py-3">
-              <div class="flex justify-center">
-                <button
-                  class="text-bark-400 hover:bg-primary-dark/10 hover:text-primary-dark rounded-lg p-2 transition-colors"
-                  title="查看詳情"
-                  @click="openDetail(order)"
-                >
-                  <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                    />
-                  </svg>
-                </button>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <AdminDataTable
+      :columns="[
+        { label: '訂單編號' },
+        { label: '收件人' },
+        { label: 'Email' },
+        { label: '總金額' },
+        { label: '付款狀態' },
+        { label: '建立時間' },
+        { label: '操作' }
+      ]"
+      :items="orders"
+      :loading="loading"
+      v-slot="{ item: order }"
+    >
+      <tr :key="order.id" class="hover:bg-bark-50 transition-colors">
+        <!-- ID -->
+        <td>{{ order.id.slice(0, 10) }}...</td>
+        <!-- Name -->
+        <td>
+          {{ order.user?.name }}
+        </td>
+        <!-- Email -->
+        <td>
+          {{ order.user?.email }}
+        </td>
+        <!-- Total -->
+        <td>
+          {{ formatMoney(order.total) }}
+        </td>
+        <!-- Paid Status -->
+        <td>
+          <button
+            :disabled="updatingId === order.id"
+            class="inline-flex cursor-pointer items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium transition-colors disabled:opacity-50"
+            :class="
+              order.is_paid
+                ? 'bg-primary-dark/10 text-primary-dark hover:bg-primary-dark/20'
+                : 'bg-terra-50 text-terra-600 hover:bg-terra-100'
+            "
+            @click="togglePaid(order)"
+          >
+            <span
+              v-if="updatingId === order.id"
+              class="size-3 animate-spin rounded-full border-2 border-current border-t-transparent"
+            />
+            <template v-else>
+              <span
+                :class="[
+                  'size-1.5 rounded-full',
+                  order.is_paid ? 'bg-primary-dark' : 'bg-terra-500'
+                ]"
+              />
+              {{ order.is_paid ? '已付款' : '未付款' }}
+            </template>
+          </button>
+        </td>
+        <!-- Date -->
+        <td>
+          {{ formatDate(order.create_at) }}
+        </td>
+        <!-- Actions -->
+        <td>
+          <button
+            class="hover:bg-primary-dark/10 cursor-pointer rounded-lg p-2 transition-colors"
+            title="查看詳情"
+            @click="openDetail(order)"
+          >
+            <IconEye class="size-4" />
+          </button>
+        </td>
+      </tr>
+    </AdminDataTable>
 
     <!-- Detail Modal -->
     <VModal v-model:open="detailOpen" title="訂單詳情" size="lg">
