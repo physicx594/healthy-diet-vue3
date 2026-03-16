@@ -3,9 +3,10 @@ import { ref, onMounted } from 'vue'
 import { ordersApi } from '@/api'
 import { useNotificationStore, useLoadingStore } from '@/stores'
 import { formatMoney } from '@/utils'
-import type { Order } from '@/types'
+import type { Order, Pagination as PaginationType } from '@/types'
 import VButton from '@/components/ui/VButton.vue'
 import VModal from '@/components/ui/VModal.vue'
+import VPagination from '@/components/ui/VPagination.vue'
 import AdminDataTable from '@/components/backend/AdminDataTable.vue'
 import IconEye from '@/components/icons/IconEye.vue'
 
@@ -13,6 +14,8 @@ const notification = useNotificationStore()
 const loadingStore = useLoadingStore()
 
 const orders = ref<Order[]>([])
+const pagination = ref<Partial<PaginationType>>({})
+const currentPage = ref(1)
 const loading = ref(true)
 const updatingId = ref('')
 const detailOpen = ref(false)
@@ -28,11 +31,13 @@ const formatDate = (ts: number): string => {
   })
 }
 
-const getOrders = async () => {
+const getOrders = async (page = 1) => {
+  currentPage.value = page
   loading.value = true
   try {
-    const res = await ordersApi.getAdminAll()
+    const res = await ordersApi.getAdminAll(page)
     orders.value = res.data.orders
+    pagination.value = res.data.pagination
   } catch {
     notification.show('取得訂單失敗', 'error')
   } finally {
@@ -46,7 +51,7 @@ const togglePaid = async (item: Order) => {
   try {
     await ordersApi.updateAdmin(item.id, { is_paid: !item.is_paid })
     notification.show('修改成功')
-    await getOrders()
+    await getOrders(currentPage.value)
   } catch {
     notification.show('操作失敗', 'error')
   } finally {
@@ -148,6 +153,15 @@ onMounted(() => {
         </td>
       </tr>
     </AdminDataTable>
+
+    <!-- Pagination -->
+    <div class="mt-4">
+      <VPagination
+        v-if="(pagination as PaginationType).total_pages"
+        :pagination="pagination as PaginationType"
+        @change-page="getOrders"
+      />
+    </div>
 
     <!-- Detail Modal -->
     <VModal v-model:open="detailOpen" title="訂單詳情" size="lg">

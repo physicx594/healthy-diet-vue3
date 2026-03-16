@@ -2,10 +2,11 @@
 import { ref, reactive, onMounted } from 'vue'
 import { couponsApi } from '@/api'
 import { useNotificationStore, useLoadingStore } from '@/stores'
-import type { Coupon } from '@/types'
+import type { Coupon, Pagination as PaginationType } from '@/types'
 import VButton from '@/components/ui/VButton.vue'
 import VInput from '@/components/ui/VInput.vue'
 import VModal from '@/components/ui/VModal.vue'
+import VPagination from '@/components/ui/VPagination.vue'
 import AdminDataTable from '@/components/backend/AdminDataTable.vue'
 import IconPlus from '@/components/icons/IconPlus.vue'
 import IconPencil from '@/components/icons/IconPencil.vue'
@@ -15,6 +16,7 @@ const notification = useNotificationStore()
 const loadingStore = useLoadingStore()
 
 const coupons = ref<Coupon[]>([])
+const pagination = ref<Partial<PaginationType>>({})
 const loading = ref(true)
 const saving = ref(false)
 const modalOpen = ref(false)
@@ -49,11 +51,12 @@ const isExpired = (ts: number): boolean => {
   return ts * 1000 < Date.now()
 }
 
-const getCoupons = async () => {
+const getCoupons = async (page = 1) => {
   loading.value = true
   try {
-    const res = await couponsApi.getAdminAll()
+    const res = await couponsApi.getAdminAll(page)
     coupons.value = res.data.coupons
+    pagination.value = res.data.pagination
   } catch {
     notification.show('取得優惠券失敗', 'error')
   } finally {
@@ -220,6 +223,15 @@ onMounted(() => {
         </td>
       </tr>
     </AdminDataTable>
+
+    <!-- Pagination -->
+    <div class="mt-4">
+      <VPagination
+        v-if="(pagination as PaginationType).total_pages"
+        :pagination="pagination as PaginationType"
+        @change-page="getCoupons"
+      />
+    </div>
 
     <!-- Add/Edit Modal -->
     <VModal v-model:open="modalOpen" :title="editingId ? '編輯優惠券' : '新增優惠券'">

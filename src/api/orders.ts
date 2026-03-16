@@ -14,8 +14,8 @@ export const ordersApi = {
     return apiClient.post(`/api/${uuid}/pay/${id}`)
   },
   // Admin
-  getAdminAll() {
-    return apiClient.get<OrdersResponse>(`/api/${uuid}/admin/orders`)
+  getAdminAll(page = 1) {
+    return apiClient.get<OrdersResponse>(`/api/${uuid}/admin/orders?page=${page}`)
   },
   updateAdmin(id: string, data: Record<string, unknown>) {
     return apiClient.put(`/api/${uuid}/admin/order/${id}`, { data })

@@ -8,8 +8,8 @@ export const couponsApi = {
     return apiClient.post<CouponApplyResponse>(`/api/${uuid}/coupon`, { data: { code } })
   },
   // Admin
-  getAdminAll() {
-    return apiClient.get<CouponsResponse>(`/api/${uuid}/admin/coupons`)
+  getAdminAll(page = 1) {
+    return apiClient.get<CouponsResponse>(`/api/${uuid}/admin/coupons?page=${page}`)
   },
   create(data: Record<string, unknown>) {
     return apiClient.post(`/api/${uuid}/admin/coupon`, { data })
