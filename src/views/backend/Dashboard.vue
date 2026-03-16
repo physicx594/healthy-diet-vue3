@@ -8,6 +8,12 @@ const route = useRoute()
 
 const navItems = [
   {
+    to: '/admin',
+    label: '總覽',
+    icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6',
+    exact: true
+  },
+  {
     to: '/admin/products',
     label: '商品管理',
     icon: 'M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4'
@@ -24,12 +30,12 @@ const navItems = [
   }
 ]
 
-function isActive(path: string) {
-  return route.path.startsWith(path)
+const isActive = (item: { to: string; exact?: boolean }) => {
+  return item.exact ? route.path === item.to : route.path.startsWith(item.to)
 }
 
-function currentLabel() {
-  return navItems.find((n) => isActive(n.to))?.label ?? '管理後台'
+const currentLabel = () => {
+  return navItems.find((n) => isActive(n))?.label ?? '管理後台'
 }
 </script>
 
@@ -56,7 +62,7 @@ function currentLabel() {
           :to="item.to"
           :class="[
             'flex cursor-pointer items-center gap-3 rounded-md px-3 py-2.5 text-sm transition-colors',
-            isActive(item.to)
+            isActive(item)
               ? 'bg-white/15 font-medium text-white'
               : 'text-white/60 hover:bg-white/10 hover:text-white/90'
           ]"

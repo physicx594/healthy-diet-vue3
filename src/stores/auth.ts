@@ -12,7 +12,7 @@ export const useAuthStore = defineStore('auth', () => {
     const { token, expired } = res.data
     setCookie('token', token, new Date(expired * 1000))
     isAuthenticated.value = true
-    router.push('/admin/products')
+    router.push('/admin')
   }
 
   const checkAuth = async (): Promise<boolean> => {

@@ -33,6 +33,7 @@ const router = createRouter({
       component: () => import('@/views/backend/Dashboard.vue'),
       meta: { requiresAuth: true },
       children: [
+        { path: '', name: 'admin-overview', component: () => import('@/views/backend/Overview.vue') },
         { path: 'products', name: 'admin-products', component: () => import('@/views/backend/Products.vue') },
         { path: 'orders', name: 'admin-orders', component: () => import('@/views/backend/Orders.vue') },
         { path: 'coupons', name: 'admin-coupons', component: () => import('@/views/backend/Coupons.vue') }
@@ -51,7 +52,7 @@ router.beforeEach(async (to, from) => {
   // 進入登入頁：check 通過直接導後台，不通過留在登入頁
   if (to.name === 'login') {
     const isValid = await auth.checkAuth()
-    if (isValid) return { name: 'admin-products' }
+    if (isValid) return { name: 'admin-overview' }
     return true
   }
 
