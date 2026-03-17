@@ -99,10 +99,10 @@ onUnmounted(() => {
               <i class="fa-solid fa-bag-shopping text-base"></i>
             </span>
             <div
-              v-if="cartStore.items.length > 0"
+              v-if="cartStore.totalQty > 0"
               class="absolute -top-0.5 -right-0.5 cart-badge rounded-full text-center text-xs bg-contrast text-white font-bold"
             >
-              {{ cartStore.items.length }}
+              {{ cartStore.totalQty }}
             </div>
           </li>
         </ul>
@@ -143,8 +143,8 @@ onUnmounted(() => {
                 <a href="#" class="block text-lg font-medium py-3 px-4 rounded-xl text-text hover:bg-bg-dark hover:text-primary transition-all" @click.prevent="openCart = true; show = false">
                   <i class="fa-solid fa-bag-shopping w-6 mr-3 text-primary-light"></i>
                   購物車
-                  <span v-if="cartStore.items.length > 0" class="ml-2 inline-flex items-center justify-center w-6 h-6 rounded-full bg-contrast text-white text-xs font-bold">
-                    {{ cartStore.items.length }}
+                  <span v-if="cartStore.totalQty > 0" class="ml-2 inline-flex items-center justify-center w-6 h-6 rounded-full bg-contrast text-white text-xs font-bold">
+                    {{ cartStore.totalQty }}
                   </span>
                 </a>
               </li>

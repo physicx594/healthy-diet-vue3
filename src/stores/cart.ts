@@ -9,6 +9,8 @@ export const useCartStore = defineStore('cart', () => {
   const openMsg = ref(false)
   const joinMsg = ref(true)
 
+  const totalQty = computed(() => items.value.reduce((sum, item) => sum + item.qty, 0))
+
   const totalPrice = computed(() =>
     items.value.reduce((sum, item) => {
       const price = item.product.price || item.product.origin_price
@@ -67,6 +69,7 @@ export const useCartStore = defineStore('cart', () => {
 
   return {
     items,
+    totalQty,
     totalPrice,
     shippingFee,
     openMsg,
