@@ -1,26 +1,10 @@
-<script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import { useLoadingStore } from '@/stores'
-const loadingStore = useLoadingStore()
-const showCheck = ref(false)
-
-onMounted(() => {
-  loadingStore.setLoading(true)
-  setTimeout(() => {
-    loadingStore.setLoading(false)
-    setTimeout(() => { showCheck.value = true }, 200)
-  }, 800)
-})
-</script>
-
 <template>
   <div class="flex-1 flex items-center justify-center px-6 pt-16">
       <div class="text-center max-w-md">
         <!-- Animated checkmark -->
         <div class="mb-8">
           <div
-            class="w-24 h-24 mx-auto rounded-full bg-primary/10 flex items-center justify-center"
-            :class="showCheck ? 'animate-check-bounce' : 'opacity-0'"
+            class="w-24 h-24 mx-auto rounded-full bg-primary/10 flex items-center justify-center animate-check-bounce"
           >
             <i class="fa-solid fa-check text-4xl text-primary"></i>
           </div>
@@ -44,7 +28,7 @@ onMounted(() => {
         </div>
 
         <!-- Confetti-like decorative dots -->
-        <div class="relative mt-16 h-8" :class="showCheck ? 'opacity-100' : 'opacity-0'" style="transition: opacity 1s ease 0.5s;">
+        <div class="relative mt-16 h-8">
           <span class="absolute left-1/4 top-0 w-2 h-2 rounded-full bg-primary-light animate-bounce" style="animation-delay: 0s;"></span>
           <span class="absolute left-1/3 top-2 w-1.5 h-1.5 rounded-full bg-secondary animate-bounce" style="animation-delay: 0.2s;"></span>
           <span class="absolute left-1/2 top-0 w-2.5 h-2.5 rounded-full bg-accent animate-bounce" style="animation-delay: 0.1s;"></span>

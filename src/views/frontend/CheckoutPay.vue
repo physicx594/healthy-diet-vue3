@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { useCartStore } from '@/stores'
 import { ordersApi } from '@/api'
 import { formatMoney, truncateOrderId } from '@/utils'
 import type { Order } from '@/types'
@@ -9,7 +8,6 @@ import CheckoutNav from '@/components/frontend/CheckoutNav.vue'
 
 const route = useRoute()
 const router = useRouter()
-const cartStore = useCartStore()
 
 const order = ref<Order | null>(null)
 const open = ref(false)
@@ -18,7 +16,6 @@ const getOrder = async (id: string) => {
   try {
     const res = await ordersApi.get(id)
     order.value = res.data.order
-    await cartStore.getCart()
   } catch (error) {
     console.error('Failed to fetch order:', error)
   }

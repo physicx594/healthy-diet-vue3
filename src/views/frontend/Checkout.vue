@@ -1,11 +1,14 @@
 <script setup lang="ts">
-import { reactive, onMounted } from 'vue'
+import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { useForm, useField } from 'vee-validate'
-import { ordersApi, cartApi } from '@/api'
+import { useCartStore } from '@/stores'
+import { ordersApi } from '@/api'
 import CheckoutNav from '@/components/frontend/CheckoutNav.vue'
 
 const router = useRouter()
+const cartStore = useCartStore()
+
 const { handleSubmit, meta } = useForm()
 
 const nameField = useField('name', (value: string) => {
@@ -47,11 +50,8 @@ const createOrder = handleSubmit(async () => {
     message: form.message
   }
   const res = await ordersApi.create(orderData)
+  await cartStore.clearCart()
   router.push({ name: 'checkoutPay', params: { orderId: res.data.orderId } })
-})
-
-onMounted(async () => {
-  await cartApi.get()
 })
 </script>
 

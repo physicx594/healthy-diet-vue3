@@ -16,9 +16,7 @@ export const useCartStore = defineStore('cart', () => {
     }, 0)
   )
 
-  const shippingFee = computed(() =>
-    totalPrice.value > 3000 ? 0 : 200
-  )
+  const shippingFee = computed(() => (totalPrice.value > 3000 ? 0 : 200))
 
   const getCart = async () => {
     const loading = useLoadingStore()
@@ -36,7 +34,9 @@ export const useCartStore = defineStore('cart', () => {
       await getCart()
       openMsg.value = true
       joinMsg.value = true
-      setTimeout(() => { openMsg.value = false }, 2500)
+      setTimeout(() => {
+        openMsg.value = false
+      }, 2500)
     } catch {
       openMsg.value = true
       joinMsg.value = false
@@ -61,8 +61,20 @@ export const useCartStore = defineStore('cart', () => {
     await getCart()
   }
 
+  const clearCart = async () => {
+    items.value = []
+  }
+
   return {
-    items, totalPrice, shippingFee, openMsg, joinMsg,
-    getCart, addToCart, deleteItem, changeQuantity
+    items,
+    totalPrice,
+    shippingFee,
+    openMsg,
+    joinMsg,
+    getCart,
+    addToCart,
+    deleteItem,
+    changeQuantity,
+    clearCart
   }
 })
