@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import { useCartStore, useLoadingStore } from '@/stores'
 import { formatMoney } from '@/utils'
 import { couponsApi } from '@/api'
@@ -35,10 +35,6 @@ const delItem = (id: string) => {
   cartStore.deleteItem(id)
 }
 
-onMounted(() => {
-  loadingStore.setLoading(true)
-  setTimeout(() => loadingStore.setLoading(false), 1000)
-})
 </script>
 
 <template>

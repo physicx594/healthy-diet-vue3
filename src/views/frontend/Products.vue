@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
-import { useProductsStore, useCartStore, useLoadingStore } from '@/stores'
+import { useProductsStore, useCartStore } from '@/stores'
 import { formatMoney } from '@/utils'
 import PageHeader from '@/components/frontend/PageHeader.vue'
 import Pagination from '@/components/shared/Pagination.vue'
@@ -9,7 +9,6 @@ import Pagination from '@/components/shared/Pagination.vue'
 const route = useRoute()
 const productsStore = useProductsStore()
 const cartStore = useCartStore()
-const loadingStore = useLoadingStore()
 
 const category = ref('全部商品')
 const searchQuery = ref('')
@@ -52,7 +51,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div v-if="!loadingStore.isLoading">
+  <div>
     <PageHeader
       title="Products"
       subtitle="享受蔬食的喜悅與美好"

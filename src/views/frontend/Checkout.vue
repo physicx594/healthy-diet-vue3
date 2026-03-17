@@ -2,13 +2,10 @@
 import { reactive, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useForm, useField } from 'vee-validate'
-import { useLoadingStore } from '@/stores'
 import { ordersApi, cartApi } from '@/api'
 import CheckoutNav from '@/components/frontend/CheckoutNav.vue'
 
 const router = useRouter()
-const loadingStore = useLoadingStore()
-
 const { handleSubmit, meta } = useForm()
 
 const nameField = useField('name', (value: string) => {
@@ -54,9 +51,7 @@ const createOrder = handleSubmit(async () => {
 })
 
 onMounted(async () => {
-  loadingStore.setLoading(true)
   await cartApi.get()
-  loadingStore.setLoading(false)
 })
 </script>
 

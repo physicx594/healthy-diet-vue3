@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { useCartStore, useLoadingStore } from '@/stores'
+import { useCartStore } from '@/stores'
 import { ordersApi } from '@/api'
 import { formatMoney, truncateOrderId } from '@/utils'
 import type { Order } from '@/types'
@@ -10,19 +10,17 @@ import CheckoutNav from '@/components/frontend/CheckoutNav.vue'
 const route = useRoute()
 const router = useRouter()
 const cartStore = useCartStore()
-const loadingStore = useLoadingStore()
 
 const order = ref<Order | null>(null)
 const open = ref(false)
 
 const getOrder = async (id: string) => {
-  loadingStore.setLoading(true)
   try {
     const res = await ordersApi.get(id)
     order.value = res.data.order
     await cartStore.getCart()
-  } finally {
-    loadingStore.setLoading(false)
+  } catch (error) {
+    console.error('Failed to fetch order:', error)
   }
 }
 
@@ -48,7 +46,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div v-if="!loadingStore.isLoading" class="container mx-auto px-6">
+  <div class="container mx-auto px-6">
       <CheckoutNav :step1="true" :step2="true" :step3="true" />
 
       <div class="max-w-3xl mx-auto mb-16 space-y-6">
@@ -130,7 +128,7 @@ onMounted(async () => {
               @click="paying"
             >
               <i class="fa-solid fa-credit-card"></i>
-              確定付款
+              {{ order?.is_paid ? '已付款' : '立即付款' }}
             </button>
           </div>
         </div>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
-import { useCartStore, useLoadingStore } from '@/stores'
+import { useCartStore } from '@/stores'
 import { productsApi } from '@/api'
 import { formatMoney } from '@/utils'
 import type { Product } from '@/types'
@@ -10,7 +10,6 @@ import SwiperCarousel from '@/components/frontend/SwiperCarousel.vue'
 
 const route = useRoute()
 const cartStore = useCartStore()
-const loadingStore = useLoadingStore()
 
 const tempProduct = ref<Product & { quantity: number }>({
   id: '',
@@ -45,12 +44,10 @@ const addToCart = () => {
 }
 
 onMounted(async () => {
-  loadingStore.setLoading(true)
   const { id } = route.params
   const res = await productsApi.getOne(id as string)
   tempProduct.value = { ...res.data.product, quantity: 1 }
   selectPic.value = tempProduct.value.imageUrl[0] ?? ''
-  loadingStore.setLoading(false)
 })
 </script>
 
