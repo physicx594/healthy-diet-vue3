@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
-import { useProductsStore, useCartStore } from '@/stores'
+import { useProductsStore, useCartStore, useLoadingStore } from '@/stores'
 import { formatMoney } from '@/utils'
 import PageHeader from '@/components/frontend/PageHeader.vue'
 import Pagination from '@/components/shared/Pagination.vue'
+import ProductCardSkeleton from '@/components/frontend/ProductCardSkeleton.vue'
 
 const route = useRoute()
 const productsStore = useProductsStore()
 const cartStore = useCartStore()
+const loadingStore = useLoadingStore()
 
 const category = ref('全部商品')
 const searchQuery = ref('')
@@ -110,8 +112,13 @@ onMounted(() => {
           <span class="label-text text-text-light/40">Curated Selection</span>
         </div>
 
+        <!-- Skeleton Grid -->
+        <div v-if="!loadingStore.isLoading" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
+          <ProductCardSkeleton v-for="n in 8" :key="`skeleton-${n}`" />
+        </div>
+
         <!-- Grid -->
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
+        <div v-else class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
           <article
             v-for="(item, index) in filteredProducts"
             :key="item.id"
@@ -190,7 +197,7 @@ onMounted(() => {
         </div>
 
         <!-- Empty State -->
-        <div v-if="filteredProducts.length === 0" class="flex flex-col items-center justify-center py-28">
+        <div v-if="!loadingStore.isLoading && filteredProducts.length === 0" class="flex flex-col items-center justify-center py-28">
           <div class="w-20 h-20 rounded-full bg-primary/5 flex items-center justify-center mb-6">
             <i class="fa-solid fa-seedling text-3xl text-primary/25"></i>
           </div>

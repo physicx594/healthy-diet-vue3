@@ -1,6 +1,7 @@
 <script setup lang="ts" generic="T extends object">
 import { ref, computed } from 'vue'
 import IconChevronUp from '@/components/icons/IconChevronUp.vue'
+import Skeleton from '@/components/shared/Skeleton.vue'
 
 interface Column {
   label: string
@@ -78,7 +79,7 @@ const sortedItems = computed(() => {
         <template v-if="loading">
           <tr v-for="i in 10" :key="i">
             <td :colspan="columns.length">
-              <div class="bg-bark-100 h-8 animate-pulse rounded-lg" />
+              <Skeleton :class="'h-8'" />
             </td>
           </tr>
         </template>
