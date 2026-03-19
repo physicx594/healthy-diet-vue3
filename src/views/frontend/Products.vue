@@ -113,7 +113,7 @@ onMounted(() => {
         </div>
 
         <!-- Skeleton Grid -->
-        <div v-if="!loadingStore.isLoading" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
+        <div v-if="loadingStore.isLoading" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
           <ProductCardSkeleton v-for="n in 8" :key="`skeleton-${n}`" />
         </div>
 
