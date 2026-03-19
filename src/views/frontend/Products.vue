@@ -209,19 +209,6 @@ onMounted(() => {
         </div>
       </div>
     </section>
-
-    <!-- Add to cart toast -->
-    <Transition name="toast">
-      <div
-        v-if="cartStore.openMsg"
-        class="fixed top-24 right-4 px-5 py-3.5 rounded-xl text-white text-sm shadow-lg z-cart flex items-center gap-3 backdrop-blur-sm"
-        :class="cartStore.joinMsg ? 'bg-primary/95' : 'bg-contrast/95'"
-      >
-        <i :class="cartStore.joinMsg ? 'fa-solid fa-check-circle' : 'fa-solid fa-info-circle'" class="text-base"></i>
-        <span v-if="cartStore.joinMsg">成功加入購物車</span>
-        <span v-else>該商品已在購物車中，請至購物車修改數量。</span>
-      </div>
-    </Transition>
   </div>
 </template>
 

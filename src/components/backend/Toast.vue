@@ -4,7 +4,10 @@ import { useNotificationStore } from '@/stores'
 
 const notification = useNotificationStore()
 
-const isError = computed(() => notification.current?.type === 'error')
+const latest = computed(
+  () => notification.notifications[notification.notifications.length - 1],
+)
+const isError = computed(() => latest.value?.type === 'error')
 </script>
 
 <template>
@@ -15,7 +18,7 @@ const isError = computed(() => notification.current?.type === 'error')
         leave-active-class="animate__animated animate__fadeOutUp"
       >
         <div
-          v-if="notification.current"
+          v-if="latest"
           class="mt-3 rounded-md flex justify-center items-center w-87.5 h-11 mx-auto"
           :class="isError ? 'bg-red-600' : 'bg-green-600'"
         >
@@ -23,7 +26,7 @@ const isError = computed(() => notification.current?.type === 'error')
             <i v-if="isError" class="fas fa-ban fa-2x text-white pt-0.5"></i>
             <i v-else class="far fa-check-circle fa-2x text-white pt-0.5"></i>
           </div>
-          <div class="text-xl font-bold text-white">{{ notification.current.message }}</div>
+          <div class="text-xl font-bold text-white">{{ latest.message }}</div>
         </div>
       </Transition>
     </div>

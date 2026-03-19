@@ -3,11 +3,10 @@ import { ref, computed } from 'vue'
 import { cartApi } from '@/api'
 import type { CartItem } from '@/types'
 import { useLoadingStore } from './loading'
+import { useNotificationStore } from './notification'
 
 export const useCartStore = defineStore('cart', () => {
   const items = ref<CartItem[]>([])
-  const openMsg = ref(false)
-  const joinMsg = ref(true)
 
   const totalQty = computed(() => items.value.reduce((sum, item) => sum + item.qty, 0))
 
@@ -31,21 +30,13 @@ export const useCartStore = defineStore('cart', () => {
   }
 
   const addToCart = async (productId: string, qty = 1) => {
+    const notification = useNotificationStore()
     try {
       await cartApi.add(productId, qty)
       await getCart()
-      openMsg.value = true
-      joinMsg.value = true
-      setTimeout(() => {
-        openMsg.value = false
-      }, 2500)
+      notification.show('成功加入購物車')
     } catch {
-      openMsg.value = true
-      joinMsg.value = false
-      setTimeout(() => {
-        openMsg.value = false
-        joinMsg.value = true
-      }, 2500)
+      notification.show('加入失敗，請稍後再試', 'error')
     }
   }
 
@@ -72,8 +63,6 @@ export const useCartStore = defineStore('cart', () => {
     totalQty,
     totalPrice,
     shippingFee,
-    openMsg,
-    joinMsg,
     getCart,
     addToCart,
     deleteItem,
