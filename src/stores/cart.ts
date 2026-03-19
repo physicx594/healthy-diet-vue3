@@ -33,7 +33,6 @@ export const useCartStore = defineStore('cart', () => {
     const notification = useNotificationStore()
     try {
       await cartApi.add(productId, qty)
-      await getCart()
       notification.show('成功加入購物車')
     } catch {
       notification.show('加入失敗，請稍後再試', 'error')
@@ -51,7 +50,9 @@ export const useCartStore = defineStore('cart', () => {
     const loading = useLoadingStore()
     loading.setFormLoading(true)
     await cartApi.update(cartItemId, productId, qty)
-    await getCart()
+    const item = items.value.find((i) => i.id === cartItemId)
+    if (item) item.qty = qty
+    loading.setFormLoading(false)
   }
 
   const clearCart = async () => {
