@@ -58,7 +58,7 @@ const signin = async () => {
 
         <div class="space-y-4">
           <VInput v-model="user.email" label="帳號" placeholder="請輸入 Email" type="email" />
-          <VInput v-model="user.password" label="密碼" placeholder="請輸入密碼" type="password" />
+          <VInput v-model="user.password" label="密碼" placeholder="hd2026" type="password" />
         </div>
 
         <VButton size="lg" :loading="loading" class="mt-6 w-full" type="submit"> 登入 </VButton>

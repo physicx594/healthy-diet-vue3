@@ -64,7 +64,7 @@
     <!-- Bottom bar -->
     <div class="border-t border-white/8">
       <div class="container mx-auto px-6 py-3.5 flex max-md:flex-col justify-between items-center gap-1.5 text-xs text-white/30 tracking-wide">
-        <span>&copy; 2025 Healthy Diet All Rights Reserved.</span>
+        <span>&copy; 2026 Healthy Diet All Rights Reserved.</span>
         <span>Crafted with <i class="fa-solid fa-heart text-contrast/60 text-xs"></i> for a healthier world</span>
       </div>
     </div>
